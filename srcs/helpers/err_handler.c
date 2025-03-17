@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   err_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/17 17:43:50 by emagnani         ###   ########.fr       */
+/*   Created: 2025/03/17 17:48:35 by emagnani          #+#    #+#             */
+/*   Updated: 2025/03/17 18:01:44 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	err_handler(char *err_message, bool exit_program)
 {
-	void	*mlx;
-	void	*mlx_win;
-
-	start_parse(argc, argv);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1280, 720, "cub3d");
-	mlx_loop(mlx);
-	return (EXIT_SUCCESS);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd(err_message, STDERR_FILENO);
+	if (exit_program)
+		exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
