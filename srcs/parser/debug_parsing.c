@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/18 16:53:55 by emagnani         ###   ########.fr       */
+/*   Created: 2025/03/18 17:53:27 by emagnani          #+#    #+#             */
+/*   Updated: 2025/03/18 17:53:52 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+void debug_print_file(char *file)
 {
-	void	*mlx;
-	void	*mlx_win;
+	int		fd;
+	char	*line;
 
-	if (start_parsing(argc, argv) != SUCCESS)
-		return (EXIT_FAILURE);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1280, 720, "cub3d");
-	mlx_loop(mlx);
-	return (EXIT_SUCCESS);
+	fd = open(file, O_RDONLY);
+	while ((line = get_next_line(fd)))
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	free(line);
+	close(fd);
 }

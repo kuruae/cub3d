@@ -1,26 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/18 16:53:55 by emagnani         ###   ########.fr       */
+/*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
+/*   Updated: 2025/03/18 17:36:04 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-int	main(int argc, char **argv)
+# include "cub3d.h"
+
+// error table
+typedef enum e_err_status
 {
-	void	*mlx;
-	void	*mlx_win;
+	SUCCESS,
+	PARSING_ERROR
+}	t_err_status;
 
-	if (start_parsing(argc, argv) != SUCCESS)
-		return (EXIT_FAILURE);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1280, 720, "cub3d");
-	mlx_loop(mlx);
-	return (EXIT_SUCCESS);
-}
+// RGB color
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
+// Map data
+typedef struct s_map
+{
+	char	*NO_texture;
+	char	*SO_texture;
+	char	*WE_texture;
+	char	*EA_texture;
+	t_rgb	floor_color;
+	t_rgb	ceiling_color;
+}	t_map;
+
+#endif

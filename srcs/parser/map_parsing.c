@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_main.c                                     :+:      :+:    :+:   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 17:44:05 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/17 18:01:02 by emagnani         ###   ########.fr       */
+/*   Created: 2025/03/18 14:46:55 by emagnani          #+#    #+#             */
+/*   Updated: 2025/03/18 17:56:01 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	validate_args(char *file)
+t_err_status	validate_file_path(char *file, char *msg)
 {
-	int	len;
+	int	fd;
 
-	len = ft_strlen(file);
-	if (len < 4 || ft_strncmp(&file[len - 4], ".cub", 4))
-		return (err_handler(ERR_INVALID_EXT, true));
-	return (EXIT_SUCCESS);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		close(fd);
+		return (err_handler(msg, PARSING_ERROR));
+	}
+	return (SUCCESS);
 }
 
-int	start_parse(int argc, char **argv)
+t_err_status	start_parsing_cub_file(char *file)
 {
-	if (argc != 2)
-		return (err_handler(ERR_INVALID_ARGS, true));
-	validate_args(argv[1]);
-	// parse_file(argv[1]);
-	return (EXIT_SUCCESS);
+	// t_map	map;
+
+	if (validate_file_path(file, MSG_INVALID_MAP_PATH) != SUCCESS)
+		return (EXIT_FAILURE);
+
+	debug_print_file(file);
+
+	// parse_pre_map_data(file, &map);
+	
+	return (SUCCESS);
 }

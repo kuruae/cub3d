@@ -6,26 +6,27 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/17 17:55:52 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:48:29 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "libft.h"
-# include "mlx.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 # include <math.h>
 
-// Error handling
-# define ERR_INVALID_ARGS "Invalid number of arguments\n"
-# define ERR_INVALID_EXT "Invalid file extension\n"
+# include "mlx.h"
+# include "libft.h"
+# include "structs.h"
+# include "parsing.h"
+
+# define EXT ".cub"
+# define EXT_LEN 4
 
 // Helpers 
-int	err_handler(char *err_message, bool exit_program);
+t_err_status	err_handler(char *err_message, t_err_status status);
 
-// Parsing
-int	validate_args(char *file);
-int	start_parse(int argc, char **argv);
 
 #endif
