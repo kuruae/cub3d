@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/18 17:36:04 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:03:49 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 // error table
 typedef enum e_err_status
 {
-	SUCCESS,
-	PARSING_ERROR
+	MALLOC_FAILURE = -1,
+	SUCCESS = 0,
+	ERR_MAP_PATH,
+	ERR_TEXTURE_PATH,
+	ERR_COLOR
 }	t_err_status;
 
 // RGB color

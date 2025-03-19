@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/18 17:55:13 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:21:25 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@
 // Debug functions
 void			debug_print_file(char *file);
 
+// Helpers
+t_err_status	validate_file_path(const char *file, char *msg);
+
 // Parsing main
 t_err_status	validate_file_extension(char *file);
 t_err_status	start_parsing(int argc, char **argv);
 
 // Parsing map
 t_err_status	start_parsing_cub_file(char *file);
-t_err_status	parse_pre_map_data(char *file, t_map *map);
+t_err_status	texture_and_colors_parsing(char *file, t_map *map);
 
 // Structs
 

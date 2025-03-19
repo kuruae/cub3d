@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:44:05 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/18 17:57:06 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:27:08 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ t_err_status	validate_file_extension(char *file)
 	int	len;
 
 	len = ft_strlen(file);
-	if (len < 4 || ft_strncmp(&file[len - EXT_LEN], EXT, 4))
-		return (err_handler(MSG_INVALID_EXT, PARSING_ERROR));
+	if (len < 4 || ft_strncmp(&file[len - EXT_LEN], EXT, EXT_LEN))
+		return (err_handler(MSG_INVALID_EXT, ERR_MAP_PATH));
 	return (SUCCESS);
 }
 
 t_err_status	start_parsing(int argc, char **argv)
 {
 	if (argc != 2)
-		return (err_handler(MSG_INVALID_ARGS, PARSING_ERROR));
+		return (err_handler(MSG_INVALID_ARGS, ERR_MAP_PATH));
 	if (validate_file_extension(argv[1]) != SUCCESS)
-		return (PARSING_ERROR);
+		return (ERR_MAP_PATH);
 	if (start_parsing_cub_file(argv[1]) != SUCCESS)
-		return (PARSING_ERROR);
+		return (ERR_MAP_PATH);
 	return (SUCCESS);
 }
