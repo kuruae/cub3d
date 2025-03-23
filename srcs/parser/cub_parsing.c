@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:46:37 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/19 18:52:57 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/23 19:04:56 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_err_status	start_parsing_cub_file(char *file)
 
 	init_map(&map);
 
-	texture_and_colors_parsing(file, &map);
+	cub_file_readloop(file, &map);
 	
 	return (SUCCESS);
 }
