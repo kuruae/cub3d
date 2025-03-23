@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/19 18:42:44 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:20:28 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static t_err_status	process_texture(const char *line, char **texture)
 	printf("line: %s\n", line);
 	if (validate_file_path(line, MSG_INVALID_TEXTURE_PATH) != SUCCESS)
 		return (ERR_TEXTURE_PATH);
-	// if (*texture)
-	// 	free(*texture);
+	if (*texture)
+		free(*texture);
 	*texture = ft_strdup(line);
 	if (!*texture)
 		return (MALLOC_FAILURE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/19 17:03:49 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:44:03 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ typedef struct s_rgb
 	int	g;
 	int	b;
 }	t_rgb;
+
+typedef struct s_submap
+{
+	int		**line;
+	int		**player_pos;
+	bool	has_pos;
+
+}
 
 // Map data
 typedef struct s_map
