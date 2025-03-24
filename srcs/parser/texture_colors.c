@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 15:45:21 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/24 18:17:03 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,17 @@ int	check_rgb_values(char **str)
 	return (EXIT_SUCCESS);
 }
 
-static t_err_status	process_colors(const char *line, t_rgb colors)
+int	count_arrays(char **str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+		i++;
+	return (i);
+}
+
+static t_err_status	process_colors(const char *line, t_rgb *colors)
 {
 	char	**splitted_rgb;
 
@@ -57,14 +67,12 @@ static t_err_status	process_colors(const char *line, t_rgb colors)
 	splitted_rgb = ft_split(line, ',');
 	if (!splitted_rgb)
 		return (MALLOC_FAILURE);
-	if (splitted_rgb[4] != NULL || !splitted_rgb[3])
+	if (check_rgb_values(splitted_rgb) == EXIT_FAILURE || count_arrays(splitted_rgb) == EXIT_FAILURE)
 		return (ERR_COLOR);
-	if (check_rgb_values(splitted_rgb) == EXIT_FAILURE)
-		return (ERR_COLOR);
-	colors.r = ft_atoi(splitted_rgb[0]);
-	colors.g = ft_atoi(splitted_rgb[1]);
-	colors.b = ft_atoi(splitted_rgb[2]);
-
+	colors->r = ft_atoi(splitted_rgb[0]);
+	colors->g = ft_atoi(splitted_rgb[1]);
+	colors->b = ft_atoi(splitted_rgb[2]);
+	ft_free_str_array(&splitted_rgb);
 	return (SUCCESS);
 }
 
@@ -94,9 +102,9 @@ t_err_status	parse_colors(char *line, t_map *map)
 
 	status = SUCCESS;
 	if (line[0] == 'C')
-	status = process_color(&line[1], &map->ceiling_color);
+	status = process_colors(&line[1], &map->ceiling_color);
 	if (line[0] == 'F')
-		status = process_color(&line[1], &map->floor_color);
+		status = process_colors(&line[1], &map->floor_color);
 	return (status);
 }
 
@@ -182,18 +190,39 @@ int		*map_translator(char *line)
 	return (new);
 }
 
-void	map_reader(line, map, fd)
+void	map_reader(char *line, t_map *map, int fd)
 {
-	int	i;
+	(void)fd;
+	(void)map;
+	(void)line;
+	return ;
+	// int	i;
 
-	i = 0;
-	while(line)
+	// i = 0;
+	// while(line)
+	// {
+		
+
+		
+	// 	line = get_next_line(fd);
+	// }
+}
+
+t_err_status	process_line(char *line, t_map *map, int fd)
+{
+	t_err_status	status;
+
+	status = SUCCESS;
+	trim_newline(line);
+	if (are_we_in_map(line) == false)
 	{
-		
-
-		
-		line = get_next_line(fd);
+		status = parse_textures(line, map);
+		if (status == SUCCESS)
+			status = parse_colors(line, map);
 	}
+	else
+		map_reader(line, map, fd);
+	return (status);
 }
 
 t_err_status	cub_file_readloop(char *file, t_map *map)
@@ -207,16 +236,8 @@ t_err_status	cub_file_readloop(char *file, t_map *map)
 	
 	while ((line = get_next_line(fd)))
 	{
-		trim_newline(line);
-		if (are_we_in_map(line) == false)
-		{
-			status = parse_textures(line, map);
-			status = parse_colors(line, map);
-		}
-		else
-			map_reader(line, map, fd);
+		status = process_line(line, map, fd);
 		free(line);
-
 		if (status != SUCCESS)
 			break ;
 	}
@@ -224,44 +245,42 @@ t_err_status	cub_file_readloop(char *file, t_map *map)
 	return (SUCCESS);
 }
 
+// void	ft_lstadd_end(t_submap **head, int value)
+// {
+// 	t_submap	*new_node;
+// 	t_submap	*temp;
 
+// 	new_node = create_node(value);
+// 	if (!head || !new_node)
+// 		return ;
+// 	if (*head == NULL)
+// 	{
+// 		*head = new_node;
+// 		return ;
+// 	}
+// 	else
+// 	{
+// 		temp = *head;
+// 		while (temp->next != NULL)
+// 		{
+// 			temp = temp->next;
+// 		}
+// 		temp->next = new_node;
+// 		new_node->prev = temp;
+// 	}
+// }
 
-void	ft_lstadd_end(t_submap **head, int value)
-{
-	t_submap	*new_node;
-	t_submap	*temp;
+// void	ft_add_in_list(t_submap **head, char *argv)
+// {
+// 	ft_lstadd_end(head, ft_atoi(argv));
+// }
 
-	new_node = create_node(value);
-	if (!head || !new_node)
-		return ;
-	if (*head == NULL)
-	{
-		*head = new_node;
-		return ;
-	}
-	else
-	{
-		temp = *head;
-		while (temp->next != NULL)
-		{
-			temp = temp->next;
-		}
-		temp->next = new_node;
-		new_node->prev = temp;
-	}
-}
+// void	*create_node(int value)
+// {
+// 	t_submap	*new_node;
 
-void	ft_add_in_list(t_submap **head, char *argv)
-{
-	ft_lstadd_end(head, ft_atoi(argv));
-}
-
-void	*create_node(int value)
-{
-	t_submap	*new_node;
-
-	new_node = (t_submap *)malloc(sizeof(t_submap));
-	if (!new_node)
-		return (NULL);
-	return (new_node);
-}
+// 	new_node = (t_submap *)malloc(sizeof(t_submap));
+// 	if (!new_node)
+// 		return (NULL);
+// 	return (new_node);
+// }

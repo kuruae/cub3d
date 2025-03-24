@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 15:42:56 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:52:39 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_err_status	start_parsing(int argc, char **argv);
 // Parsing map
 t_err_status	start_parsing_cub_file(char *file);
 t_err_status	cub_file_readloop(char *file, t_map *map);
+t_err_status	process_line(char *line, t_map *map, int fd);
 
 // Structs
 
