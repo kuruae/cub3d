@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:53:27 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/18 17:53:52 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:44:51 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,14 @@ void debug_print_file(char *file)
 	}
 	free(line);
 	close(fd);
+}
+
+void	debug_print_struct_map(t_map *map)
+{
+	printf("no_texture: %s\n", map->no_texture);
+	printf("so_texture: %s\n", map->so_texture);
+	printf("we_texture: %s\n", map->we_texture);
+	printf("ea_texture: %s\n", map->ea_texture);
+	printf("floor_color: %d, %d, %d\n", map->floor_color.r, map->floor_color.g, map->floor_color.b);
+	printf("ceiling_color: %d, %d, %d\n", map->ceiling_color.r, map->ceiling_color.g, map->ceiling_color.b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/23 19:04:54 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/24 15:31:28 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ typedef struct s_submap
 typedef struct s_map
 {
 	bool	has_pos;
-	char	*NO_texture;
-	char	*SO_texture;
-	char	*WE_texture;
-	char	*EA_texture;
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
 	t_rgb	floor_color;
 	t_rgb	ceiling_color;
 }	t_map;

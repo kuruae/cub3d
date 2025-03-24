@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:46:37 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/23 19:04:56 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/24 15:42:25 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_err_status	validate_file_path(const char *file, char *msg)
 
 static t_err_status	init_map(t_map *map)
 {
-	map->NO_texture = NULL;
-	map->SO_texture = NULL;
-	map->WE_texture = NULL;
-	map->EA_texture = NULL;
+	map->no_texture = NULL;
+	map->so_texture = NULL;
+	map->we_texture = NULL;
+	map->ea_texture = NULL;
 	map->floor_color.r = -1;
 	map->floor_color.g = -1;
 	map->floor_color.b = -1;
@@ -63,6 +63,8 @@ t_err_status	start_parsing_cub_file(char *file)
 	init_map(&map);
 
 	cub_file_readloop(file, &map);
+
+	debug_print_struct_map(&map);
 	
 	return (SUCCESS);
 }

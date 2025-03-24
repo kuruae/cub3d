@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/23 19:35:27 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/24 15:45:21 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ t_err_status	parse_textures(char *line, t_map *map)
 
 	status = SUCCESS;
 	if (ft_strncmp(line, "NO", 2) == 0 && status == SUCCESS)
-		status = process_texture(&line[2], &map->NO_texture);
+		status = process_texture(&line[2], &map->no_texture);
 	else if (ft_strncmp(line, "SO", 2) == 0 && status == SUCCESS)
-		status = process_texture(&line[2], &map->SO_texture);
+		status = process_texture(&line[2], &map->so_texture);
 	else if (ft_strncmp(line, "WE", 2) == 0 && status == SUCCESS)
-		status = process_texture(&line[2], &map->WE_texture);
+		status = process_texture(&line[2], &map->we_texture);
 	else if (ft_strncmp(line, "EA", 2) == 0 && status == SUCCESS)
-		status = process_texture(&line[2], &map->EA_texture);
+		status = process_texture(&line[2], &map->ea_texture);
 	return (status);
 }
 
@@ -109,24 +109,22 @@ static void trim_newline(char *str)
 
 bool	are_we_in_map(char *line)
 {
-	int	i;
+	bool	state;
 
-	i = 1;
+	state = true;
 	if (ft_strncmp(line, "NO", 2) == 0)
-		i = 0;
+		state = false;
 	if (ft_strncmp(line, "SO", 2) == 0)
-		i = 0;	
+		state = false;	
 	if (ft_strncmp(line, "EA", 2) == 0)
-		i = 0;
+		state = false;
 	if (ft_strncmp(line, "WE", 2) == 0)
-		i = 0;
+		state = false;
 	if (line[0] == 'F')
-		i = 0;
+		state = false;
 	if (line[0] == 'C')
-		i = 0;
-	if (i == 0)
-		return (false);
-	return (true);
+		state = false;
+	return (state);
 }
 
 int		map_line_length(char *line)
@@ -203,17 +201,14 @@ t_err_status	cub_file_readloop(char *file, t_map *map)
 	int				fd;
 	char			*line;
 	t_err_status	status;
-	bool			reading_map;
 
-	reading_map = false;
 	status = SUCCESS;
 	fd = open(file, O_RDONLY);
 	
 	while ((line = get_next_line(fd)))
 	{
 		trim_newline(line);
-		reading_map = are_we_in_map(line);
-		if (reading_map == false)
+		if (are_we_in_map(line) == false)
 		{
 			status = parse_textures(line, map);
 			status = parse_colors(line, map);
@@ -223,10 +218,9 @@ t_err_status	cub_file_readloop(char *file, t_map *map)
 		free(line);
 
 		if (status != SUCCESS)
-			return (status);
+			break ;
 	}
-	
-	
+	close(fd);
 	return (SUCCESS);
 }
 

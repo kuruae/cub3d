@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/23 19:32:14 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/24 15:42:56 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 // Debug functions
 void			debug_print_file(char *file);
+void			debug_print_struct_map(t_map *map);
 
 // Helpers
 t_err_status	validate_file_path(const char *file, char *msg);
