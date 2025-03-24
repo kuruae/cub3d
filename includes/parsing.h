@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 17:52:39 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:07:31 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define WEST 3
 # define EAST 4
 # define SOUTH 5
+# define TABS 6
 
 // Debug functions
 void			debug_print_file(char *file);
@@ -38,6 +39,12 @@ t_err_status	validate_file_path(const char *file, char *msg);
 // Parsing main
 t_err_status	validate_file_extension(char *file);
 t_err_status	start_parsing(int argc, char **argv);
+
+// Parsing textures
+t_err_status	parse_textures(char *line, t_map *map);
+
+// Parsing colors
+t_err_status	parse_colors(char *line, t_map *map);
 
 // Parsing map
 t_err_status	start_parsing_cub_file(char *file);

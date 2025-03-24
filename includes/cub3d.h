@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 15:32:46 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/24 18:51:13 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 // Helpers 
 t_err_status	err_handler(char *err_message, t_err_status status);
+bool			ft_isdigit_whitespaces(char *str);
 
 
 #endif
