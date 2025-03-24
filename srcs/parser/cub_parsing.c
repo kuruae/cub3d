@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:46:37 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 15:42:25 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:00:46 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_err_status	start_parsing_cub_file(char *file)
 	if (validate_file_path(file, MSG_INVALID_MAP_PATH) != SUCCESS)
 		return (ERR_MAP_PATH);
 
-	debug_print_file(file);
+	// debug_print_file(file);
 
 	init_map(&map);
 

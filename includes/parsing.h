@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 19:07:31 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:54:16 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ t_err_status	parse_colors(char *line, t_map *map);
 t_err_status	start_parsing_cub_file(char *file);
 t_err_status	cub_file_readloop(char *file, t_map *map);
 t_err_status	process_line(char *line, t_map *map, int fd);
+
+
+//map translator && debuyg
+
+int		*map_translator(char *line);
+
 
 // Structs
 
