@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:53:27 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 15:44:51 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:08:48 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,18 @@ void	debug_print_struct_map(t_map *map)
 	printf("ea_texture: %s\n", map->ea_texture);
 	printf("floor_color: %d, %d, %d\n", map->floor_color.r, map->floor_color.g, map->floor_color.b);
 	printf("ceiling_color: %d, %d, %d\n", map->ceiling_color.r, map->ceiling_color.g, map->ceiling_color.b);
+}
+
+
+void	debug_print_translated_line(int *translated_line)
+{
+	int	i;
+
+	i = 0;
+	while(translated_line[i] != -1)
+	{
+		fprintf(stderr, " %d", translated_line[i]);
+		i++;
+	}
+	fprintf(stderr, "\n");
 }

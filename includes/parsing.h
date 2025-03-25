@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 20:54:16 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:08:59 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 // Debug functions
 void			debug_print_file(char *file);
 void			debug_print_struct_map(t_map *map);
+void			debug_print_translated_line(int *translated_line);
 
 // Helpers
 t_err_status	validate_file_path(const char *file, char *msg);
@@ -40,6 +41,11 @@ t_err_status	validate_file_path(const char *file, char *msg);
 t_err_status	validate_file_extension(char *file);
 t_err_status	start_parsing(int argc, char **argv);
 
+// Parsing cubfile
+t_err_status	start_parsing_cub_file(char *file);
+t_err_status	cub_file_readloop(char *file, t_map *map);
+t_err_status	process_line(char *line, t_map *map, int fd);
+
 // Parsing textures
 t_err_status	parse_textures(char *line, t_map *map);
 
@@ -47,10 +53,7 @@ t_err_status	parse_textures(char *line, t_map *map);
 t_err_status	parse_colors(char *line, t_map *map);
 
 // Parsing map
-t_err_status	start_parsing_cub_file(char *file);
-t_err_status	cub_file_readloop(char *file, t_map *map);
-t_err_status	process_line(char *line, t_map *map, int fd);
-
+void			map_reader(char *line, t_map *map, int fd);
 
 //map translator && debuyg
 

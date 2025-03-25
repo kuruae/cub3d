@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_file_reader.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 21:09:00 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:04:53 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,6 @@ bool	are_we_in_map(char *line)
 	if (line[0] == 'C')
 		state = false;
 	return (state);
-}
-void	map_reader(char *line, t_map *map, int fd)
-{
-	int 		id;
-	int			*translated_line;
-	t_submap	*head;
-	int 		i;
-	
-	(void)map;
-	head = NULL;
-	id = 0;
-	while(line) 
-	{
-		fprintf(stderr,"CURRENT LINE VALUE : %s \n", line);
-		translated_line = map_translator(line);
-		fprintf(stderr, "LINE VALUE AFTER TRANSLATOR\n");
-		i = 0;
-		while(translated_line[i])
-		{
-			fprintf(stderr, " %d", translated_line[i]);
-			i++;
-		}
-		printf("\n");
-		ft_add_in_list_cub(&head, id, translated_line);
-		id++;
-		line = get_next_line(fd);
-	}
 }
 
 int		check_if_empty(char *line)
