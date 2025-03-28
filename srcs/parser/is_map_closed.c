@@ -6,11 +6,32 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/03/28 20:10:20 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/28 21:03:02 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	check_for_6(t_map *map, int i, int j, int width)
+{
+	if (j == 0)
+	{
+		if (map->map[i][j] == 6 && (map->map[i][j + 1] == 0))
+			return (1);
+	}
+	else if (j == width - 1)
+	{
+		if (map->map[i][j] == 6 && (map->map[i][j - 1] == 0))
+			return (1);
+	}
+	else
+	{
+		if (map->map[i][j] == 6 && (map->map[i][j - 1] == 0 || map->map[i][j
+				+ 1] == 0))
+			return (1);
+	}
+	return (0);
+}
 
 int	*is_map_closed_upper(t_map *map, int width)
 {
@@ -27,7 +48,11 @@ int	*is_map_closed_upper(t_map *map, int width)
 		i = 0;
 		while (map->map[i] && (j >= ft_tablen(map->map[i])
 				|| map->map[i][j] == 6 || map->map[i][j] == -1))
+		{
+			if (check_for_6(map, i, j, width) == 1)
+				return (NULL);
 			i++;
+		}
 		if (map->map[i])
 			up[j] = map->map[i][j];
 		j++;
@@ -51,7 +76,11 @@ int	*is_map_closed_bottom(t_map *map, int height, int width)
 		i = height - 1;
 		while (map->map[i] && (j >= ft_tablen(map->map[i])
 				|| map->map[i][j] == 6 || map->map[i][j] == -1))
+		{
+			if (check_for_6(map, i, j, width) == 1)
+				return (NULL);
 			i--;
+		}
 		if (i >= 0)
 			bottom[j] = map->map[i][j];
 		j++;
@@ -69,20 +98,28 @@ int	is_map_closed(t_map *map, int height, int width)
 	i = 0;
 	up = is_map_closed_upper(map, width);
 	bottom = is_map_closed_bottom(map, height, width);
-	printf("upper line is \n");
-	while (up[i] != -1)
+	if (!up || !bottom)
 	{
-		printf(" %d", up[i]);
+		printf("hole in map\n");
+		return (0);
+	}
+	while(up[i] != -1)
+	{
+		if (up[i] == 0)
+		{
+			printf("hole in top part of map\n");
+			return (0);
+		}
 		i++;
 	}
-	printf("\n");
-	i = 0;
-	printf("bottom line is \n");
-	while (bottom[i] != -1)
+	while(bottom[i] != -1)
 	{
-		printf(" %d", bottom[i]);
+		if (bottom[i] == 0)
+		{
+			printf("hole in bottom part of map\n");
+			return (0);
+		}
 		i++;
 	}
-	printf("\n");
 	return (0);
 }
