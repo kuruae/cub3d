@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit_whitespaces.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:48:06 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 18:51:04 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:04:28 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,13 @@ bool	ft_isdigit_whitespaces(char *str)
 		str++;
 	}
 	return (true);
+}
+int		ft_tablen(int *tab)
+{
+	int	i;
+
+	i = 0;
+	while(tab[i] != -1)
+		i++;
+	return (i);
 }

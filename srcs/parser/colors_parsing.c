@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:21:28 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 18:51:17 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:08:50 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	count_arrays(char **str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -27,7 +27,7 @@ static int	check_rgb_values(char **str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (ft_isdigit_whitespaces(str[i]) == false)
 			return (EXIT_FAILURE);
@@ -38,19 +38,18 @@ static int	check_rgb_values(char **str)
 	return (EXIT_SUCCESS);
 }
 
-
 static t_err_status	process_colors(const char *line, t_rgb *colors)
 {
 	char	**splitted_rgb;
 
 	while (ft_isspace(*line))
-	line++;
-	
+		line++;
 	splitted_rgb = ft_split(line, ',');
 	if (!splitted_rgb)
-	return (MALLOC_FAILURE);
-	if (check_rgb_values(splitted_rgb) == EXIT_FAILURE || count_arrays(splitted_rgb) == EXIT_FAILURE)
-	return (ERR_COLOR);
+		return (MALLOC_FAILURE);
+	if (check_rgb_values(splitted_rgb) == EXIT_FAILURE
+		|| count_arrays(splitted_rgb) == EXIT_FAILURE)
+		return (ERR_COLOR);
 	colors->r = ft_atoi(splitted_rgb[0]);
 	colors->g = ft_atoi(splitted_rgb[1]);
 	colors->b = ft_atoi(splitted_rgb[2]);
@@ -60,11 +59,11 @@ static t_err_status	process_colors(const char *line, t_rgb *colors)
 
 t_err_status	parse_colors(char *line, t_map *map)
 {
-	t_err_status	status;
+	t_err_status status;
 
 	status = SUCCESS;
 	if (line[0] == 'C')
-	status = process_colors(&line[1], &map->ceiling_color);
+		status = process_colors(&line[1], &map->ceiling_color);
 	if (line[0] == 'F')
 		status = process_colors(&line[1], &map->floor_color);
 	return (status);

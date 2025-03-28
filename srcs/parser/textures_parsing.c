@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:23:19 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 18:23:44 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:09:16 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static t_err_status	process_texture(const char *line, char **texture)
 {
 	while (ft_isspace(*line))
 		line++;
-	
 	if (ft_strncmp(line, "./", 2) != 0)
 		return (ERR_TEXTURE_PATH);
 	line += 2;
@@ -33,7 +32,7 @@ static t_err_status	process_texture(const char *line, char **texture)
 
 t_err_status	parse_textures(char *line, t_map *map)
 {
-	t_err_status	status;
+	t_err_status status;
 
 	status = SUCCESS;
 	if (ft_strncmp(line, "NO", 2) == 0 && status == SUCCESS)

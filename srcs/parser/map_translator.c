@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   map_translator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:26:44 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/28 16:50:28 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:09:13 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int map_line_length(char *line)
+int	map_line_length(char *line)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	len = 0;
 	i = 0;
@@ -29,9 +29,9 @@ int map_line_length(char *line)
 	return (len);
 }
 
-int fill_tabs(int **new, int x, int max_len)
+int	fill_tabs(int **new, int x, int max_len)
 {
-	int tabs;
+	int	tabs;
 
 	tabs = 0;
 	while (tabs < 4 && x < max_len)
@@ -43,11 +43,11 @@ int fill_tabs(int **new, int x, int max_len)
 	return (x);
 }
 
-int *map_translator(char *line)
+int	*map_translator(char *line)
 {
-	int *new;
-	int i;
-	int x;
+	int	*new;
+	int	i;
+	int	x;
 
 	i = 0;
 	x = 0;
@@ -71,7 +71,7 @@ int *map_translator(char *line)
 		else if (line[i] == 'S')
 			new[x] = SOUTH;
 		else if (line[i] == '\n')
-			break;
+			break ;
 		else
 			new[x] = -2;
 		i++;
