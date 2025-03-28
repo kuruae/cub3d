@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 15:31:28 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:45:27 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef enum e_err_status
 	SUCCESS = 0,
 	ERR_MAP_PATH,
 	ERR_TEXTURE_PATH,
+	ERR_POSITION,
 	ERR_COLOR
 }	t_err_status;
 
@@ -45,6 +46,7 @@ typedef struct s_submap
 // Map data
 typedef struct s_map
 {
+	int		**map;
 	bool	has_pos;
 	char	*no_texture;
 	char	*so_texture;

@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   map_translator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:26:44 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/25 20:52:46 by kuru             ###   ########.fr       */
+/*   Updated: 2025/03/28 16:50:28 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		map_line_length(char *line)
+int map_line_length(char *line)
 {
 	int i;
-	int	len;
+	int len;
 
 	len = 0;
 	i = 0;
 	len = ft_strlen(line);
-	while(line[i])
+	while (line[i])
 	{
 		if (line[i] == '\t')
 			len = len + 3;
@@ -29,12 +29,12 @@ int		map_line_length(char *line)
 	return (len);
 }
 
-int	fill_tabs(int **new, int x, int max_len)
+int fill_tabs(int **new, int x, int max_len)
 {
-	int	tabs;
+	int tabs;
 
 	tabs = 0;
-	while(tabs < 4 && x < max_len)
+	while (tabs < 4 && x < max_len)
 	{
 		(*new)[x] = TABS;
 		x++;
@@ -43,23 +43,23 @@ int	fill_tabs(int **new, int x, int max_len)
 	return (x);
 }
 
-int		*map_translator(char *line)
+int *map_translator(char *line)
 {
-	int	*new;
-	int	i;
-	int	x;
+	int *new;
+	int i;
+	int x;
 
 	i = 0;
 	x = 0;
 	new = malloc(sizeof(int) * (map_line_length(line) + 1));
-	while(line[i])
+	while (line[i])
 	{
 		if (line[i] == '\t')
 			x = fill_tabs(&new, x, map_line_length(line));
 		else if (line[i] == '0')
 			new[x] = 0;
 		else if (line[i] == ' ')
-			new[x] = TABS;	
+			new[x] = TABS;
 		else if (line[i] == '1')
 			new[x] = 1;
 		else if (line[i] == 'N')

@@ -10,7 +10,7 @@ BOLD := $(shell printf "\033[1m")
 ######### FLAGS ########
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3 -O0
 LIBFT_PATH = libft
 MLX_PATH = mlx
 

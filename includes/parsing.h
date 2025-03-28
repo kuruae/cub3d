@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/25 17:08:59 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:19:44 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 void			debug_print_file(char *file);
 void			debug_print_struct_map(t_map *map);
 void			debug_print_translated_line(int *translated_line);
+void			debug_print_full_map(int **full_map);
 
 // Helpers
 t_err_status	validate_file_path(const char *file, char *msg);
@@ -45,6 +46,7 @@ t_err_status	start_parsing(int argc, char **argv);
 t_err_status	start_parsing_cub_file(char *file);
 t_err_status	cub_file_readloop(char *file, t_map *map);
 t_err_status	process_line(char *line, t_map *map, int fd);
+t_err_status	verify_values(t_map *map);
 
 // Parsing textures
 t_err_status	parse_textures(char *line, t_map *map);
@@ -59,6 +61,9 @@ void			map_reader(char *line, t_map *map, int fd);
 
 int		*map_translator(char *line);
 
+// DFS
+int		get_map_height(int **map);
+int		get_map_width(int **map, int height);
 
 // Structs
 
