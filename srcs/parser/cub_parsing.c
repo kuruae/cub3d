@@ -57,11 +57,13 @@ t_err_status	start_parsing_cub_file(char *file)
 	init_map(&map);
 	cub_file_readloop(file, &map);
 	verify_values(&map);
-	// verify_blabla(&map);
+	verify_data(&map);
 	height = get_map_height(map.map);
 	width = get_map_width(map.map, height);
 	printf("height : %d , widht %d\n", height, width);
 	i = is_map_closed(&map, height, width);
+	if (i == 0)
+		printf("ouistiti\n");
 	// fprintf(stderr, "CODE DERREUR DE MAP CHECKER EST :%d\n", i);
 	// debug_print_struct_map(&map);
 	return (SUCCESS);
@@ -91,7 +93,7 @@ t_err_status	verify_values(t_map *map)
 	return (SUCCESS);
 }
 
-t_err_status	verify_blabla(t_map *map)
+t_err_status	verify_data(t_map *map)
 {
 	if (!map->no_texture || !map->so_texture || !map->we_texture
 		|| !map->ea_texture)

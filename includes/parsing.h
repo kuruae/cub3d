@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/29 19:00:38 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/29 21:00:48 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # define MSG_INVALID_COLOR "Invalid color\n"
 # define MSG_INVALID_MAP "Invalid Map\n"
 
+// temp file path
+# define TEMP_FILE ".cub"
+
+// Map values
 # define NORTH '2'
 # define WEST '3'
 # define EAST '4'
@@ -49,6 +53,7 @@ t_err_status	start_parsing_cub_file(char *file);
 t_err_status	cub_file_readloop(char *file, t_map *map);
 t_err_status	process_line(char *line, t_map *map, int fd);
 t_err_status	verify_values(t_map *map);
+t_err_status	verify_data(t_map *map);
 
 // Parsing textures
 t_err_status	parse_textures(char *line, t_map *map);
