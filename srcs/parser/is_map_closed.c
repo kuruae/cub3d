@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/03/29 01:24:02 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/29 15:56:47 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	is_map_closed(t_map *map, int height, int width)
 	int	i;
 
 	i = 0;
+	if (height =< 1)
 	up = is_map_closed_upper(map, width);
 	bottom = is_map_closed_bottom(map, height, width);
 	if (!up || !bottom)
