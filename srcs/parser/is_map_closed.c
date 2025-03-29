@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/03/28 21:03:02 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/29 01:24:02 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,45 @@ int	is_map_closed(t_map *map, int height, int width)
 		printf("hole in map\n");
 		return (0);
 	}
+	printf("top\n");
+	while(up[i] != -1)
+	{
+		printf(" %d",up[i]);
+		// if (up[i] == 0)
+		// {
+		// 	printf("hole in top part of map\n");
+		// }
+		i++;
+	}
+	printf("\nBOTTOM\n");
+	i = 0;
+	while(bottom[i] != -1)
+	{
+		printf(" %d",bottom[i]);
+		// if (bottom[i] == 0)
+		// {
+		// 	printf("hole in bottom part of map\n");
+		// }
+		i++;
+	}
+	i = 0;
 	while(up[i] != -1)
 	{
 		if (up[i] == 0)
 		{
-			printf("hole in top part of map\n");
-			return (0);
+			printf("\nhole in top part of map\n");
+			break;
 		}
 		i++;
 	}
+	printf("\n");
+	i = 0;
 	while(bottom[i] != -1)
 	{
 		if (bottom[i] == 0)
 		{
 			printf("hole in bottom part of map\n");
-			return (0);
+			break;
 		}
 		i++;
 	}
