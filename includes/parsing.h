@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/28 20:04:41 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/29 19:00:38 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define MSG_INVALID_COLOR "Invalid color\n"
 # define MSG_INVALID_MAP "Invalid Map\n"
 
-# define NORTH 2
-# define WEST 3
-# define EAST 4
-# define SOUTH 5
-# define TABS 6
+# define NORTH '2'
+# define WEST '3'
+# define EAST '4'
+# define SOUTH '5'
+# define VOID '6'
 
 // Debug functions
 void			debug_print_file(char *file);
@@ -37,6 +37,7 @@ void			debug_print_full_map(int **full_map);
 
 // Helpers
 int		ft_tablen(int *tab);
+void	trim_newline(char *str);
 t_err_status	validate_file_path(const char *file, char *msg);
 
 // Parsing main
@@ -60,11 +61,11 @@ void			map_reader(char *line, t_map *map, int fd);
 
 //map translator && debuyg
 
-int		*map_translator(char *line);
+char		*map_translator(char *line);
 
 // DFS
-int		get_map_height(int **map);
-int		get_map_width(int **map, int height);
+int		get_map_height(char **map);
+int		get_map_width(char **map, int height);
 
 
 int		is_map_closed(t_map *map, int height, int width);

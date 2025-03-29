@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub_file_reader.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/28 20:08:53 by habouda          ###   ########.fr       */
+/*   Updated: 2025/03/29 19:00:30 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	trim_newline(char *str)
+void	trim_newline(char *str)
 {
 	size_t	len;
 

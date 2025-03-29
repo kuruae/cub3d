@@ -56,14 +56,14 @@ t_err_status	start_parsing_cub_file(char *file)
 	// debug_print_file(file);
 	init_map(&map);
 	cub_file_readloop(file, &map);
-	// parse_map(&map);
 	verify_values(&map);
 	// verify_blabla(&map);
 	height = get_map_height(map.map);
 	width = get_map_width(map.map, height);
+	printf("height : %d , widht %d\n", height, width);
 	i = is_map_closed(&map, height, width);
-	fprintf(stderr, "CODE DERREUR DE MAP CHECKER EST :%d\n", i);
-	debug_print_struct_map(&map);
+	// fprintf(stderr, "CODE DERREUR DE MAP CHECKER EST :%d\n", i);
+	// debug_print_struct_map(&map);
 	return (SUCCESS);
 }
 
@@ -78,9 +78,9 @@ t_err_status	verify_values(t_map *map)
 	while (map->map[i])
 	{
 		j = 0;
-		while (map->map[i][j] != -1)
+		while (map->map[i][j])
 		{
-			if (map->map[i][j] >= 2 && map->map[i][j] <= 6)
+			if (map->map[i][j] >= NORTH && map->map[i][j] <= VOID)
 				pos++;
 			j++;
 		}

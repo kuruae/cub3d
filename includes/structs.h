@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/28 18:45:27 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:49:50 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_submap
 // Map data
 typedef struct s_map
 {
-	int		**map;
+	char		**map;
 	bool	has_pos;
 	char	*no_texture;
 	char	*so_texture;
