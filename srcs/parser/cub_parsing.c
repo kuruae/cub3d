@@ -53,19 +53,23 @@ t_err_status	start_parsing_cub_file(char *file)
 
 	if (validate_file_path(file, MSG_INVALID_MAP_PATH) != SUCCESS)
 		return (ERR_MAP_PATH);
-	// debug_print_file(file);
 	init_map(&map);
 	cub_file_readloop(file, &map);
-	verify_values(&map);
+	if (verify_values(&map) != SUCCESS)
+		return (ERR_VALUES);
 	verify_data(&map);
 	height = get_map_height(map.map);
 	width = get_map_width(map.map, height);
-	printf("height : %d , widht %d\n", height, width);
+	if (width < 3 || height < 3)
+	{
+		printf("Map is not correct\n");
+		return (ERR_VALUES);
+	}
 	i = is_map_closed(&map, height, width);
-	if (i == 0)
-		printf("ouistiti\n");
-	// fprintf(stderr, "CODE DERREUR DE MAP CHECKER EST :%d\n", i);
-	// debug_print_struct_map(&map);
+	if (i == 1)
+		printf("Map is not correct\n");
+	else 
+		printf("Map is correct\n");
 	return (SUCCESS);
 }
 
@@ -82,14 +86,17 @@ t_err_status	verify_values(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] >= NORTH && map->map[i][j] <= VOID)
+			if (map->map[i][j] >= NORTH && map->map[i][j] <= SOUTH)
 				pos++;
 			j++;
 		}
 		i++;
 	}
 	if (pos != 1)
+	{
+		printf("no player\n");
 		return (ERR_POSITION);
+	}
 	return (SUCCESS);
 }
 

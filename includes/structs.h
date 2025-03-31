@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/29 18:49:50 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:03:46 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef enum e_err_status
 	ERR_MAP_PATH,
 	ERR_TEXTURE_PATH,
 	ERR_POSITION,
-	ERR_COLOR
+	ERR_COLOR,
+	ERR_VALUES
 }	t_err_status;
 
 // RGB color

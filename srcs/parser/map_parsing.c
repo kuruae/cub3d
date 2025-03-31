@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:46:55 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/29 21:01:58 by kuru             ###   ########.fr       */
+/*   Updated: 2025/03/31 17:57:29 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	map_reader(char *line, t_map *map, int fd)
 	full_map = malloc(sizeof(char*) * (i + 1));
 	i = 0;
 	close(fd2);
-	fd2 = open("prout", O_RDONLY);
+	fd2 = open(TEMP_FILE, O_RDONLY);
 	line = get_next_line(fd2);
 	while (line)
 	{
