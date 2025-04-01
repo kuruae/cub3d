@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/31 18:45:09 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:16:05 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	main(int argc, char **argv)
 {
 	void	*mlx;
 	void	*mlx_win;
+	t_map	map;
 
-	if (start_parsing(argc, argv) != SUCCESS)
+	if (start_parsing(argc, argv, &map) != SUCCESS)
 		return (EXIT_FAILURE);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1280, 720, "cub3d");

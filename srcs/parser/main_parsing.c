@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:44:05 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/31 18:44:51 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:10:47 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_err_status	validate_file_extension(char *file)
 	return (SUCCESS);
 }
 
-t_err_status	start_parsing(int argc, char **argv)
+t_err_status	start_parsing(int argc, char **argv, t_map *map)
 {
 	if (argc != 2)
 		return (err_handler(MSG_INVALID_ARGS, ERR_MAP_PATH));
 	if (validate_file_extension(argv[1]) != SUCCESS)
 		return (ERR_MAP_PATH);
-	if (start_parsing_cub_file(argv[1]) != SUCCESS)
+	if (start_parsing_cub_file(argv[1], map) != SUCCESS)
 	{
 		printf("error encoutered in parsing cub file\n");
 		return (ERR_MAP_PATH);

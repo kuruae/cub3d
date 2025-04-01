@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/01 16:09:32 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 17:18:34 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ int	is_map_closed(t_map *map, int height, int width)
 			free(bottom);
 		return (1);
 	}
+	free(up);
+	free(bottom);
 	ft_free_str_array(&rotated);
 	return (0);
 }

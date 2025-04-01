@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/24 20:13:33 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:05:23 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,5 @@
 // Helpers 
 t_err_status	err_handler(char *err_message, t_err_status status);
 bool			ft_isdigit_whitespaces(char *str);
-
-
-//t_submap linked list
-
-void	ft_add_in_list_cub(t_submap **head, int id, int *line);
-void	ft_lstadd_end_cub(t_submap **head, int id, int *line);
-void	*create_node_cub(int id, int *line);
 
 #endif

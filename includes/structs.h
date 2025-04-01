@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/31 18:03:46 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:10:05 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,6 @@ typedef struct s_rgb
 	int	b;
 }		t_rgb;
 
-typedef struct s_submap
-{
-	int				*line;
-	int				**player_pos;
-	int				id;
-	struct s_submap	*next;
-	struct s_submap	*prev;
-}	t_submap;
 
 // Map data
 typedef struct s_map
@@ -56,5 +48,10 @@ typedef struct s_map
 	t_rgb	floor_color;
 	t_rgb	ceiling_color;
 }	t_map;
+
+typedef struct s_cub
+{
+	
+}	t_cub;
 
 #endif

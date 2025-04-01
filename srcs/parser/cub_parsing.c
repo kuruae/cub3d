@@ -44,33 +44,32 @@ static t_err_status	init_map(t_map *map)
 	return (SUCCESS);
 }
 
-t_err_status	start_parsing_cub_file(char *file)
+t_err_status	start_parsing_cub_file(t_map *map, char *file)
 {
 	int		i;
 	int		height;
 	int		width;
-	t_map	map;
 
 	if (validate_file_path(file, MSG_INVALID_MAP_PATH) != SUCCESS)
 		return (ERR_MAP_PATH);
-	init_map(&map);
-	cub_file_readloop(file, &map);
-	if (map.map == NULL)
+	init_map(map);
+	cub_file_readloop(file, map);
+	if (map->map == NULL)
 	{
 		printf("Map is not correct\n");
 		return (ERR_MAP_PATH);
 	}
-	if (verify_values(&map) != SUCCESS)
+	if (verify_values(map) != SUCCESS)
 		return (ERR_VALUES);
-	verify_data(&map);
-	height = get_map_height(map.map);
-	width = get_map_width(map.map, height);
+	verify_data(map);
+	height = get_map_height(map->map);
+	width = get_map_width(map->map, height);
 	if (width < 3 || height < 3)
 	{
 		printf("Map is not correct\n");
 		return (ERR_VALUES);
 	}
-	i = is_map_closed(&map, height, width);
+	i = is_map_closed(map, height, width);
 	if (i == 1)
 		printf("Map is not correct\n");
 	else 

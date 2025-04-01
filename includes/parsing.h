@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/31 17:45:33 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:17:34 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ t_err_status	validate_file_path(const char *file, char *msg);
 
 // Parsing main
 t_err_status	validate_file_extension(char *file);
-t_err_status	start_parsing(int argc, char **argv);
+t_err_status	start_parsing(int argc, char **argv, t_map *map);
 
 // Parsing cubfile
-t_err_status	start_parsing_cub_file(char *file);
+t_err_status	start_parsing_cub_file(char *file, t_map *map);
 t_err_status	cub_file_readloop(char *file, t_map *map);
 t_err_status	process_line(char *line, t_map *map, int fd);
 t_err_status	verify_values(t_map *map);
