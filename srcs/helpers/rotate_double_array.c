@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:35:24 by habouda           #+#    #+#             */
-/*   Updated: 2025/03/31 18:45:57 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 17:12:02 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**rotate_array(char **arr)
 			if (j < rows && i < (int)ft_strlen(arr[j]))
 				rotated[i][j] = arr[j][i];
 			else
-				rotated[i][j] = ' ';
+				rotated[i][j] = VOID;
 		}
 		rotated[i][rows] = '\0';
 	}
