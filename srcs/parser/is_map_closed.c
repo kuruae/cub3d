@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/03/31 18:50:50 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:09:32 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,14 @@ int	is_map_closed(t_map *map, int height, int width)
 	free(up);
 	free(bottom);
 	rotated = rotate_array(map->map);
+	int i = 0;
+	printf("\n");
+	while(rotated[i])
+	{
+		printf("%s\n", rotated[i]);
+		i++;
+	}
+	printf("%d %d\n", height, width);
 	up = is_map_closed_upper(rotated, height);
 	bottom = is_map_closed_bottom(rotated, width, height);
 	if (!up || !bottom || check_zero(up) || check_zero(bottom))
