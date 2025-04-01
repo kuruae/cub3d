@@ -55,6 +55,11 @@ t_err_status	start_parsing_cub_file(char *file)
 		return (ERR_MAP_PATH);
 	init_map(&map);
 	cub_file_readloop(file, &map);
+	if (map.map == NULL)
+	{
+		printf("Map is not correct\n");
+		return (ERR_MAP_PATH);
+	}
 	if (verify_values(&map) != SUCCESS)
 		return (ERR_VALUES);
 	verify_data(&map);
