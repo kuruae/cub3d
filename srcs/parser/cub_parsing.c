@@ -44,7 +44,7 @@ static t_err_status	init_map(t_map *map)
 	return (SUCCESS);
 }
 
-t_err_status	start_parsing_cub_file(t_map *map, char *file)
+t_err_status	start_parsing_cub_file(char *file, t_map *map)
 {
 	int		i;
 	int		height;
