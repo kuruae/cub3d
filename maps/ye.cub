@@ -1,8 +1,7 @@
-NO ./textures/ye.png
-SO ./textures/ye.png
-WE ./textures/ye.png
-EA ./textures/ye.png
-
+NO ./textures/oupi_goup.xpm
+SO ./textures/oupi_goup.xpm
+WE ./textures/soup.xpm
+EA ./textures/soup.xpm
 
 
 F 220,100,0

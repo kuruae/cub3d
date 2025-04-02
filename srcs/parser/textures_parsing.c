@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:23:19 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/31 18:45:01 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/02 17:29:35 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static t_err_status	process_texture(const char *line, char **texture)
 	printf("line: %s\n", line);
 	if (validate_file_path(line, MSG_INVALID_TEXTURE_PATH) != SUCCESS)
 		return (ERR_TEXTURE_PATH);
-	if (*texture)
-		free(*texture);
+	// if (*texture) COMMENTAIRE CAR CA FAISAIT FULL CRASH + ON RECOIT PAS LA TEXTURE NORD
+	// 	free(*texture);
 	*texture = ft_strdup(line);
 	if (!*texture)
 		return (MALLOC_FAILURE);

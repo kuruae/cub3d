@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/01 19:28:01 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/02 17:06:11 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,6 @@ typedef enum e_err_status
 	ERR_VALUES
 }	t_err_status;
 
-typedef struct	s_img
-{
-	void	*north;
-	void	*south;
-	void	*east;
-	void	*west;
-	int		endian;
-	int		bpp;
-	int		line_length;
-}	t_textures;
-
 // RGB color
 typedef struct s_rgb
 {
@@ -50,8 +39,7 @@ typedef struct s_rgb
 // Map data
 typedef struct s_map
 {
-	char		**map;
-	bool	has_pos;
+	char	**map;
 	char	*no_texture;
 	char	*so_texture;
 	char	*we_texture;
@@ -60,16 +48,29 @@ typedef struct s_map
 	t_rgb	ceiling_color;
 }	t_map;
 
+
+typedef struct	s_img
+{
+	void	*img;
+	void	*north;
+	void	*south;
+	void	*east;
+	void	*west;
+	int		*adrr;
+	int		endian;
+	int		bpp;
+	int		line_length;
+}	t_img;
 typedef struct s_cub
 {
-	void					*no_xpm;
-	void					*we_xpm;
-	void					*so_xpm;
-	void					*ea_xpm;
 	void		*mlx_win;
 	void		*mlx;
+	void		*no_xpm;
+	void		*we_xpm;
+	void		*so_xpm;
+	void		*ea_xpm;
 	t_map		*map;
-	t_textures	*img;
+	t_img		*img;
 }	t_cub;
 
 #endif
