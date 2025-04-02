@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/02 17:06:11 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/02 21:34:01 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,42 @@ typedef struct	s_img
 	void	*south;
 	void	*east;
 	void	*west;
-	int		*adrr;
+	char	*adrr;
 	int		endian;
 	int		bpp;
 	int		line_length;
 }	t_img;
+
+typedef struct s_ray
+{
+    double  camera_x;        // X position of the ray in the camera space
+    double  dir_x;           // Direction of the ray in the X axis
+    double  dir_y;           // Direction of the ray in the Y axis
+    int     map_x;           // X grid coordinate where the ray is
+    int     map_y;           // Y grid coordinate where the ray is
+    int     step_x;          // =1 if we go in positive direction otherwise -1
+    int     step_y;          // same as above
+    double  sidedist_x;      // Distance to the next X grid line the ray will cross
+    double  sidedist_y;      // Distance to the next Y grid line the ray will cross
+    double  deltadist_x;     // How much the ray moves in the X direction per step
+    double  deltadist_y;     // How much the ray moves in the Y direction per step
+    double  wall_dist;       // The distance from the player to the wall the ray hit
+    double  wall_x;          // The X coordinate of the point where the ray hit the wall
+    int     side;            // Which side of the wall the ray hit (0 = horizontal, 1 = vertical)
+    int     line_height;     // Height of the line to be drawn on the screen for this ray
+    int     draw_start;      // Y-coordinate where the line starts being drawn on the screen
+    int     draw_end;        // Y-coordinate where the line ends being drawn on the screen
+}   t_ray;
+
+typedef struct s_player
+{
+	double pos_x; ///POSITION DU JOUEUR///
+	double pos_y;///POSITION DU JOUEUR///
+	double dir_x; //VECTEUR DIRECTION X (EN GROS LA OU LE JOUEUR REGARDE)///
+	double dir_y; //VECTEUR DIRECTION Y///
+	double plane_x; // CAMERA //
+	double plane_y; // CAMERA //
+} 	t_player;
 typedef struct s_cub
 {
 	void		*mlx_win;
@@ -71,6 +102,9 @@ typedef struct s_cub
 	void		*ea_xpm;
 	t_map		*map;
 	t_img		*img;
+	t_player	*player;
+	t_ray		*ray;
 }	t_cub;
+
 
 #endif

@@ -6,11 +6,65 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:44:05 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/01 18:10:47 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/02 19:16:54 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	get_player_pos(t_cub *cub)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while(cub->map->map[i])
+	{
+		j = 0;
+		while(cub->map->map[i][j])
+		{
+			if (cub->map->map[i][j] >= '2' && cub->map->map[i][j] <= '5')
+				break;
+			j++;
+		}
+		i++;
+	}
+	if (!cub->map->map[i])
+		return ;
+	cub->player = malloc(sizeof(t_player));
+	if (!cub->player)
+    	return;
+	cub->player->pos_x = (double)j + 0.5;
+	cub->player->pos_y = (double)i + 0.5;
+	if (cub->map->map[i][j] == '2')
+	{
+		cub->player->dir_x = 0;
+		cub->player->dir_y = -1;
+		cub->player->plane_x = 0.66;
+        cub->player->plane_y = 0;
+	}
+	if (cub->map->map[i][j] == '3')
+	{
+		cub->player->dir_x = -1;
+		cub->player->dir_y = 0;
+		cub->player->plane_x = 0;
+        cub->player->plane_y = -0.66;
+	}
+	if (cub->map->map[i][j] == '4')
+	{
+		cub->player->dir_x = 1;
+		cub->player->dir_y = 0;
+		cub->player->plane_x = 0;
+        cub->player->plane_y = 0.66;
+	}
+	if (cub->map->map[i][j] == '5')
+	{
+		cub->player->dir_x = 0;
+		cub->player->dir_y = 1;
+		cub->player->plane_x = -0.66;
+		cub->player->plane_y = 0;
+	}
+}
 
 t_err_status	validate_file_extension(char *file)
 {
