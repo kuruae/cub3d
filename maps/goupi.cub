@@ -1,7 +1,7 @@
-NO ./textures/oupi_goup.xpm
-SO ./textures/oupi_goup.xpm
-WE ./textures/soup.xpm
-EA ./textures/soup.xpm
+NO ./textures/stare.xpm
+SO ./textures/stare.xpm
+WE ./textures/stare.xpm
+EA ./textures/stare.xpm
 
 F 220,100,0
 C 225,30,0

@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/02 21:34:01 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 00:16:01 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_ray
     double  deltadist_x;     // How much the ray moves in the X direction per step
     double  deltadist_y;     // How much the ray moves in the Y direction per step
     double  wall_dist;       // The distance from the player to the wall the ray hit
-    double  wall_x;          // The X coordinate of the point where the ray hit the wall
+    double  wall_x;          // OU EST CE QUE LE MUR A PRIS UN RAYON A CALCULER APRES AVOIR CHOPPER WALL
     int     side;            // Which side of the wall the ray hit (0 = horizontal, 1 = vertical)
     int     line_height;     // Height of the line to be drawn on the screen for this ray
     int     draw_start;      // Y-coordinate where the line starts being drawn on the screen

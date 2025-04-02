@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:41:36 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/02 19:51:33 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 01:01:25 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ void	init_mlx(t_map *map, t_cub *cub)
 	cub->img->south = mlx_get_data_addr(cub->so_xpm, &cub->img->bpp, &cub->img->line_length, &cub->img->endian);
 	cub->img->west = mlx_get_data_addr(cub->we_xpm, &cub->img->bpp, &cub->img->line_length, &cub->img->endian);
 	cub->img->east = mlx_get_data_addr(cub->ea_xpm, &cub->img->bpp, &cub->img->line_length, &cub->img->endian);
+	if (!cub->img->north || !cub->img->west || !cub->img->south|| !cub->img->east)
+	{
+		ft_putstr_fd("Image loading failed WHY\n", 2);
+		return ;
+	}
 }
