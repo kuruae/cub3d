@@ -1,7 +1,7 @@
-NO ./textures/stare.xpm
-SO ./textures/stare.xpm
-WE ./textures/stare.xpm
-EA ./textures/stare.xpm
+NO ./textures/FT_MC.xpm
+SO ./textures/FT_MC.xpm
+WE ./textures/FT_MC.xpm
+EA ./textures/FT_MC.xpm
 
 F 135,206,225
 C 225,30,0

@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 11:11:45 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/03 11:52:44 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,8 +163,8 @@ void draw_wall(t_cub *cub, int x)
 	int texture_x;
 	int texture_y;
 	int color;
-	int texture_width = 64;  // Assuming 64x64 textures
-	int texture_height = 64;
+	int texture_width = 256;  // Assuming 256x256 textures
+	int texture_height = 256;
 	int bytes_per_pixel = cub->img->bpp / 8;
 	
 	// Calculate texture_x with bounds checking
