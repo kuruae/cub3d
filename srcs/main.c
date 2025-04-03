@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 10:35:57 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/03 10:38:18 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,36 @@ void	calculate_ray(t_cub *cub)
 
 void find_ray_and_step_direction(t_cub *cub)
 {
-    if (cub->ray->dir_x > 0)
-    {
-        cub->ray->sidedist_x = (cub->ray->map_x + 1.0 - cub->player->pos_x) * cub->ray->deltadist_x;
-        cub->ray->step_x = 1;
-    }
-    else if (cub->ray->dir_x < 0)
-    {
-        cub->ray->sidedist_x = (cub->player->pos_x - cub->ray->map_x) * cub->ray->deltadist_x;
-        cub->ray->step_x = -1;
-    }
-    else
-    {
-        cub->ray->sidedist_x = INT_MAX;
-        cub->ray->step_x = 0;
-    }
-    if (cub->ray->dir_y > 0)
-    {
-        cub->ray->sidedist_y = (cub->ray->map_y + 1.0 - cub->player->pos_y) * cub->ray->deltadist_y;
-        cub->ray->step_y = 1;
-    }
-    else if (cub->ray->dir_y < 0)
-    {
-        cub->ray->sidedist_y = (cub->player->pos_y - cub->ray->map_y) * cub->ray->deltadist_y;
-        cub->ray->step_y = -1;
-    }
-    else
-    {
-        cub->ray->sidedist_y = INT_MAX;
-        cub->ray->step_y = 0;
-    }
+	if (cub->ray->dir_x > 0)
+	{
+		cub->ray->sidedist_x = (cub->ray->map_x + 1.0 - cub->player->pos_x) * cub->ray->deltadist_x;
+		cub->ray->step_x = 1;
+	}
+	else if (cub->ray->dir_x < 0)
+	{
+		cub->ray->sidedist_x = (cub->player->pos_x - cub->ray->map_x) * cub->ray->deltadist_x;
+		cub->ray->step_x = -1;
+	}
+	else
+	{
+		cub->ray->sidedist_x = INT_MAX;
+		cub->ray->step_x = 0;
+	}
+	if (cub->ray->dir_y > 0)
+	{
+		cub->ray->sidedist_y = (cub->ray->map_y + 1.0 - cub->player->pos_y) * cub->ray->deltadist_y;
+		cub->ray->step_y = 1;
+	}
+	else if (cub->ray->dir_y < 0)
+	{
+		cub->ray->sidedist_y = (cub->player->pos_y - cub->ray->map_y) * cub->ray->deltadist_y;
+		cub->ray->step_y = -1;
+	}
+	else
+	{
+		cub->ray->sidedist_y = INT_MAX;
+		cub->ray->step_y = 0;
+	}
 }
 
 void	apply_dda(t_cub *cub)
@@ -109,44 +109,44 @@ void wall(t_cub *cub)
 	cub->ray->line_height = (int)(HEIGHT / cub->ray->wall_dist);
 	cub->ray->draw_start = -cub->ray->line_height / 2 + HEIGHT / 2;
 	if (cub->ray->draw_start < 0)
-    	cub->ray->draw_start = 0;
+		cub->ray->draw_start = 0;
 	cub->ray->draw_end = cub->ray->line_height / 2 + HEIGHT / 2;
 	if (cub->ray->draw_end >= HEIGHT)
-    	cub->ray->draw_end = HEIGHT - 1;
+		cub->ray->draw_end = HEIGHT - 1;
 	if (cub->ray->side == 0) 
-        cub->ray->wall_x = cub->player->pos_y + cub->ray->wall_dist * cub->ray->dir_y;
-    else 
-        cub->ray->wall_x = cub->player->pos_x + cub->ray->wall_dist * cub->ray->dir_x;
-    cub->ray->wall_x -= floor(cub->ray->wall_x);
+		cub->ray->wall_x = cub->player->pos_y + cub->ray->wall_dist * cub->ray->dir_y;
+	else 
+		cub->ray->wall_x = cub->player->pos_x + cub->ray->wall_dist * cub->ray->dir_x;
+	cub->ray->wall_x -= floor(cub->ray->wall_x);
 		
 }
 
 void draw_wall(t_cub *cub, int x)
 {
-    int y_axis;
-    int texture_x;
-    int texture_y;
-    int color;
-    int texture_width = 64;  // Assuming 64x64 textures
-    int texture_height = 64;
-    int bytes_per_pixel = cub->img->bpp / 8;
-    
-    // Calculate texture_x with bounds checking
-    texture_x = (int)(cub->ray->wall_x * texture_width) % texture_width;
-    if (texture_x < 0) texture_x += texture_width;
-    
-    y_axis = cub->ray->draw_start;
-    while (y_axis < cub->ray->draw_end)
-    {
-        // Calculate texture_y with bounds checking
-        texture_y = (int)((y_axis - cub->ray->draw_start) * texture_height / cub->ray->line_height);
-        if (texture_y < 0) 
+	int y_axis;
+	int texture_x;
+	int texture_y;
+	int color;
+	int texture_width = 64;  // Assuming 64x64 textures
+	int texture_height = 64;
+	int bytes_per_pixel = cub->img->bpp / 8;
+	
+	// Calculate texture_x with bounds checking
+	texture_x = (int)(cub->ray->wall_x * texture_width) % texture_width;
+	if (texture_x < 0) texture_x += texture_width;
+	
+	y_axis = cub->ray->draw_start;
+	while (y_axis < cub->ray->draw_end)
+	{
+		// Calculate texture_y with bounds checking
+		texture_y = (int)((y_axis - cub->ray->draw_start) * texture_height / cub->ray->line_height);
+		if (texture_y < 0) 
 			texture_y = 0;
-        if (texture_y >= texture_height) texture_y = texture_height - 1;
-        
-        // Calculate offset using texture width and height
-        int offset = (texture_y * texture_width + texture_x) * bytes_per_pixel;
-        // Access the texture data based on the side of the wall
+		if (texture_y >= texture_height) texture_y = texture_height - 1;
+		
+		// Calculate offset using texture width and height
+		int offset = (texture_y * texture_width + texture_x) * bytes_per_pixel;
+		// Access the texture data based on the side of the wall
 		if (cub->ray->side == 1) 
 		{ // Horizontal walls (North/South)
 			if (cub->ray->step_y < 0) // Facing North
@@ -161,12 +161,12 @@ void draw_wall(t_cub *cub, int x)
 			else // Facing West
 				color = *(unsigned int *)(cub->img->west + offset);
 		}
-        // Draw the pixel on the screen (check bounds)
-        if (y_axis >= 0 && y_axis < HEIGHT && x >= 0 && x < WIDHT)
-            *(unsigned int *)(cub->img->adrr + (y_axis * cub->img->line_length + x * bytes_per_pixel)) = color;
-        
-        y_axis++;
-    }
+		// Draw the pixel on the screen (check bounds)
+		if (y_axis >= 0 && y_axis < HEIGHT && x >= 0 && x < WIDHT)
+			*(unsigned int *)(cub->img->adrr + (y_axis * cub->img->line_length + x * bytes_per_pixel)) = color;
+		
+		y_axis++;
+	}
 }
 
 
@@ -175,9 +175,9 @@ int	start_render(t_cub *cub)
 {
 	int 	x;
 	mlx_destroy_image(cub->mlx, cub->img->img);
-    cub->img->img = mlx_new_image(cub->mlx, WIDHT, HEIGHT);
-    cub->img->adrr = mlx_get_data_addr(cub->img->img, &cub->img->bpp, 
-                                     &cub->img->line_length, &cub->img->endian);
+	cub->img->img = mlx_new_image(cub->mlx, WIDHT, HEIGHT);
+	cub->img->adrr = mlx_get_data_addr(cub->img->img, &cub->img->bpp, 
+									 &cub->img->line_length, &cub->img->endian);
 
 	double cam_x;
 	cub->player->plane_x = -cub->player->dir_y * 0.66;
@@ -199,15 +199,15 @@ int	start_render(t_cub *cub)
 
 int start_display(t_cub *cub)
 {
-    if (mlx_loop_hook(cub->mlx, start_render, cub) == -1)
-    {
-        printf("mlx_loop_hook failed\n");
-        return (EXIT_FAILURE);
-    }
+	if (mlx_loop_hook(cub->mlx, start_render, cub) == -1)
+	{
+		printf("mlx_loop_hook failed\n");
+		return (EXIT_FAILURE);
+	}
 	mlx_hook(cub->mlx_win, KeyPress, KeyPressMask, &mouvement, cub);
-    mlx_hook(cub->mlx_win, 17, 0, handle_close, NULL);
-    mlx_loop(cub->mlx);
-    return (EXIT_SUCCESS);
+	mlx_hook(cub->mlx_win, 17, 0, handle_close, NULL);
+	mlx_loop(cub->mlx);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -232,8 +232,8 @@ int	main(int argc, char **argv)
 	cub.img->img = mlx_new_image(cub.mlx, WIDHT, HEIGHT);
 	if (!cub.img->img)
 	{	
-    	printf("Error: mlx_new_image failed\n");
-	    return (EXIT_FAILURE);
+		printf("Error: mlx_new_image failed\n");
+		return (EXIT_FAILURE);
 	}
 	cub.img->adrr = mlx_get_data_addr(cub.img->img, &cub.img->bpp, &cub.img->line_length, &cub.img->endian ); /// PAS ENCORE PROTGERER POUR CLARTE ET COMPREHENSION ///
 	start_display(&cub);
