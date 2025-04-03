@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 00:16:01 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 09:34:54 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,17 @@ typedef struct s_player
 	double plane_x; // CAMERA //
 	double plane_y; // CAMERA //
 } 	t_player;
+
+/*
+** les struct pour la taille des textures
+** doivent etre free a la fin du programme
+*/
+typedef struct s_xpm_size
+{
+	int		width;
+	int		height;
+}	t_xpm_size;
+
 typedef struct s_cub
 {
 	void		*mlx_win;
@@ -104,6 +115,10 @@ typedef struct s_cub
 	t_img		*img;
 	t_player	*player;
 	t_ray		*ray;
+	t_xpm_size	*no_size;
+	t_xpm_size	*we_size;
+	t_xpm_size	*so_size;
+	t_xpm_size	*ea_size;
 }	t_cub;
 
 

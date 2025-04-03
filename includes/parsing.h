@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/02 18:39:05 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:08:32 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void			debug_print_translated_line(int *translated_line);
 void			debug_print_full_map(int **full_map);
 
 // Helpers
-int		ft_tablen(int *tab);
-void	trim_newline(char *str);
+int				ft_tablen(int *tab);
+void			trim_newline(char *str);
 t_err_status	validate_file_path(const char *file, char *msg);
+int				read_all_texture_sizes(t_cub *cub);
 
 // Parsing main
 t_err_status	validate_file_extension(char *file);
