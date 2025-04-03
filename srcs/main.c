@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 10:38:18 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/03 11:11:45 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,42 @@ static int	handle_close(void *param)
 	exit(EXIT_SUCCESS);
 	return (0);
 }
+
+static void	draw_floor_ceiling(t_cub *cub)
+{
+	int	x;
+	int	y;
+	int	color;
+	int	bytes_per_pixel; 
+	
+	bytes_per_pixel = cub->img->bpp / 8;
+	color = rgb_to_int(cub->map->ceiling_color);
+	y = 0;
+	while (y < HEIGHT / 2)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			*(unsigned int *)(cub->img->adrr + (y * cub->img->line_length + x * bytes_per_pixel)) = color;
+			x++;
+		}
+		y++;
+	}
+
+	color = rgb_to_int(cub->map->floor_color);
+	y = HEIGHT / 2;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			*(unsigned int *)(cub->img->adrr + (y * cub->img->line_length + x * bytes_per_pixel)) = color;
+			x++;
+		}
+		y++;
+	}
+}
+
 
 void	calculate_ray(t_cub *cub)
 {
@@ -162,7 +198,7 @@ void draw_wall(t_cub *cub, int x)
 				color = *(unsigned int *)(cub->img->west + offset);
 		}
 		// Draw the pixel on the screen (check bounds)
-		if (y_axis >= 0 && y_axis < HEIGHT && x >= 0 && x < WIDHT)
+		if (y_axis >= 0 && y_axis < HEIGHT && x >= 0 && x < WIDTH)
 			*(unsigned int *)(cub->img->adrr + (y_axis * cub->img->line_length + x * bytes_per_pixel)) = color;
 		
 		y_axis++;
@@ -175,18 +211,19 @@ int	start_render(t_cub *cub)
 {
 	int 	x;
 	mlx_destroy_image(cub->mlx, cub->img->img);
-	cub->img->img = mlx_new_image(cub->mlx, WIDHT, HEIGHT);
+	cub->img->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	cub->img->adrr = mlx_get_data_addr(cub->img->img, &cub->img->bpp, 
 									 &cub->img->line_length, &cub->img->endian);
 
+	draw_floor_ceiling(cub);
 	double cam_x;
 	cub->player->plane_x = -cub->player->dir_y * 0.66;
 	cub->player->plane_y = cub->player->dir_x * 0.66;
 	printf("Plane: plane_x = %f, plane_y = %f\n", cub->player->plane_x, cub->player->plane_y);
 	x = -1;
-	while (++x < WIDHT)
+	while (++x < WIDTH)
 	{
-		cam_x = 2 * x / (double)WIDHT -1;
+		cam_x = 2 * x / (double)WIDTH -1;
 		cub->ray->dir_x = cub->player->dir_x + cub->player->plane_x * cam_x; //vecteur directions//
 		cub->ray->dir_y = cub->player->dir_y + cub->player->plane_y * cam_x; //vecteur directions//
 		calculate_ray(cub);
@@ -229,7 +266,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	init_mlx(&map, &cub);
-	cub.img->img = mlx_new_image(cub.mlx, WIDHT, HEIGHT);
+	cub.img->img = mlx_new_image(cub.mlx, WIDTH, HEIGHT);
 	if (!cub.img->img)
 	{	
 		printf("Error: mlx_new_image failed\n");

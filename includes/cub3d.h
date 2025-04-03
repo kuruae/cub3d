@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 02:37:09 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 11:11:45 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define EXT ".cub"
 # define EXT_LEN 4
-# define WIDHT 1280
+# define WIDTH 1280
 # define HEIGHT 720
 # define MOVE_SPEED 0.1
 # define ROTATE_SPEED 0.05
@@ -37,6 +37,7 @@
 t_err_status	err_handler(char *err_message, t_err_status status);
 bool			ft_isdigit_whitespaces(char *str);
 void			get_player_pos(t_cub *cub);
+int				rgb_to_int(t_rgb color);
 
 /// init mlx
 void	init_struct(t_cub *cub, t_img *img);
