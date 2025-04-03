@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 01:58:03 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/03 02:19:56 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:36:45 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,9 @@ int mouvement(int keysim, t_cub *cub)
 		move_left(cub);
 	if (keysim == XK_d)
 		move_right(cub);
+	if (keysim == XK_Left)
+		rotate_left(cub, ROTATE_SPEED);
+	if (keysim == XK_Right)
+		rotate_right(cub, ROTATE_SPEED);
 	return 0;
 }

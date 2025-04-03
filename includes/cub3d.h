@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 02:12:24 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:37:09 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define WIDHT 1280
 # define HEIGHT 720
 # define MOVE_SPEED 0.1
+# define ROTATE_SPEED 0.05
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -51,4 +52,7 @@ void 	wall(t_cub *cub);
 int		start_render(t_cub *cub);
 int 	start_display(t_cub *cub);
 
+
+void	rotate_right(t_cub *cub, double rotation_speed);
+void	rotate_left(t_cub *cub, double rotation_speed);
 #endif

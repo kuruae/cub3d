@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 01:58:30 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:30:51 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,10 @@ void wall(t_cub *cub)
 	if (cub->ray->draw_end >= HEIGHT)
     	cub->ray->draw_end = HEIGHT - 1;
 	if (cub->ray->side == 0) 
-		cub->ray->wall_x = cub->player->pos_y + cub->ray->wall_dist * cub->ray->dir_y;
-	if (cub->ray->side == 1) 
-		cub->ray->wall_x = cub->player->pos_x + cub->ray->wall_dist * cub->ray->dir_x;
+        cub->ray->wall_x = cub->player->pos_y + cub->ray->wall_dist * cub->ray->dir_y;
+    else 
+        cub->ray->wall_x = cub->player->pos_x + cub->ray->wall_dist * cub->ray->dir_x;
+    cub->ray->wall_x -= floor(cub->ray->wall_x);
 		
 }
 
@@ -173,6 +174,10 @@ void draw_wall(t_cub *cub, int x)
 int	start_render(t_cub *cub)
 {
 	int 	x;
+	mlx_destroy_image(cub->mlx, cub->img->img);
+    cub->img->img = mlx_new_image(cub->mlx, WIDHT, HEIGHT);
+    cub->img->adrr = mlx_get_data_addr(cub->img->img, &cub->img->bpp, 
+                                     &cub->img->line_length, &cub->img->endian);
 
 	double cam_x;
 	cub->player->plane_x = -cub->player->dir_y * 0.66;
