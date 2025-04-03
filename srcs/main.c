@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 02:30:51 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 10:35:57 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,38 +45,38 @@ void	calculate_ray(t_cub *cub)
 		cub->ray->wall_dist = (cub->ray->map_y - cub->player->pos_y + (1 - cub->ray->step_y) / 2) / cub->ray->dir_y;
 }
 
-void	find_ray_and_step_direction(t_cub *cub)
+void find_ray_and_step_direction(t_cub *cub)
 {
-	if (cub->player->dir_x > 0)
-	{
-		cub->ray->sidedist_x = (cub->ray->map_x + 1.0 - cub->player->pos_x) * cub->ray->deltadist_x;
-		cub->ray->step_x = 1;
-	}
-	else if (cub->player->dir_x < 0)
-	{
-		cub->ray->sidedist_x = (cub->player->pos_x - cub->ray->map_x) * cub->ray->deltadist_x;
-		cub->ray->step_x = -1;
-	}
-	else
-	{
-		cub->ray->sidedist_x = INT_MAX;
-		cub->ray->step_x = 0;
-	}
-	if (cub->player->dir_y > 0)
-	{
-		cub->ray->sidedist_y = (cub->ray->map_y + 1.0 - cub->player->pos_y) * cub->ray->deltadist_y;
-		cub->ray->step_y = 1;
-	}
-	else if (cub->player->dir_y < 0)
-	{
-		cub->ray->sidedist_y = (cub->player->pos_y - cub->ray->map_y) * cub->ray->deltadist_y;
-		cub->ray->step_y = -1;
-	}
-	else
-	{
-		cub->ray->sidedist_y = INT_MAX;
-		cub->ray->step_y = 0;
-	}
+    if (cub->ray->dir_x > 0)
+    {
+        cub->ray->sidedist_x = (cub->ray->map_x + 1.0 - cub->player->pos_x) * cub->ray->deltadist_x;
+        cub->ray->step_x = 1;
+    }
+    else if (cub->ray->dir_x < 0)
+    {
+        cub->ray->sidedist_x = (cub->player->pos_x - cub->ray->map_x) * cub->ray->deltadist_x;
+        cub->ray->step_x = -1;
+    }
+    else
+    {
+        cub->ray->sidedist_x = INT_MAX;
+        cub->ray->step_x = 0;
+    }
+    if (cub->ray->dir_y > 0)
+    {
+        cub->ray->sidedist_y = (cub->ray->map_y + 1.0 - cub->player->pos_y) * cub->ray->deltadist_y;
+        cub->ray->step_y = 1;
+    }
+    else if (cub->ray->dir_y < 0)
+    {
+        cub->ray->sidedist_y = (cub->player->pos_y - cub->ray->map_y) * cub->ray->deltadist_y;
+        cub->ray->step_y = -1;
+    }
+    else
+    {
+        cub->ray->sidedist_y = INT_MAX;
+        cub->ray->step_y = 0;
+    }
 }
 
 void	apply_dda(t_cub *cub)
