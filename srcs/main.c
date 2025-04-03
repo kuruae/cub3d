@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 01:21:48 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 01:58:30 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	calculate_ray(t_cub *cub)
 	///le rayon commence a la position du joueur mais cast en int////
 	cub->ray->map_x = (int)cub->player->pos_x;
 	cub->ray->map_y = (int)cub->player->pos_y;
-	printf("Player Position: pos_x = %f, pos_y = %f\n", cub->player->pos_x, cub->player->pos_y);
-	printf("Ray Map Position: map_x = %d, map_y = %d\n", cub->ray->map_x, cub->ray->map_y);
+	// printf("Player Position: pos_x = %f, pos_y = %f\n", cub->player->pos_x, cub->player->pos_y);
+	// printf("Ray Map Position: map_x = %d, map_y = %d\n", cub->ray->map_x, cub->ray->map_y);
 	////DELTADIST Necessaire au calcul pour lancer les rayons je suis pas sur de ce que c par contre//
 	if (cub->ray->dir_x != 0)
 		cub->ray->deltadist_x = fabs(1 / cub->ray->dir_x);
@@ -85,18 +85,20 @@ void	apply_dda(t_cub *cub)
 	if (cub->ray->sidedist_x < cub->ray->sidedist_y)
 	{
 		// On avance de maniere verticale//
-
+		// printf("step_x %d\n", cub->ray->step_x);
 		cub->ray->sidedist_x += cub->ray->deltadist_x;
+		// printf("map_x before increment: %d\n", cub->ray->map_x);
 		cub->ray->map_x += cub->ray->step_x;
+		// printf("map_x after increment: %d\n", cub->ray->map_x);
 		cub->ray->side = 0;
 	}
 	else
 	{	// On avance de maniere horizontale
-		printf("step_y %d\n", cub->ray->step_y);
+		// printf("step_y %d\n", cub->ray->step_y);
 		cub->ray->sidedist_y += cub->ray->deltadist_y;
-		printf("map_y before increment: %d\n", cub->ray->map_y);
+		// printf("map_y before increment: %d\n", cub->ray->map_y);
 		cub->ray->map_y += cub->ray->step_y;
-		printf("map_y after increment: %d\n", cub->ray->map_y);
+		// printf("map_y after increment: %d\n", cub->ray->map_y);
 		cub->ray->side = 1;
 	}
 }
@@ -124,7 +126,7 @@ void draw_wall(t_cub *cub, int x)
     int texture_x;
     int texture_y;
     int color;
-    int texture_width = 64;  // Using 64x64 textures
+    int texture_width = 64;  // Assuming 64x64 textures
     int texture_height = 64;
     int bytes_per_pixel = cub->img->bpp / 8;
     
@@ -137,42 +139,28 @@ void draw_wall(t_cub *cub, int x)
     {
         // Calculate texture_y with bounds checking
         texture_y = (int)((y_axis - cub->ray->draw_start) * texture_height / cub->ray->line_height);
-        if (texture_y < 0) texture_y = 0;
+        if (texture_y < 0) 
+			texture_y = 0;
         if (texture_y >= texture_height) texture_y = texture_height - 1;
         
-        // Calculate texture offset using texture width, not line_length
+        // Calculate offset using texture width and height
         int offset = (texture_y * texture_width + texture_x) * bytes_per_pixel;
-        
-        // Add safety check
-        int max_offset = texture_width * texture_height * bytes_per_pixel - bytes_per_pixel;
-        if (offset < 0 || offset > max_offset)
-        {
-            // Use solid colors as fallback if offset out of bounds
-            if (cub->ray->side == 0)
-                color = (cub->ray->step_x > 0) ? 0xFF0000 : 0x00FF00; // Red or Green
-            else  
-                color = (cub->ray->step_y > 0) ? 0x0000FF : 0xFFFF00; // Blue or Yellow
-        }
-        else
-        {
-            // Access texture data with proper offset
-            if (cub->ray->side == 0)
-            {
-                if (cub->ray->step_x > 0)
-                    color = *(unsigned int *)(cub->img->north + offset);
-                else
-                    color = *(unsigned int *)(cub->img->south + offset);
-            }
-            else
-            {
-                if (cub->ray->step_y > 0)
-                    color = *(unsigned int *)(cub->img->east + offset);
-                else
-                    color = *(unsigned int *)(cub->img->west + offset);
-            }
-        }
-        
-        // Draw to screen with bounds checking
+        // Access the texture data based on the side of the wall
+		if (cub->ray->side == 1) 
+		{ // Horizontal walls (North/South)
+			if (cub->ray->step_y < 0) // Facing North
+				color = *(unsigned int *)(cub->img->north + offset);
+			else // Facing South
+				color = *(unsigned int *)(cub->img->south + offset);
+		}
+		else 
+		{ // Vertical walls (East/West)
+			if (cub->ray->step_x > 0) // Facing East
+				color = *(unsigned int *)(cub->img->east + offset);
+			else // Facing West
+				color = *(unsigned int *)(cub->img->west + offset);
+		}
+        // Draw the pixel on the screen (check bounds)
         if (y_axis >= 0 && y_axis < HEIGHT && x >= 0 && x < WIDHT)
             *(unsigned int *)(cub->img->adrr + (y_axis * cub->img->line_length + x * bytes_per_pixel)) = color;
         
@@ -187,8 +175,9 @@ int	start_render(t_cub *cub)
 	int 	x;
 
 	double cam_x;
-	cub->player->plane_x = -cub->player->dir_x * 0.6;
-	cub->player->plane_y = cub->player->dir_y * 0.6;
+	cub->player->plane_x = -cub->player->dir_y * 0.66;
+	cub->player->plane_y = cub->player->dir_x * 0.66;
+	printf("Plane: plane_x = %f, plane_y = %f\n", cub->player->plane_x, cub->player->plane_y);
 	x = -1;
 	while (++x < WIDHT)
 	{
@@ -210,6 +199,7 @@ int start_display(t_cub *cub)
         printf("mlx_loop_hook failed\n");
         return (EXIT_FAILURE);
     }
+	mlx_hook(cub->mlx_win, KeyPress, KeyPressMask, &mouvement, cub);
     mlx_hook(cub->mlx_win, 17, 0, handle_close, NULL);
     mlx_loop(cub->mlx);
     return (EXIT_SUCCESS);

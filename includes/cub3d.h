@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/02 22:16:26 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:12:24 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define EXT_LEN 4
 # define WIDHT 1280
 # define HEIGHT 720
+# define MOVE_SPEED 0.1
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -42,6 +43,7 @@ void	init_mlx(t_map *map, t_cub *cub);
 
 //display exec///
 
+int mouvement(int keysim, t_cub *cub);
 void	calculate_ray(t_cub *cub);
 void	find_ray_and_step_direction(t_cub *cub);
 void	apply_dda(t_cub *cub);
