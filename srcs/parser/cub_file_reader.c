@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/02 17:24:18 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/04 20:13:47 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,14 @@ int	check_if_empty(char *line)
 t_err_status	process_line(char *line, t_map *map, int fd)
 {
 	t_err_status	status;
+	char			*line2;
 
 	status = SUCCESS;
 	trim_newline(line);
 	if (check_if_empty(line) == 0)
+	{
 		return (status);
+	}
 	if (are_we_in_map(line) == false)
 	{
 		status = parse_textures(line, map);
@@ -74,7 +77,8 @@ t_err_status	process_line(char *line, t_map *map, int fd)
 	}
 	else
 	{
-		map_reader(line, map, fd);
+		line2 = ft_strdup(line);
+		map_reader(line2, map, fd);
 	}
 	return (status);
 }

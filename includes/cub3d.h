@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 11:11:45 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/04 18:51:01 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,18 @@ void	init_mlx(t_map *map, t_cub *cub);
 
 //display exec///
 
-int mouvement(int keysim, t_cub *cub);
+int 	mouvement(int keysim, t_cub *cub);
 void	calculate_ray(t_cub *cub);
 void	find_ray_and_step_direction(t_cub *cub);
 void	apply_dda(t_cub *cub);
 void 	wall(t_cub *cub);
 int		start_render(t_cub *cub);
 int 	start_display(t_cub *cub);
+
+
+///draw///
+void	draw_floor_ceiling(t_cub *cub);
+void 	draw_wall(t_cub *cub, int x);
 
 
 void	rotate_right(t_cub *cub, double rotation_speed);

@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 01:58:03 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/03 02:36:45 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/04 19:18:03 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void	move_forward(t_cub *cub)
 
 	n_x = cub->player->pos_x;
 	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y] [(int)(cub->player->pos_x + cub->player->dir_x * MOVE_SPEED)] != '1')
+	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
+			+ cub->player->dir_x * MOVE_SPEED)] != '1')
 		n_x = cub->player->pos_x + cub->player->dir_x * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y + cub->player->dir_y * MOVE_SPEED)][(int)cub->player->pos_x] != '1')
+	if (cub->map->map[(int)(cub->player->pos_y + cub->player->dir_y
+			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
 		n_y = cub->player->pos_y + cub->player->dir_y * MOVE_SPEED;
 	if (n_y >= 0)
 	{
@@ -37,6 +39,7 @@ void	move_forward(t_cub *cub)
 		}
 	}
 }
+
 void	move_backwards(t_cub *cub)
 {
 	double	n_x;
@@ -45,11 +48,11 @@ void	move_backwards(t_cub *cub)
 
 	n_x = cub->player->pos_x;
 	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y]
-		[(int)(cub->player->pos_x - cub->player->dir_x * MOVE_SPEED)] != '1')
+	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
+			- cub->player->dir_x * MOVE_SPEED)] != '1')
 		n_x = cub->player->pos_x - cub->player->dir_x * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y - cub->player->dir_y * MOVE_SPEED)]
-		[(int)cub->player->pos_x] != '1')
+	if (cub->map->map[(int)(cub->player->pos_y - cub->player->dir_y
+			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
 		n_y = cub->player->pos_y - cub->player->dir_y * MOVE_SPEED;
 	if (n_y >= 0)
 	{
@@ -65,7 +68,6 @@ void	move_backwards(t_cub *cub)
 	}
 }
 
-
 void	move_left(t_cub *cub)
 {
 	double	n_x;
@@ -74,9 +76,11 @@ void	move_left(t_cub *cub)
 
 	n_x = cub->player->pos_x;
 	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y] [(int)(cub->player->pos_x + cub->player->dir_y * MOVE_SPEED)] != '1')
+	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
+			+ cub->player->dir_y * MOVE_SPEED)] != '1')
 		n_x = cub->player->pos_x + cub->player->dir_y * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y - cub->player->dir_x * MOVE_SPEED)][(int)cub->player->pos_x] != '1')
+	if (cub->map->map[(int)(cub->player->pos_y - cub->player->dir_x
+			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
 		n_y = cub->player->pos_y - cub->player->dir_x * MOVE_SPEED;
 	if (n_y >= 0)
 	{
@@ -100,9 +104,11 @@ void	move_right(t_cub *cub)
 
 	n_x = cub->player->pos_x;
 	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y] [(int)(cub->player->pos_x - cub->player->dir_y * MOVE_SPEED)] != '1')
+	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
+			- cub->player->dir_y * MOVE_SPEED)] != '1')
 		n_x = cub->player->pos_x - cub->player->dir_y * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y + cub->player->dir_x * MOVE_SPEED)][(int)cub->player->pos_x] != '1')
+	if (cub->map->map[(int)(cub->player->pos_y + cub->player->dir_x
+			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
 		n_y = cub->player->pos_y + cub->player->dir_x * MOVE_SPEED;
 	if (n_y >= 0)
 	{
@@ -118,9 +124,7 @@ void	move_right(t_cub *cub)
 	}
 }
 
-
-
-int mouvement(int keysim, t_cub *cub)
+int	mouvement(int keysim, t_cub *cub)
 {
 	if (keysim == XK_w)
 		move_forward(cub);
@@ -134,5 +138,5 @@ int mouvement(int keysim, t_cub *cub)
 		rotate_left(cub, ROTATE_SPEED);
 	if (keysim == XK_Right)
 		rotate_right(cub, ROTATE_SPEED);
-	return 0;
+	return (0);
 }
