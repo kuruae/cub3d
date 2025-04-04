@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/04 20:16:39 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/04 20:58:31 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,30 @@ static int	handle_close(t_cub *cub)
 	free(cub->ray);
 	free(cub->player);
 	free(cub->map->no_texture);
-	free(cub->map->we_texture);
-	free(cub->map->so_texture);
 	free(cub->map->ea_texture);
+	free(cub->map->so_texture);
+	free(cub->map->we_texture);
+	// mlx_destroy_image(cub->mlx ,cub->map->no_texture);
+	// mlx_destroy_image(cub->mlx ,cub->map->we_texture);
+	// mlx_destroy_image(cub->mlx ,cub->map->so_texture);
+	// mlx_destroy_image(cub->mlx ,cub->map->ea_texture);
 	ft_free_str_array(&cub->map->map);
-	mlx_destroy_image(cub->mlx, cub->img->img);
-	mlx_destroy_window(cub->mlx, cub->mlx_win);
-	mlx_destroy_display(cub->mlx);
+	if (cub->img->img)
+	{
+		mlx_destroy_image(cub->mlx, cub->img->img);
+		cub->img->img = NULL;
+	}
+	if (cub->mlx_win)
+	{
+		mlx_destroy_window(cub->mlx, cub->mlx_win);
+		cub->mlx_win = NULL;
+	}
+	if (cub->mlx)
+	{
+		mlx_destroy_display(cub->mlx);
+		free(cub->mlx);
+		cub->mlx = NULL;
+	}
 	exit(EXIT_SUCCESS);
 	return (0);
 }

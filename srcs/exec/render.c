@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:45:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/04 20:18:08 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/04 20:34:00 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,15 +116,15 @@ void wall(t_cub *cub)
 int	start_render(t_cub *cub)
 {
 	int 	x;
+
 	mlx_destroy_image(cub->mlx, cub->img->img);
 	cub->img->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	cub->img->adrr = mlx_get_data_addr(cub->img->img, &cub->img->bpp, &cub->img->line_length, &cub->img->endian);
-
 	draw_floor_ceiling(cub);
 	double cam_x;
 	cub->player->plane_x = -cub->player->dir_y * 0.66;
 	cub->player->plane_y = cub->player->dir_x * 0.66;
-	printf("Plane: plane_x = %f, plane_y = %f\n", cub->player->plane_x, cub->player->plane_y);
+	// printf("Plane: plane_x = %f, plane_y = %f\n", cub->player->plane_x, cub->player->plane_y);
 	x = -1;
 	while (++x < WIDTH)
 	{
