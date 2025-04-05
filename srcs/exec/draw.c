@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:50:01 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/04 19:03:46 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:55:16 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void draw_wall(t_cub *cub, int x)
 	int texture_x;
 	int texture_y;
 	int color;
-	int texture_width = 256;  // Assuming 256x256 textures
-	int texture_height = 256;
+	int texture_width = cub->no_size->width;
+	int texture_height = cub->no_size->height;
 	// Calculate texture_x with bounds checking
 	texture_x = (int)(cub->ray->wall_x * texture_width) % texture_width;
 	if (texture_x < 0) texture_x += texture_width;

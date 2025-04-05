@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:41:36 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/03 01:01:25 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:52:51 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_struct(t_cub *cub, t_img *img)
 {
+	read_all_texture_sizes(cub);
 	cub->ray = malloc(sizeof(t_ray)* 1);
 	cub->img = img;
 	cub->map = NULL;

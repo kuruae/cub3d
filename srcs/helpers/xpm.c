@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 00:47:53 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/03 10:39:30 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 17:48:18 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 static int	write_size_for_current_xpm(t_xpm_size *size, const char *line)
 {
 	printf("line: %s\n", line);
-	size->width = atoi(line);
+	size->width = ft_atoi(line);
 	while (ft_isdigit(*line))
 		line++;
 	while (*line != ' ')
 		line++;
-	size->height = atoi(line);
+	size->height = ft_atoi(line);
 	if (size->width < 16 || size->height <= 16 || size->width > 256 || size->height > 256)
 	{
 		free(size);
