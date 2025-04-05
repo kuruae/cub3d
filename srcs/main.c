@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/04 20:58:31 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:37:13 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	handle_close(t_cub *cub)
 	free(cub->map->ea_texture);
 	free(cub->map->so_texture);
 	free(cub->map->we_texture);
-	// mlx_destroy_image(cub->mlx ,cub->map->no_texture);
-	// mlx_destroy_image(cub->mlx ,cub->map->we_texture);
-	// mlx_destroy_image(cub->mlx ,cub->map->so_texture);
-	// mlx_destroy_image(cub->mlx ,cub->map->ea_texture);
+	mlx_destroy_image(cub->mlx ,cub->no_xpm);
+	mlx_destroy_image(cub->mlx ,cub->so_xpm);
+	mlx_destroy_image(cub->mlx ,cub->we_xpm);
+	mlx_destroy_image(cub->mlx ,cub->ea_xpm);	
 	ft_free_str_array(&cub->map->map);
 	if (cub->img->img)
 	{
