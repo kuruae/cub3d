@@ -6,13 +6,13 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/05 18:17:57 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 20:54:04 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	handle_close(t_cub *cub)
+int	handle_close(t_cub *cub)
 {
 	free(cub->ray);
 	free(cub->player);
@@ -24,6 +24,7 @@ static int	handle_close(t_cub *cub)
 	free(cub->we_size);
 	free(cub->so_size);
 	free(cub->ea_size);
+	free(cub->keys);
 	mlx_destroy_image(cub->mlx ,cub->no_xpm);
 	mlx_destroy_image(cub->mlx ,cub->so_xpm);
 	mlx_destroy_image(cub->mlx ,cub->we_xpm);
@@ -51,12 +52,14 @@ static int	handle_close(t_cub *cub)
 
 int start_display(t_cub *cub)
 {
-	if (mlx_loop_hook(cub->mlx, start_render, cub) == -1)
+	init_keys(cub);
+	if (mlx_loop_hook(cub->mlx, &start_render, cub) == -1)
 	{
 		printf("mlx_loop_hook failed\n");
 		return (EXIT_FAILURE);
 	}
-	mlx_hook(cub->mlx_win, KeyPress, KeyPressMask, &mouvement, cub);
+	mlx_hook(cub->mlx_win, KeyPress, KeyPressMask, &press, cub);
+	mlx_hook(cub->mlx_win, KeyRelease, KeyRelease, &release, cub);
 	mlx_hook(cub->mlx_win, 17, 0, handle_close, cub);
 	mlx_loop(cub->mlx);
 	return (EXIT_SUCCESS);

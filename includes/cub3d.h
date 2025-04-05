@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/05 17:14:52 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 20:51:14 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define HEIGHT 720
 
 // Game speeds
-# define MOVE_SPEED 0.1
-# define ROTATE_SPEED 0.05
+# define MOVE_SPEED 0.05
+# define ROTATE_SPEED 0.025
 
 // PI
 # ifndef M_PI
@@ -47,13 +47,19 @@ void			init_struct(t_cub *cub, t_img *img);
 void			init_mlx(t_map *map, t_cub *cub);
 
 //display exec///
-int 			mouvement(int keysim, t_cub *cub);
+int 			mouvement(t_cub *cub);
 void			calculate_ray(t_cub *cub);
 void			find_ray_and_step_direction(t_cub *cub);
 void			apply_dda(t_cub *cub);
 void 			wall(t_cub *cub);
 int				start_render(t_cub *cub);
 int 			start_display(t_cub *cub);
+
+// Hooks
+void			init_keys(t_cub *cub);
+int				handle_close(t_cub *cub);
+int				release(int keysym, t_cub *cub);
+int				press(int keysym, t_cub *cub);
 
 ///draw///
 void			draw_floor_ceiling(t_cub *cub);

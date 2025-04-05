@@ -6,13 +6,13 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 16:43:42 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/05 17:08:55 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 20:49:00 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	move_forward(t_cub *cub)
+static void	move_forward(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
@@ -31,7 +31,7 @@ void	move_forward(t_cub *cub)
 	}
 }
 
-void	move_backwards(t_cub *cub)
+static void	move_backwards(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
@@ -51,7 +51,7 @@ void	move_backwards(t_cub *cub)
 	}
 }
 
-void	move_left(t_cub *cub)
+static void	move_left(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
@@ -71,7 +71,7 @@ void	move_left(t_cub *cub)
 	}
 }
 
-void	move_right(t_cub *cub)
+static void	move_right(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
@@ -91,19 +91,19 @@ void	move_right(t_cub *cub)
 	}
 }
 
-int	mouvement(int keysim, t_cub *cub)
+int	mouvement(t_cub *cub)
 {
-	if (keysim == XK_w)
+	if (cub->keys->w)
 		move_forward(cub);
-	if (keysim == XK_s)
+	if (cub->keys->s)
 		move_backwards(cub);
-	if (keysim == XK_a)
+	if (cub->keys->a)
 		move_left(cub);
-	if (keysim == XK_d)
+	if (cub->keys->d)
 		move_right(cub);
-	if (keysim == XK_Left)
+	if (cub->keys->left)
 		rotate_left(cub, ROTATE_SPEED);
-	if (keysim == XK_Right)
+	if (cub->keys->right)
 		rotate_right(cub, ROTATE_SPEED);
 	return (0);
 }

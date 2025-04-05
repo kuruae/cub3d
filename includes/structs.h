@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 09:34:54 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 19:24:51 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,16 @@ typedef struct s_xpm_size
 	int		height;
 }	t_xpm_size;
 
+typedef struct	s_keys
+{
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		left;
+	int		right;
+}	t_keys;
+
 typedef struct s_cub
 {
 	void		*mlx_win;
@@ -115,6 +125,7 @@ typedef struct s_cub
 	t_img		*img;
 	t_player	*player;
 	t_ray		*ray;
+	t_keys		*keys;
 	t_xpm_size	*no_size;
 	t_xpm_size	*we_size;
 	t_xpm_size	*so_size;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:45:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/04 20:34:00 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/05 20:48:22 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	start_render(t_cub *cub)
 {
 	int 	x;
 
+	mouvement(cub);
 	mlx_destroy_image(cub->mlx, cub->img->img);
 	cub->img->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	cub->img->adrr = mlx_get_data_addr(cub->img->img, &cub->img->bpp, &cub->img->line_length, &cub->img->endian);
