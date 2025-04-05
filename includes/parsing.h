@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/03 02:08:32 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 17:13:58 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@
 # define MSG_INVALID_COLOR "Invalid color\n"
 # define MSG_INVALID_MAP "Invalid Map\n"
 
+// File extension
+# define EXT ".cub"
+# define EXT_LEN 4
+
 // temp file path
-# define TEMP_FILE ".cub"
+# define TEMP_FILE "/tmp/tmp.cub"
 
 // Map values
 # define NORTH '2'
@@ -44,6 +48,11 @@ int				ft_tablen(int *tab);
 void			trim_newline(char *str);
 t_err_status	validate_file_path(const char *file, char *msg);
 int				read_all_texture_sizes(t_cub *cub);
+int				get_map_height(char **map);
+int				get_map_width(char **map, int height);
+int				is_map_closed(t_map *map, int height, int width);
+void			get_dimensions(char **arr, int *rows, int *max_cols);
+char			**rotate_array(char **arr);
 
 // Parsing main
 t_err_status	validate_file_extension(char *file);
@@ -65,20 +74,7 @@ t_err_status	parse_colors(char *line, t_map *map);
 // Parsing map
 void			map_reader(char *line, t_map *map, int fd);
 
-//map translator && debuyg
-
-char		*map_translator(char *line);
-
-// DFS
-int		get_map_height(char **map);
-int		get_map_width(char **map, int height);
-
-
-int		is_map_closed(t_map *map, int height, int width);
-void	get_dimensions(char **arr, int *rows, int *max_cols);
-char	**rotate_array(char **arr);
-
-// Structs
-
+//map translator
+char			*map_translator(char *line);
 
 #endif

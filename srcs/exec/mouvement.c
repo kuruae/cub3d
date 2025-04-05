@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouvement.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 01:58:03 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/04 19:18:03 by habouda          ###   ########.fr       */
+/*   Created: 2025/04/05 16:43:42 by kuru              #+#    #+#             */
+/*   Updated: 2025/04/05 17:08:55 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,113 +14,80 @@
 
 void	move_forward(t_cub *cub)
 {
-	double	n_x;
-	double	n_y;
-	int		row_length;
-
-	n_x = cub->player->pos_x;
-	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
-			+ cub->player->dir_x * MOVE_SPEED)] != '1')
-		n_x = cub->player->pos_x + cub->player->dir_x * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y + cub->player->dir_y
-			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
-		n_y = cub->player->pos_y + cub->player->dir_y * MOVE_SPEED;
-	if (n_y >= 0)
+	double	new_x;
+	double	new_y;
+	
+	new_x = cub->player->pos_x + cub->player->dir_x * MOVE_SPEED;
+	new_y = cub->player->pos_y + cub->player->dir_y * MOVE_SPEED;
+	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
 	{
-		row_length = ft_strlen(cub->map->map[(int)n_y]);
-		if (n_x >= 0 && n_x < row_length)
-		{
-			if (cub->map->map[(int)n_y][(int)n_x] != '1')
-			{
-				cub->player->pos_x = n_x;
-				cub->player->pos_y = n_y;
-			}
-		}
+		if (!is_close_to_wall(cub, new_x, cub->player->pos_y))
+			cub->player->pos_x = new_x;
+	}
+	if (cub->map->map[(int)new_y][(int)cub->player->pos_x] != '1')
+	{
+		if (!is_close_to_wall(cub, cub->player->pos_x, new_y))
+			cub->player->pos_y = new_y;
 	}
 }
 
 void	move_backwards(t_cub *cub)
 {
-	double	n_x;
-	double	n_y;
-	int		row_length;
-
-	n_x = cub->player->pos_x;
-	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
-			- cub->player->dir_x * MOVE_SPEED)] != '1')
-		n_x = cub->player->pos_x - cub->player->dir_x * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y - cub->player->dir_y
-			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
-		n_y = cub->player->pos_y - cub->player->dir_y * MOVE_SPEED;
-	if (n_y >= 0)
+	double	new_x;
+	double	new_y;
+	
+	new_x = cub->player->pos_x - cub->player->dir_x * MOVE_SPEED;
+	new_y = cub->player->pos_y - cub->player->dir_y * MOVE_SPEED;
+	
+	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
 	{
-		row_length = ft_strlen(cub->map->map[(int)n_y]);
-		if (n_x >= 0 && n_x < row_length)
-		{
-			if (cub->map->map[(int)n_y][(int)n_x] != '1')
-			{
-				cub->player->pos_x = n_x;
-				cub->player->pos_y = n_y;
-			}
-		}
+		if (!is_close_to_wall(cub, new_x, cub->player->pos_y))
+			cub->player->pos_x = new_x;
+	}
+	if (cub->map->map[(int)new_y][(int)cub->player->pos_x] != '1')
+	{
+		if (!is_close_to_wall(cub, cub->player->pos_x, new_y))
+			cub->player->pos_y = new_y;
 	}
 }
 
 void	move_left(t_cub *cub)
 {
-	double	n_x;
-	double	n_y;
-	int		row_length;
-
-	n_x = cub->player->pos_x;
-	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
-			+ cub->player->dir_y * MOVE_SPEED)] != '1')
-		n_x = cub->player->pos_x + cub->player->dir_y * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y - cub->player->dir_x
-			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
-		n_y = cub->player->pos_y - cub->player->dir_x * MOVE_SPEED;
-	if (n_y >= 0)
+	double	new_x;
+	double	new_y;
+	
+	new_x = cub->player->pos_x + cub->player->dir_y * MOVE_SPEED;
+	new_y = cub->player->pos_y - cub->player->dir_x * MOVE_SPEED;
+	
+	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
 	{
-		row_length = ft_strlen(cub->map->map[(int)n_y]);
-		if (n_x >= 0 && n_x < row_length)
-		{
-			if (cub->map->map[(int)n_y][(int)n_x] != '1')
-			{
-				cub->player->pos_x = n_x;
-				cub->player->pos_y = n_y;
-			}
-		}
+		if (!is_close_to_wall(cub, new_x, cub->player->pos_y))
+			cub->player->pos_x = new_x;
+	}
+	if (cub->map->map[(int)new_y][(int)cub->player->pos_x] != '1')
+	{
+		if (!is_close_to_wall(cub, cub->player->pos_x, new_y))
+			cub->player->pos_y = new_y;
 	}
 }
 
 void	move_right(t_cub *cub)
 {
-	double	n_x;
-	double	n_y;
-	int		row_length;
-
-	n_x = cub->player->pos_x;
-	n_y = cub->player->pos_y;
-	if (cub->map->map[(int)cub->player->pos_y][(int)(cub->player->pos_x
-			- cub->player->dir_y * MOVE_SPEED)] != '1')
-		n_x = cub->player->pos_x - cub->player->dir_y * MOVE_SPEED;
-	if (cub->map->map[(int)(cub->player->pos_y + cub->player->dir_x
-			* MOVE_SPEED)][(int)cub->player->pos_x] != '1')
-		n_y = cub->player->pos_y + cub->player->dir_x * MOVE_SPEED;
-	if (n_y >= 0)
+	double	new_x;
+	double	new_y;
+	
+	new_x = cub->player->pos_x - cub->player->dir_y * MOVE_SPEED;
+	new_y = cub->player->pos_y + cub->player->dir_x * MOVE_SPEED;
+	
+	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
 	{
-		row_length = ft_strlen(cub->map->map[(int)n_y]);
-		if (n_x >= 0 && n_x < row_length)
-		{
-			if (cub->map->map[(int)n_y][(int)n_x] != '1')
-			{
-				cub->player->pos_x = n_x;
-				cub->player->pos_y = n_y;
-			}
-		}
+		if (!is_close_to_wall(cub, new_x, cub->player->pos_y))
+			cub->player->pos_x = new_x;
+	}
+	if (cub->map->map[(int)new_y][(int)cub->player->pos_x] != '1')
+	{
+		if (!is_close_to_wall(cub, cub->player->pos_x, new_y))
+			cub->player->pos_y = new_y;
 	}
 }
 
