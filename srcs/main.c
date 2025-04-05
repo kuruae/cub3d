@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/05 17:39:57 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 18:17:57 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ static int	handle_close(t_cub *cub)
 	free(cub->map->ea_texture);
 	free(cub->map->so_texture);
 	free(cub->map->we_texture);
+	free(cub->no_size);
+	free(cub->we_size);
+	free(cub->so_size);
+	free(cub->ea_size);
 	mlx_destroy_image(cub->mlx ,cub->no_xpm);
 	mlx_destroy_image(cub->mlx ,cub->so_xpm);
 	mlx_destroy_image(cub->mlx ,cub->we_xpm);
