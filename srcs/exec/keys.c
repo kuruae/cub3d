@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 19:11:39 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/05 20:52:35 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/05 21:12:06 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	press(int keysym, t_cub *cub)
 {
 	if (keysym == XK_Escape)
 		handle_close(cub);
-	if (keysym == XK_w)
+	if (keysym == XK_w || keysym == XK_Up)
 		cub->keys->w = 1;
-	if (keysym == XK_s)
+	if (keysym == XK_s || keysym == XK_Down)
 		cub->keys->s = 1;
 	if (keysym == XK_a)
 		cub->keys->a = 1;
@@ -51,9 +51,9 @@ int	release(int keysym, t_cub *cub)
 {
 	if (keysym == XK_Escape)
 		handle_close(cub);
-	if (keysym == XK_w)
+	if (keysym == XK_w || keysym == XK_Up)
 		cub->keys->w = 0;
-	if (keysym == XK_s)
+	if (keysym == XK_s || keysym == XK_Down)
 		cub->keys->s = 0;
 	if (keysym == XK_a)
 		cub->keys->a = 0;
