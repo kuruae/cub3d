@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/05 19:24:51 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/07 17:58:20 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum e_err_status
 	MALLOC_FAILURE = -1,
 	SUCCESS = 0,
 	ERR_MAP_PATH,
+	ERR_INVALID_MAP,
 	ERR_TEXTURE_PATH,
 	ERR_POSITION,
 	ERR_COLOR,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/05 17:13:58 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/07 20:01:07 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				get_map_height(char **map);
 int				get_map_width(char **map, int height);
 int				is_map_closed(t_map *map, int height, int width);
 void			get_dimensions(char **arr, int *rows, int *max_cols);
-char			**rotate_array(char **arr);
+char	**rotate_array(char **arr, int widt, int height);
 
 // Parsing main
 t_err_status	validate_file_extension(char *file);
@@ -72,7 +72,7 @@ t_err_status	parse_textures(char *line, t_map *map);
 t_err_status	parse_colors(char *line, t_map *map);
 
 // Parsing map
-void			map_reader(char *line, t_map *map, int fd);
+t_err_status	map_reader(char *line, t_map *map, int fd);
 
 //map translator
 char			*map_translator(char *line);

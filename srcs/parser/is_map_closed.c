@@ -12,42 +12,21 @@
 
 #include "cub3d.h"
 
-int	check_for_player(char **map, int i, int j, int width)
-{
-	if (j == 0)
-	{
-		if (map[i][j] == VOID && (map[i][j + 1] >= '2' && map[i][j + 1] <= '5'))
-			return (1);
-	}
-	else if (j == width - 1)
-	{
-		if (map[i][j] == VOID && (map[i][j - 1] >= '2' && map[i][j - 1] <= '5'))
-			return (1);
-	}
-	else
-	{
-		if (map[i][j] == VOID && ((map[i][j - 1] >= '2' && map[i][j - 1] <= '5') || 
-			(map[i][j + 1] >= '2' && map[i][j + 1] <= '5')))
-			return (1);
-	}
-	return (0);
-}
-
 int	check_for_6(char **map, int i, int j, int width)
 {
 	if (j == 0)
 	{
-		if (map[i][j] == VOID && (map[i][j + 1] == '0'))
+		if (map[i][j] == '1' && (map[i][j + 1] == '0'))
 			return (1);
 	}
 	else if (j == width - 1)
 	{
-		if (map[i][j] == VOID && (map[i][j - 1] == '0'))
+		if (map[i][j] == '1' && (map[i][j - 1] == '0'))
 			return (1);
 	}
 	else
 	{
-		if (map[i][j] == VOID && (map[i][j - 1] == '0' || map[i][j + 1] == '0'))
+		if (map[i][j] == '1' && (map[i][j - 1] == '0' || map[i][j + 1] == '0'))
 			return (1);
 	}
 	return (0);
@@ -66,10 +45,8 @@ char	*is_map_closed_upper(char **map, size_t width)
 	while (j < width)
 	{
 		i = 0;
-		while (map[i] && (j >= ft_strlen(map[i]) || map[i][j] == VOID))
+		while (map[i] && (j >= ft_strlen(map[i])))
 		{
-			if (check_for_6(map, i, j, width) == 1 || check_for_player(map, i ,j , width) == 1)
-				return (NULL);
 			i++;
 		}
 		if (map[i])
@@ -80,33 +57,6 @@ char	*is_map_closed_upper(char **map, size_t width)
 	return (up);
 }
 
-int check_player_or_zero_near_void(char **map, size_t height, size_t width)
-{
-    size_t i, j;
-    
-	i = 0;
-	while(i < height)
-    {
-		j = 0;
-        while (j < width && j < ft_strlen(map[i]))
-        {
-            if (map[i][j] == '0' || (map[i][j] >= '2' && map[i][j] <= '5'))
-            {
-                if (i > 0 && j < ft_strlen(map[i-1]) && map[i-1][j] == VOID)
-                    return 1;
-                if (i < height-1 && j < ft_strlen(map[i+1]) && map[i+1][j] == VOID)
-                    return 1;
-                if (j > 0 && map[i][j-1] == VOID)
-                    return 1;
-                if (j < ft_strlen(map[i])-1 && map[i][j+1] == VOID)
-                    return 1;
-            }
-			j++;
-        }
-		i++;
-    }
-    return 0;
-}
 
 char	*is_map_closed_bottom(char **map, int height, size_t width)
 {
@@ -121,10 +71,8 @@ char	*is_map_closed_bottom(char **map, int height, size_t width)
 	while (j < width)
 	{
 		i = height - 1;
-		while (map[i] && (j >= ft_strlen(map[i]) || map[i][j] == VOID))
+		while (map[i] && (j >= ft_strlen(map[i])))
 		{
-			if (check_for_6(map, i, j, width) == 1 || check_for_player(map, i, j ,width) == 1)
-				return (NULL);
 			i--;
 		}
 		if (i >= 0)
@@ -134,6 +82,7 @@ char	*is_map_closed_bottom(char **map, int height, size_t width)
 	bottom[j] = '\0';
 	return (bottom);
 }
+
 
 int	check_zero(char *str)
 {
@@ -155,10 +104,18 @@ int	is_map_closed(t_map *map, int height, int width)
 	char	*bottom;
 	char	**rotated;
 
-	if (check_player_or_zero_near_void(map->map, height, width))
-        return 1;
+	int i = 0;
 	up = is_map_closed_upper(map->map, width);
 	bottom = is_map_closed_bottom(map->map, height, width);
+	printf("\n");
+	printf("up: %s\n", up);
+	printf("bottom: %s\n", bottom);
+	printf("\n");
+	while (map->map[i])
+	{
+		printf("OROGINLE :%s\n", map->map[i]);
+		i++;
+	}
 	if (!up || !bottom || check_zero(up) || check_zero(bottom))
 	{
 		if (up)
@@ -169,9 +126,17 @@ int	is_map_closed(t_map *map, int height, int width)
 	}
 	free(up);
 	free(bottom);
-	rotated = rotate_array(map->map);
+	rotated = rotate_array(map->map, width,height);
+	i = 0;
+	while (rotated[i])
+	{
+		printf("%s\n", rotated[i]);
+		i++;
+	}
 	up = is_map_closed_upper(rotated, height);
 	bottom = is_map_closed_bottom(rotated, width, height);
+	printf("up: %s\n", up);
+	printf("bottom: %s\n", bottom);
 	if (!up || !bottom || check_zero(up) || check_zero(bottom))
 	{
 		if (up)

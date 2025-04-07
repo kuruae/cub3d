@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:46:55 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/04 20:11:16 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:55:16 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	map_reader(char *line, t_map *map, int fd)
+t_err_status map_reader(char *line, t_map *map, int fd)
 {
 	int			i;
 	int 		fd2;
@@ -24,7 +24,7 @@ void	map_reader(char *line, t_map *map, int fd)
 	if (fd2 < 0)
 	{
 		perror("Error opening temporary file");
-		return ;
+		return (MALLOC_FAILURE);
 	}
 	while (line)
 	{
@@ -33,8 +33,8 @@ void	map_reader(char *line, t_map *map, int fd)
 		{
 			free(line);
 			close(fd2);
-			perror("Error translating line");
-			return ;
+			printf("Error translating line\n");
+			return (MALLOC_FAILURE);
 		}
 		i++;
 		ft_putstr_fd(translated_line, fd2);
@@ -48,7 +48,7 @@ void	map_reader(char *line, t_map *map, int fd)
 	{
 		close(fd2);
 		perror("Error allocating memory for full_map");
-		return ;
+		return (MALLOC_FAILURE);
 	}
 	i = 0;
 	close(fd2);
@@ -57,7 +57,7 @@ void	map_reader(char *line, t_map *map, int fd)
 	{
 		free(full_map);
 		perror("Error reopening temporary file");
-		return ;
+		return (MALLOC_FAILURE);
 	}
 	line = get_next_line(fd2);
 	while (line)
@@ -72,7 +72,7 @@ void	map_reader(char *line, t_map *map, int fd)
 			free(full_map);
 			close(fd2);
 			perror("Error duplicating line");
-			return ;
+			return (MALLOC_FAILURE);
 		}
 		free(line);
 		line = get_next_line(fd2);
@@ -88,4 +88,5 @@ void	map_reader(char *line, t_map *map, int fd)
 	map->map = full_map;
 	close(fd2);
 	free(line);
+	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_translator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:26:44 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/31 18:44:57 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/07 18:50:37 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ char	*map_translator(char *line)
 	{
 		if (line[i] == '\t')
 		{
-			new[x++] = VOID;
-			new[x++] = VOID;
-			new[x++] = VOID;
-			new[x] = VOID;
+			new[x++] = '1';
+			new[x++] = '1';
+			new[x++] = '1';
+			new[x] = '1';
 		}
 		else if (line[i] == '0')
 			new[x] = '0';
 		else if (line[i] == ' ')
-			new[x] = VOID;
+			new[x] = 1;
 		else if (line[i] == '1')
 			new[x] = '1';
 		else if (line[i] == 'N')
@@ -64,7 +64,10 @@ char	*map_translator(char *line)
 		else if (line[i] == '\n')
 			break ;
 		else
-			new[x] = 'x';
+		{
+			free(new);
+			return (NULL);
+		}
 		i++;
 		x++;
 	}

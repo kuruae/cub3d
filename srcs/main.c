@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/05 20:54:04 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/07 17:12:25 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,31 @@ int start_display(t_cub *cub)
 	return (EXIT_SUCCESS);
 }
 
+static void	test_free_map(t_map *map)
+{
+	int	i;
+	
+	i = 0;
+	if (map->map)
+	{
+		printf("Freeing map...\n");
+		while (map->map[i])
+		{
+			free(map->map[i]);
+			i++;
+		}
+		free(map->map);
+	}
+	if (map->no_texture)
+		free(map->no_texture);
+	if (map->so_texture)
+		free(map->so_texture);
+	if (map->we_texture)
+		free(map->we_texture);
+	if (map->ea_texture)
+		free(map->ea_texture);
+}
+
 int	main(int argc, char **argv)
 {
 	t_map	map;
@@ -72,7 +97,10 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 
 	if (start_parsing(argc, argv, &map) != SUCCESS)
+	{
+		test_free_map(&map);
 		return (EXIT_FAILURE);
+	}
 	cub.map = &map;
 	get_player_pos(&cub);
 	init_struct(&cub, &img);

@@ -46,12 +46,14 @@ static t_err_status	init_map(t_map *map)
 
 t_err_status	start_parsing_cub_file(char *file, t_map *map)
 {
-	int		i;
 	int		height;
 	int		width;
 
 	if (validate_file_path(file, MSG_INVALID_MAP_PATH) != SUCCESS)
+	{
+		printf("validate file path\n");
 		return (ERR_MAP_PATH);
+	}
 	init_map(map);
 	cub_file_readloop(file, map);
 	if (map->map == NULL)
@@ -60,8 +62,15 @@ t_err_status	start_parsing_cub_file(char *file, t_map *map)
 		return (ERR_MAP_PATH);
 	}
 	if (verify_values(map) != SUCCESS)
+	{
+		printf("verify values\n");
 		return (ERR_VALUES);
-	verify_data(map);
+	}
+	if (verify_data(map) != SUCCESS)
+	{
+		printf("verify data\n");
+		return (ERR_TEXTURE_PATH);
+	}
 	height = get_map_height(map->map);
 	width = get_map_width(map->map, height);
 	if (width < 3 || height < 3)
@@ -69,11 +78,11 @@ t_err_status	start_parsing_cub_file(char *file, t_map *map)
 		printf("Map is not correct\n");
 		return (ERR_VALUES);
 	}
-	i = is_map_closed(map, height, width);
-	if (i == 1)
-		printf("Map is not correct\n");
-	else 
-		printf("Map is correct\n");
+	if (is_map_closed(map, height, width))
+	{
+		printf("is_map_closed\n");
+		return (ERR_INVALID_MAP);
+	}
 	return (SUCCESS);
 }
 

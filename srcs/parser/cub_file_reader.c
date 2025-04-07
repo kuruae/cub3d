@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_file_reader.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/04 20:13:47 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:35:49 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,15 @@ t_err_status	process_line(char *line, t_map *map, int fd)
 		status = parse_textures(line, map);
 		if (status == SUCCESS)
 			status = parse_colors(line, map);
+		else
+			return (status);
 	}
 	else
 	{
 		line2 = ft_strdup(line);
-		map_reader(line2, map, fd);
+		if (!line2)
+			return (MALLOC_FAILURE);
+		status = map_reader(line2, map, fd);
 	}
 	return (status);
 }
@@ -91,12 +95,14 @@ t_err_status	cub_file_readloop(char *file, t_map *map)
 
 	status = SUCCESS;
 	fd = open(file, O_RDONLY);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while ((line))
 	{
 		status = process_line(line, map, fd);
 		free(line);
 		if (status != SUCCESS)
 			break ;
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (SUCCESS);
