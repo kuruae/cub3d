@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_double_array.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:35:24 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/07 20:29:04 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:40:47 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,81 +59,30 @@ char	**allocate_rotated(int rows, int cols)
 	return (rotated);
 }
 
-
-
-char	**rotate_array(char **arr, int width, int height)
+char	**rotate_array(char **arr)
 {
-	int i;
-	int j;
-	int	iterated;
-	int	new_i;
-	int	new_j;
+	int		rows;
+	int		cols;
+	int		i;
+	int		j;
 	char	**rotated;
-	
-	rotated = malloc(sizeof(char *) * (width + 1));
-	if (!rotated)
+
+	get_dimensions(arr, &rows, &cols);
+	if (rows == 0 || cols == 0)
 		return (NULL);
-	iterated = 0;
-	new_i = 0;
-	j = 0;
-	while (iterated < width)
+	rotated = allocate_rotated(rows, cols);
+	i = -1;
+	while (++i < cols)
 	{
-		new_j = 0;
-		i = 0;
-		rotated[new_i] = malloc(sizeof(char) * (height + 1));
-		if (!rotated[new_i])
-			return (NULL); // Proper error handling needed
-		while (i < height)
+		j = -1;
+		while (++j < rows)
 		{
-			// Ensure j is within the original row's bounds; use default if necessary
-			if ((size_t)j < (size_t)ft_strlen(arr[i]))
-				rotated[new_i][new_j] = arr[i][j];
+			if (j < rows && i < (int)ft_strlen(arr[j]))
+				rotated[i][j] = arr[j][i];
 			else
-				rotated[new_i][new_j] = ' '; // Example padding
-			i++;
-			new_j++;
+				rotated[i][j] = ' ';
 		}
-		rotated[new_i][new_j] = '\0';
-		j++;
-		new_i++;
-		iterated++;
+		rotated[i][rows] = '\0';
 	}
-	rotated[new_i] = NULL;
 	return (rotated);
 }
-
-// char	**rotate_array(char **arr, int width, int height)
-// {
-// 	int	i;
-// 	int	j;
-// 	int counter;
-// 	char	**rotated;
-
-// 	rotated = malloc(sizeof(char * ) *  width + 1);
-// 	i = 0;
-// 	j = 0;
-// 	counter = 0;
-// 	while (arr[i])
-// 	{
-// 		i = 0;
-// 		while (arr[i][j])
-// 			i++;
-// 		rotated[counter] = malloc(sizeof(char) * i + 1);
-// 		counter++;
-// 		j++;
-// 	}
-// 	rotated[counter + 1] = NULL;
-// 	i = 0;
-// 	j = 0;
-// 	counter = 0;
-// 	while (arr[i])
-// 	{
-// 		i = 0;
-// 		while (arr[i][j])
-// 		{
-// 			rotated[j]
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// }

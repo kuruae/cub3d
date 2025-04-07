@@ -83,6 +83,42 @@ char	*is_map_closed_bottom(char **map, int height, size_t width)
 	return (bottom);
 }
 
+int validate_array(char **arr, int size)
+{
+    int i;
+    int j;
+    int prev_len;
+    int curr_len;
+
+    if (size <= 1)
+        return (0);  // No comparison needed with 0 or 1 lines
+    for (i = 1; i < size; i++)
+    {
+        // Get lengths of current and previous lines
+        prev_len = 0;
+        curr_len = 0;
+        while (arr[i - 1][prev_len] != '\0')
+            prev_len++;
+        while (arr[i][curr_len] != '\0')
+            curr_len++;
+
+        // Check if current line is longer than previous line
+        if (curr_len > prev_len)
+        {
+            // Check for '0' in positions where previous line ends
+            for (j = prev_len; j < curr_len; j++)
+            {
+                if (arr[i][j] == '0')
+                {
+                    // Found a '0' in the extended part
+                    return (1);  // Error condition met
+                }
+            }
+        }
+    }
+    return (0);  // No errors found
+}
+
 
 int	check_zero(char *str)
 {
@@ -102,9 +138,8 @@ int	is_map_closed(t_map *map, int height, int width)
 {
 	char	*up;
 	char	*bottom;
-	char	**rotated;
-
 	int i = 0;
+
 	up = is_map_closed_upper(map->map, width);
 	bottom = is_map_closed_bottom(map->map, height, width);
 	printf("\n");
@@ -124,29 +159,9 @@ int	is_map_closed(t_map *map, int height, int width)
 			free(bottom);
 		return (1);
 	}
-	free(up);
-	free(bottom);
-	rotated = rotate_array(map->map, width,height);
-	i = 0;
-	while (rotated[i])
+	if (validate_array(map->map, height) == 1)
 	{
-		printf("%s\n", rotated[i]);
-		i++;
+		printf("errors valdiate claude david\n");
 	}
-	up = is_map_closed_upper(rotated, height);
-	bottom = is_map_closed_bottom(rotated, width, height);
-	printf("up: %s\n", up);
-	printf("bottom: %s\n", bottom);
-	if (!up || !bottom || check_zero(up) || check_zero(bottom))
-	{
-		if (up)
-			free(up);
-		if (bottom)
-			free(bottom);
-		return (1);
-	}
-	free(up);
-	free(bottom);
-	ft_free_str_array(&rotated);
 	return (0);
 }

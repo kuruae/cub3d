@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/07 20:01:07 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:39:15 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				get_map_height(char **map);
 int				get_map_width(char **map, int height);
 int				is_map_closed(t_map *map, int height, int width);
 void			get_dimensions(char **arr, int *rows, int *max_cols);
-char	**rotate_array(char **arr, int widt, int height);
+char	**rotate_array(char **arr);
 
 // Parsing main
 t_err_status	validate_file_extension(char *file);
