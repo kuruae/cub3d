@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   is_map_closed.c                                    :+:      :+:    :+:   */
@@ -80,6 +80,34 @@ char	*is_map_closed_upper(char **map, size_t width)
 	return (up);
 }
 
+int check_player_or_zero_near_void(char **map, size_t height, size_t width)
+{
+    size_t i, j;
+    
+	i = 0;
+	while(i < height)
+    {
+		j = 0;
+        while (j < width && j < ft_strlen(map[i]))
+        {
+            if (map[i][j] == '0' || (map[i][j] >= '2' && map[i][j] <= '5'))
+            {
+                if (i > 0 && j < ft_strlen(map[i-1]) && map[i-1][j] == VOID)
+                    return 1;
+                if (i < height-1 && j < ft_strlen(map[i+1]) && map[i+1][j] == VOID)
+                    return 1;
+                if (j > 0 && map[i][j-1] == VOID)
+                    return 1;
+                if (j < ft_strlen(map[i])-1 && map[i][j+1] == VOID)
+                    return 1;
+            }
+			j++;
+        }
+		i++;
+    }
+    return 0;
+}
+
 char	*is_map_closed_bottom(char **map, int height, size_t width)
 {
 	size_t	i;
@@ -127,6 +155,8 @@ int	is_map_closed(t_map *map, int height, int width)
 	char	*bottom;
 	char	**rotated;
 
+	if (check_player_or_zero_near_void(map->map, height, width))
+        return 1;
 	up = is_map_closed_upper(map->map, width);
 	bottom = is_map_closed_bottom(map->map, height, width);
 	if (!up || !bottom || check_zero(up) || check_zero(bottom))
