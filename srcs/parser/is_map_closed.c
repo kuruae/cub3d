@@ -6,11 +6,32 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/02 17:30:18 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/07 16:18:35 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	check_for_player(char **map, int i, int j, int width)
+{
+	if (j == 0)
+	{
+		if (map[i][j] == VOID && (map[i][j + 1] >= '2' && map[i][j + 1] <= '5'))
+			return (1);
+	}
+	else if (j == width - 1)
+	{
+		if (map[i][j] == VOID && (map[i][j - 1] >= '2' && map[i][j - 1] <= '5'))
+			return (1);
+	}
+	else
+	{
+		if (map[i][j] == VOID && ((map[i][j - 1] >= '2' && map[i][j - 1] <= '5') || 
+			(map[i][j + 1] >= '2' && map[i][j + 1] <= '5')))
+			return (1);
+	}
+	return (0);
+}
 
 int	check_for_6(char **map, int i, int j, int width)
 {
@@ -47,7 +68,7 @@ char	*is_map_closed_upper(char **map, size_t width)
 		i = 0;
 		while (map[i] && (j >= ft_strlen(map[i]) || map[i][j] == VOID))
 		{
-			if (check_for_6(map, i, j, width) == 1)
+			if (check_for_6(map, i, j, width) == 1 || check_for_player(map, i ,j , width) == 1)
 				return (NULL);
 			i++;
 		}
@@ -74,7 +95,7 @@ char	*is_map_closed_bottom(char **map, int height, size_t width)
 		i = height - 1;
 		while (map[i] && (j >= ft_strlen(map[i]) || map[i][j] == VOID))
 		{
-			if (check_for_6(map, i, j, width) == 1)
+			if (check_for_6(map, i, j, width) == 1 || check_for_player(map, i, j ,width) == 1)
 				return (NULL);
 			i--;
 		}
