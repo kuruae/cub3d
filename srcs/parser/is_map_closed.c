@@ -6,61 +6,11 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/08 18:59:54 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:04:14 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-char	*is_map_closed_upper(char **map, size_t width)
-{
-	size_t	i;
-	size_t	j;
-	char	*up;
-
-	up = malloc(sizeof(char) * (width + 1));
-	if (!up)
-		return (NULL);
-	j = 0;
-	while (j < width)
-	{
-		i = 0;
-		while (map[i] && (j >= ft_strlen(map[i])))
-		{
-			i++;
-		}
-		if (map[i])
-			up[j] = map[i][j];
-		j++;
-	}
-	up[j] = '\0';
-	return (up);
-}
-
-char	*is_map_closed_bottom(char **map, int height, size_t width)
-{
-	size_t	i;
-	size_t	j;
-	char	*bottom;
-
-	bottom = malloc(sizeof(char) * (width + 1));
-	if (!bottom)
-		return (NULL);
-	j = 0;
-	while (j < width)
-	{
-		i = height - 1;
-		while (map[i] && (j >= ft_strlen(map[i])))
-		{
-			i--;
-		}
-		if (i >= 0)
-			bottom[j] = map[i][j];
-		j++;
-	}
-	bottom[j] = '\0';
-	return (bottom);
-}
 
 int	check_extended_zeros(char *line, int start, int end)
 {
@@ -145,6 +95,8 @@ int	is_map_closed(t_map *map, int height, int width)
 			free(bottom);
 		return (1);
 	}
+	free(up);
+	free(bottom);
 	if (validate_array(map->map, height) == 1)
 	{
 		printf("Map Opended on the sides\n");

@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 19:11:38 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:04:53 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_err_status	parse_colors(char *line, t_map *map);
 
 // Parsing map
 t_err_status	map_reader(char *line, t_map *map, int fd);
+char			*is_map_closed_upper(char **map, size_t width);
+char			*is_map_closed_bottom(char **map, int height, size_t width);
 
 //map translator
 char			*map_translator(char *line);

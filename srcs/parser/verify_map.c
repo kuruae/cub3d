@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:59:00 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 19:13:34 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:04:23 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_map_width(char **map, int height)
 
 int	check_for_X(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -56,4 +56,54 @@ int	check_for_X(char **map)
 		i++;
 	}
 	return (0);
+}
+
+char	*is_map_closed_upper(char **map, size_t width)
+{
+	size_t	i;
+	size_t	j;
+	char	*up;
+
+	up = malloc(sizeof(char) * (width + 1));
+	if (!up)
+		return (NULL);
+	j = 0;
+	while (j < width)
+	{
+		i = 0;
+		while (map[i] && (j >= ft_strlen(map[i])))
+		{
+			i++;
+		}
+		if (map[i])
+			up[j] = map[i][j];
+		j++;
+	}
+	up[j] = '\0';
+	return (up);
+}
+
+char	*is_map_closed_bottom(char **map, int height, size_t width)
+{
+	size_t	i;
+	size_t	j;
+	char	*bottom;
+
+	bottom = malloc(sizeof(char) * (width + 1));
+	if (!bottom)
+		return (NULL);
+	j = 0;
+	while (j < width)
+	{
+		i = height - 1;
+		while (map[i] && (j >= ft_strlen(map[i])))
+		{
+			i--;
+		}
+		if (i >= 0)
+			bottom[j] = map[i][j];
+		j++;
+	}
+	bottom[j] = '\0';
+	return (bottom);
 }
