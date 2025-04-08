@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:59:00 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:45:45 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 19:13:34 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,18 @@ int	get_map_width(char **map, int height)
 		i++;
 	}
 	return (width);
+}
+
+int	check_for_X(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (map[i][0] == 'X')
+			return (1);
+		i++;
+	}
+	return (0);
 }

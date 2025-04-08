@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/08 17:45:06 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 18:59:54 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,31 +62,52 @@ char	*is_map_closed_bottom(char **map, int height, size_t width)
 	return (bottom);
 }
 
-int	validate_array(char **arr, int size)
+int	check_extended_zeros(char *line, int start, int end)
 {
 	int	i;
-	int	j;
+
+	i = start;
+	while (i < end)
+	{
+		if (line[i] == '0')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	compare_lines(char *prev_line, char *curr_line)
+{
 	int	prev_len;
 	int	curr_len;
 
-	i = 0;
-	while (++i < size)
+	prev_len = ft_strlen(prev_line);
+	curr_len = ft_strlen(curr_line);
+	if (curr_len > prev_len)
 	{
-		prev_len = 0;
-		curr_len = 0;
-		while (arr[i - 1][prev_len] != '\0')
-			prev_len++;
-		while (arr[i][curr_len] != '\0')
-			curr_len++;
-		if (curr_len > prev_len)
-		{
-			j = prev_len - 1;
-			while (++j < curr_len)
-			{
-				if (arr[i][j] == '0')
-					return (1);
-			}
-		}
+		if (check_extended_zeros(curr_line, prev_len, curr_len))
+			return (1);
+	}
+	else if (curr_len < prev_len)
+	{
+		if (check_extended_zeros(prev_line, curr_len, prev_len))
+			return (1);
+	}
+	return (0);
+}
+
+int	validate_array(char **arr, int size)
+{
+	int	i;
+
+	if (size <= 1)
+		return (0);
+	i = 1;
+	while (i < size)
+	{
+		if (compare_lines(arr[i - 1], arr[i]))
+			return (1);
+		i++;
 	}
 	return (0);
 }

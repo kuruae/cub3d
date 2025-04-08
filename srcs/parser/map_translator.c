@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:26:44 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:45:34 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 19:05:49 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*map_translator(char *line)
 
 	i = 0;
 	x = 0;
-	new = malloc(sizeof(int) * (map_line_length(line) + 1));
+	new = malloc(sizeof(char) * (map_line_length(line) + 1));
 	while (line[i])
 	{
 		if (line[i] == '\t')
@@ -50,7 +50,7 @@ char	*map_translator(char *line)
 		else if (line[i] == '0')
 			new[x] = '0';
 		else if (line[i] == ' ')
-			new[x] = 1;
+			new[x] = '1';
 		else if (line[i] == '1')
 			new[x] = '1';
 		else if (line[i] == 'N')

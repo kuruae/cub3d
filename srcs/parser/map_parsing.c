@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:46:55 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:45:29 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 19:13:24 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ t_err_status	map_reader(char *line, t_map *map, int fd)
 	while (line)
 	{
 		trim_newline(line);
-		full_map[i] = ft_strdup(line);
+		if (line[0] != '\n')
+			full_map[i] = ft_strdup(line);
+		else
+			full_map[i] = ft_strdup("XXXXXXXXXXXX");
 		if (!full_map[i])
 		{
 			free(line);
@@ -85,6 +88,11 @@ t_err_status	map_reader(char *line, t_map *map, int fd)
 		printf("%s\n", full_map[i]);
 		i++;
 	}
+	if (check_for_X(full_map))
+	{
+		ft_free_str_array(&full_map);
+		return (ERR_INVALID_MAP);
+	}	
 	map->map = full_map;
 	close(fd2);
 	free(line);
