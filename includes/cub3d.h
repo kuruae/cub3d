@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/05 20:51:14 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/08 22:27:46 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				rgb_to_int(t_rgb color);
 int				is_close_to_wall(t_cub *cub, double x, double y);
 
 // Init MLX
-void			init_struct(t_cub *cub, t_img *img);
+int				init_struct_cub(t_cub *cub, t_img *img);
 void			init_mlx(t_map *map, t_cub *cub);
 
 //display exec///

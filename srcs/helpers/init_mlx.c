@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:41:36 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/08 17:44:01 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:29:25 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_struct(t_cub *cub, t_img *img)
+int	init_struct_cub(t_cub *cub, t_img *img)
 {
-	read_all_texture_sizes(cub);
+	if (read_all_texture_sizes(cub) != 0)
+	{
+		ft_putstr_fd("Error: Texture size reading error\n", 2);
+		return (1);
+	}
 	cub->ray = malloc(sizeof(t_ray) * 1);
 	cub->img = img;
 	cub->map = NULL;
@@ -24,6 +28,7 @@ void	init_struct(t_cub *cub, t_img *img)
 	cub->we_xpm = NULL;
 	cub->so_xpm = NULL;
 	cub->ea_xpm = NULL;
+	return (0);
 }
 
 void	init_mlx(t_map *map, t_cub *cub)

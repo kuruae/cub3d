@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:45:50 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:28:11 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,12 @@ int	main(int argc, char **argv)
 	}
 	cub.map = &map;
 	get_player_pos(&cub);
-	init_struct(&cub, &img);
+	if (init_struct_cub(&cub, &img) != SUCCESS)
+	{
+		test_free_map(&map);
+		free(cub.player);
+		return (EXIT_FAILURE);
+	}
 	cub.mlx = mlx_init();
 	cub.mlx_win = mlx_new_window(cub.mlx, 1280, 720, "cub3d");
 	if (cub.mlx_win == NULL)
