@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:46:55 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 20:08:44 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:12:58 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ char	**read_cub(char **full_map, char *line, int fd, int fd2)
 		ft_putstr_fd(translated_line, fd2);
 		ft_putstr_fd("\n", fd2);
 		free(translated_line);
-		if (line)
-			free(line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	full_map = malloc(sizeof(char *) * (i + 1));
@@ -93,7 +92,7 @@ t_err_status	map_reader(char *line, t_map *map, int fd)
 	}
 	if (fill_full_map(full_map, line, fd2) != SUCCESS)
 		return (MALLOC_FAILURE);
-	if (check_for_X(full_map)) ///en gros jai remplace les lignes vides par du X donc si je trouve un X erreur uwu
+	if (check_for_x(full_map))
 		return (ft_free_str_array(&full_map), ERR_INVALID_MAP);
 	map->map = full_map;
 	return (close(fd2), SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:23:19 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:45:37 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:09:25 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_err_status	process_texture(const char *line, char **texture)
 
 t_err_status	parse_textures(char *line, t_map *map)
 {
-	t_err_status status;
+	t_err_status	status;
 
 	status = SUCCESS;
 	if (ft_strncmp(line, "NO", 2) == 0 && status == SUCCESS)

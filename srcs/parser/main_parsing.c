@@ -6,63 +6,68 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:44:05 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:45:24 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:29:34 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	find_player_in_map(t_cub *cub, int *i, int *j)
+{
+	int	found;
+
+	*i = 0;
+	found = 0;
+	while (cub->map->map[*i])
+	{
+		*j = 0;
+		while (cub->map->map[*i][*j])
+		{
+			if (cub->map->map[*i][*j] && cub->map->map[*i][*j] >= '2'
+				&& cub->map->map[*i][*j] <= '5')
+			{
+				found = 1;
+				break;
+			}
+			(*j)++;
+		}
+		if (found == 1)
+			break;
+		(*i)++;
+	}
+}
+
 void	get_player_pos(t_cub *cub)
 {
 	int	i;
 	int	j;
-	int	found;
 
-	i = 0;
-	found = 0;
-	while (cub->map->map[i])
-	{
-		j = 0;
-		while (cub->map->map[i][j])
-		{
-			if (cub->map->map[i][j] && cub->map->map[i][j] >= '2'
-				&& cub->map->map[i][j] <= '5')
-			{
-				found = 1;
-				break ;
-			}
-			j++;
-		}
-		if (found == 1)
-			break ;
-		i++;
-	}
+	find_player_in_map(cub, &i, &j);
 	cub->player = malloc(sizeof(t_player) * 1);
 	cub->player->pos_x = (double)j + 0.5;
 	cub->player->pos_y = (double)i + 0.5;
-	printf("Player position set to: x = %f, y = %f\n", cub->player->pos_x,
-		cub->player->pos_y);
 	if (cub->map->map[i][j] == '2')
 	{
 		cub->player->dir_x = 0;
 		cub->player->dir_y = -1;
 	}
-	if (cub->map->map[i][j] == '3')
+	else if (cub->map->map[i][j] == '3')
 	{
 		cub->player->dir_x = -1;
 		cub->player->dir_y = 0;
 	}
-	if (cub->map->map[i][j] == '4')
+	else if (cub->map->map[i][j] == '4')
 	{
 		cub->player->dir_x = 1;
 		cub->player->dir_y = 0;
 	}
-	if (cub->map->map[i][j] == '5')
+	else if (cub->map->map[i][j] == '5')
 	{
 		cub->player->dir_x = 0;
 		cub->player->dir_y = 1;
 	}
 }
+
 
 t_err_status	validate_file_extension(char *file)
 {
