@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:50:01 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/08 17:48:42 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:21:30 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,46 @@ void	draw_floor_ceiling(t_cub *cub)
 	}
 }
 
+static void select_texture_dimensions(t_cub *cub, int *width, int *height)
+{
+    if (cub->ray->side == 1)
+    {
+        if (cub->ray->step_y < 0)
+        {
+            *width = cub->no_size->width;
+            *height = cub->no_size->height;
+        }
+        else
+        {
+            *width = cub->so_size->width;
+            *height = cub->so_size->height;
+        }
+    }
+    else
+    {
+        if (cub->ray->step_x > 0)
+        {
+            *width = cub->ea_size->width;
+            *height = cub->ea_size->height;
+        }
+        else
+        {
+            *width = cub->we_size->width;
+            *height = cub->we_size->height;
+        }
+    }
+}
+
 void draw_wall(t_cub *cub, int x)
 {
 	int y_axis;
 	int texture_x;
 	int texture_y;
 	int color;
-	int texture_width = cub->no_size->width;
-	int texture_height = cub->no_size->height;
+	int texture_width;
+	int texture_height;
+
+	select_texture_dimensions(cub, &texture_width, &texture_height);	
 	// Calculate texture_x with bounds checking
 	texture_x = (int)(cub->ray->wall_x * texture_width) % texture_width;
 	if (texture_x < 0) texture_x += texture_width;

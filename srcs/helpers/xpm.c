@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 00:47:53 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/08 17:44:23 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:27:13 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ static int	write_size_for_current_xpm(t_xpm_size *size, const char *line)
 		line++;
 	size->height = ft_atoi(line);
 	if (size->width < 16 || size->height < 16 || size->width > 256
-		|| size->height > 256)
-	{
-		free(size);
+		|| size->height > 256 || size->width != size->height)
 		return (1);
-	}
 	return (0);
 }
 
@@ -82,17 +79,34 @@ static t_err_status	init_xpm_sizes(t_cub *cub)
 	return (SUCCESS);
 }
 
+static int	free_xpm_sizes(t_cub *cub)
+{
+	if (cub->no_size)
+		free(cub->no_size);
+	if (cub->so_size)
+		free(cub->so_size);
+	if (cub->we_size)
+		free(cub->we_size);
+	if (cub->ea_size)
+		free(cub->ea_size);
+	cub->no_size = NULL;
+	cub->so_size = NULL;
+	cub->we_size = NULL;
+	cub->ea_size = NULL;
+	return (1);
+}
+
 int	read_all_texture_sizes(t_cub *cub)
 {
 	if (init_xpm_sizes(cub) != SUCCESS)
-		return (1);
+		return (free_xpm_sizes(cub));
 	if (read_texture_size(cub->map->no_texture, cub->no_size) != 0)
-		return (1);
+		return (free_xpm_sizes(cub));
 	if (read_texture_size(cub->map->so_texture, cub->so_size) != 0)
-		return (1);
+		return (free_xpm_sizes(cub));
 	if (read_texture_size(cub->map->we_texture, cub->we_size) != 0)
-		return (1);
+		return (free_xpm_sizes(cub));
 	if (read_texture_size(cub->map->ea_texture, cub->ea_size) != 0)
-		return (1);
+		return (free_xpm_sizes(cub));
 	return (0);
 }

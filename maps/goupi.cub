@@ -1,6 +1,6 @@
-NO ./textures/FT_MC.xpm
-SO ./textures/FT_MC.xpm
-WE ./textures/FT_MC.xpm
+NO ./textures/sand.xpm
+SO ./textures/obsi.xpm
+WE ./textures/stare.xpm
 EA ./textures/FT_MC.xpm
 
 F 40,8,55 	
@@ -11,12 +11,14 @@ C 40,8,55
 111111111
 1S0000001
 100000001
-100000001
+101000001
 100000001
 100000011
+100001001
+100000001
 100000001
 11111111
 1111
-
-
+1111111
+111
 111111111
