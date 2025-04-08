@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:46:55 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/07 17:55:16 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:45:29 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_err_status map_reader(char *line, t_map *map, int fd)
+t_err_status	map_reader(char *line, t_map *map, int fd)
 {
-	int			i;
-	int 		fd2;
-	char		**full_map;
-	char		*translated_line;
+	int		i;
+	int		fd2;
+	char	**full_map;
+	char	*translated_line;
 
 	i = 0;
 	fd2 = open(TEMP_FILE, O_RDWR | O_CREAT | O_TRUNC, 0644);
@@ -43,7 +43,7 @@ t_err_status map_reader(char *line, t_map *map, int fd)
 		free(translated_line);
 		line = get_next_line(fd);
 	}
-	full_map = malloc(sizeof(char*) * (i + 1));
+	full_map = malloc(sizeof(char *) * (i + 1));
 	if (!full_map)
 	{
 		close(fd2);

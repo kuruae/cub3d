@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_too_close.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 16:58:05 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/05 17:20:21 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/08 17:44:17 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	check_wall_cell(t_cub *cub, double x, double y, int *coords)
  * @brief Checks if a point is close to any wall in the map
  *
  * Scans a 3x3 grid around (x, y)
- * to determine if there is a wall nearby. It checks each cell 
+ * to determine if there is a wall nearby. It checks each cell
  * in the grid by calling check_wall_cell() for each position.
  *
  * @param cub	Pointer to the main cub struct

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:21:28 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/07 18:03:37 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:44:38 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ static t_err_status	process_colors(const char *line, t_rgb *colors)
 		return (MALLOC_FAILURE);
 	if (check_rgb_values(splitted_rgb) == EXIT_FAILURE
 		|| count_arrays(splitted_rgb) == EXIT_FAILURE)
-		{
-			ft_free_str_array(&splitted_rgb);
-			return (ERR_COLOR);
-		}
+	{
+		ft_free_str_array(&splitted_rgb);
+		return (ERR_COLOR);
+	}
 	colors->r = ft_atoi(splitted_rgb[0]);
 	colors->g = ft_atoi(splitted_rgb[1]);
 	colors->b = ft_atoi(splitted_rgb[2]);
@@ -62,7 +62,7 @@ static t_err_status	process_colors(const char *line, t_rgb *colors)
 
 t_err_status	parse_colors(char *line, t_map *map)
 {
-	t_err_status status;
+	t_err_status	status;
 
 	status = SUCCESS;
 	if (line[0] == 'C')

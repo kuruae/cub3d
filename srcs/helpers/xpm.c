@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 00:47:53 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/05 21:11:06 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/08 17:44:23 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static int	write_size_for_current_xpm(t_xpm_size *size, const char *line)
 {
@@ -22,7 +21,8 @@ static int	write_size_for_current_xpm(t_xpm_size *size, const char *line)
 	while (*line != ' ')
 		line++;
 	size->height = ft_atoi(line);
-	if (size->width < 16 || size->height < 16 || size->width > 256 || size->height > 256)
+	if (size->width < 16 || size->height < 16 || size->width > 256
+		|| size->height > 256)
 	{
 		free(size);
 		return (1);
@@ -47,7 +47,7 @@ static int	read_texture_size(const char *texture_path, t_xpm_size *size)
 			if (write_size_for_current_xpm(size, &line[1]) != 0)
 				err = 1;
 			free(line);
-			break;
+			break ;
 		}
 		free(line);
 	}

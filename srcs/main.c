@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/07 17:12:25 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:45:50 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	handle_close(t_cub *cub)
 	free(cub->so_size);
 	free(cub->ea_size);
 	free(cub->keys);
-	mlx_destroy_image(cub->mlx ,cub->no_xpm);
-	mlx_destroy_image(cub->mlx ,cub->so_xpm);
-	mlx_destroy_image(cub->mlx ,cub->we_xpm);
-	mlx_destroy_image(cub->mlx ,cub->ea_xpm);	
+	mlx_destroy_image(cub->mlx, cub->no_xpm);
+	mlx_destroy_image(cub->mlx, cub->so_xpm);
+	mlx_destroy_image(cub->mlx, cub->we_xpm);
+	mlx_destroy_image(cub->mlx, cub->ea_xpm);
 	ft_free_str_array(&cub->map->map);
 	if (cub->img->img)
 	{
@@ -50,7 +50,7 @@ int	handle_close(t_cub *cub)
 	return (0);
 }
 
-int start_display(t_cub *cub)
+int	start_display(t_cub *cub)
 {
 	init_keys(cub);
 	if (mlx_loop_hook(cub->mlx, &start_render, cub) == -1)
@@ -68,7 +68,7 @@ int start_display(t_cub *cub)
 static void	test_free_map(t_map *map)
 {
 	int	i;
-	
+
 	i = 0;
 	if (map->map)
 	{
@@ -93,7 +93,7 @@ static void	test_free_map(t_map *map)
 int	main(int argc, char **argv)
 {
 	t_map	map;
-	t_img 	img;
+	t_img	img;
 	t_cub	cub;
 
 	if (start_parsing(argc, argv, &map) != SUCCESS)
@@ -114,11 +114,13 @@ int	main(int argc, char **argv)
 	init_mlx(&map, &cub);
 	cub.img->img = mlx_new_image(cub.mlx, WIDTH, HEIGHT);
 	if (!cub.img->img)
-	{	
+	{
 		printf("Error: mlx_new_image failed\n");
 		return (EXIT_FAILURE);
 	}
-	cub.img->adrr = mlx_get_data_addr(cub.img->img, &cub.img->bpp, &cub.img->line_length, &cub.img->endian ); /// PAS ENCORE PROTGERER POUR CLARTE ET COMPREHENSION ///
+	cub.img->adrr = mlx_get_data_addr(cub.img->img, &cub.img->bpp,
+			&cub.img->line_length, &cub.img->endian);
+		/// PAS ENCORE PROTGERER POUR CLARTE ET COMPREHENSION ///
 	start_display(&cub);
 	return (EXIT_SUCCESS);
 }

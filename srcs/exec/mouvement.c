@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouvement.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 16:43:42 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/05 21:10:22 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/08 17:42:45 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	move_forward(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
-	
+
 	new_x = cub->player->pos_x + cub->player->dir_x * MOVE_SPEED;
 	new_y = cub->player->pos_y + cub->player->dir_y * MOVE_SPEED;
 	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
@@ -35,10 +35,9 @@ static void	move_backwards(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
-	
+
 	new_x = cub->player->pos_x - cub->player->dir_x * MOVE_SPEED;
 	new_y = cub->player->pos_y - cub->player->dir_y * MOVE_SPEED;
-	
 	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
 	{
 		if (!is_close_to_wall(cub, new_x, cub->player->pos_y))
@@ -55,10 +54,9 @@ static void	move_left(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
-	
+
 	new_x = cub->player->pos_x + cub->player->dir_y * MOVE_SPEED;
 	new_y = cub->player->pos_y - cub->player->dir_x * MOVE_SPEED;
-	
 	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
 	{
 		if (!is_close_to_wall(cub, new_x, cub->player->pos_y))
@@ -75,10 +73,9 @@ static void	move_right(t_cub *cub)
 {
 	double	new_x;
 	double	new_y;
-	
+
 	new_x = cub->player->pos_x - cub->player->dir_y * MOVE_SPEED;
 	new_y = cub->player->pos_y + cub->player->dir_x * MOVE_SPEED;
-	
 	if (cub->map->map[(int)cub->player->pos_y][(int)new_x] != '1')
 	{
 		if (!is_close_to_wall(cub, new_x, cub->player->pos_y))

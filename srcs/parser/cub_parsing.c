@@ -46,8 +46,8 @@ static t_err_status	init_map(t_map *map)
 
 t_err_status	start_parsing_cub_file(char *file, t_map *map)
 {
-	int		height;
-	int		width;
+	int	height;
+	int	width;
 
 	if (validate_file_path(file, MSG_INVALID_MAP_PATH) != SUCCESS)
 	{

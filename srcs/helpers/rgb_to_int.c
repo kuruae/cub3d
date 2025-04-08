@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_to_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 10:52:38 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/05 21:09:55 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/08 17:44:12 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int rgb_to_int(t_rgb color)
+int	rgb_to_int(t_rgb color)
 {
 	return (((color.r & 0xFF) << 16) | ((color.g & 0xFF) << 8) | (color.b & 0xFF));
 }
