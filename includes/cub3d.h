@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 18:46:49 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:32:39 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 // Game speeds
 # define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.025
-
+# define MOUSE_SPEED 0.05
 // PI
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -72,4 +72,5 @@ void			select_east_west_texture_dimensions(t_cub *cub, int *width,
 // rotate///
 void			rotate_right(t_cub *cub, double rotation_speed);
 void			rotate_left(t_cub *cub, double rotation_speed);
+int				mouse_function(int x, int y, void *arg);
 #endif

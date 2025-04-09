@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 18:50:01 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:32:58 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	start_display(t_cub *cub)
 	}
 	mlx_hook(cub->mlx_win, KeyPress, KeyPressMask, &press, cub);
 	mlx_hook(cub->mlx_win, KeyRelease, KeyRelease, &release, cub);
+	mlx_hook(cub->mlx_win, MotionNotify, PointerMotionMask, &mouse_function, cub);
 	mlx_hook(cub->mlx_win, 17, 0, handle_close, cub);
 	mlx_loop(cub->mlx);
 	return (EXIT_SUCCESS);
