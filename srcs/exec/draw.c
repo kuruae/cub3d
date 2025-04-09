@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:50:01 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/08 22:21:30 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/09 17:07:46 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,79 +40,72 @@ void	draw_floor_ceiling(t_cub *cub)
 	}
 }
 
-static void select_texture_dimensions(t_cub *cub, int *width, int *height)
+static void select_texture_dimensions(t_cub *cub, int *width, int *height, char **texture_data)
 {
-    if (cub->ray->side == 1)
-    {
-        if (cub->ray->step_y < 0)
-        {
-            *width = cub->no_size->width;
-            *height = cub->no_size->height;
-        }
-        else
-        {
-            *width = cub->so_size->width;
-            *height = cub->so_size->height;
-        }
-    }
-    else
-    {
-        if (cub->ray->step_x > 0)
-        {
-            *width = cub->ea_size->width;
-            *height = cub->ea_size->height;
-        }
-        else
-        {
-            *width = cub->we_size->width;
-            *height = cub->we_size->height;
-        }
-    }
+	if (cub->ray->side == 0)
+	{
+		if (cub->ray->dir_x > 0)
+		{
+			*width = cub->we_size->width;
+			*height = cub->we_size->height;
+			*texture_data = cub->img->west;
+		}
+		else
+		{
+			*width = cub->ea_size->width;
+			*height = cub->ea_size->height;
+			*texture_data = cub->img->east;
+		}
+	}
+	else
+	{
+		if (cub->ray->dir_y > 0)
+		{
+			*width = cub->so_size->width;
+			*height = cub->so_size->height;
+			*texture_data = cub->img->south;
+		}
+		else
+		{
+			*width = cub->no_size->width;
+			*height = cub->no_size->height;
+			*texture_data = cub->img->north;
+		}
+	}
+}
+
+void static	draw_loop(t_cub *cub, t_draw_wall draw, int x)
+{
+	while (draw.y_axis < cub->ray->draw_end)
+	{
+		draw.texture_y = (int)draw.tex_pos & (draw.texture_height - 1);
+		draw.tex_pos += draw.step;
+		draw.offset = (draw.texture_y * draw.texture_width + draw.texture_x) * cub->img->bpp / 8;
+		draw.texture_y = *(unsigned int *)(draw.texture_data + draw.offset);
+		if (draw.y_axis >= 0 && draw.y_axis < HEIGHT && x >= 0 && x < WIDTH)
+			*(unsigned int *)(cub->img->adrr + (draw.y_axis
+						* cub->img->line_length + x * cub->img->bpp / 8)) = draw.texture_y;
+		draw.y_axis++;
+	}
 }
 
 void draw_wall(t_cub *cub, int x)
 {
-	int y_axis;
-	int texture_x;
-	int texture_y;
-	int color;
-	int texture_width;
-	int texture_height;
+	t_draw_wall draw;
 
-	select_texture_dimensions(cub, &texture_width, &texture_height);	
-	// Calculate texture_x with bounds checking
-	texture_x = (int)(cub->ray->wall_x * texture_width) % texture_width;
-	if (texture_x < 0) texture_x += texture_width;
-	
-	y_axis = cub->ray->draw_start;
-	while (y_axis < cub->ray->draw_end)
-	{
-		// Calculate texture_y with bounds checking
-		texture_y = (int)((y_axis - cub->ray->draw_start) * texture_height / cub->ray->line_height);
-		if (texture_y < 0) 
-			texture_y = 0;
-		if (texture_y >= texture_height)
-			texture_y = texture_height - 1;
-		// Calculate offset using texture width and height
-		int offset = (texture_y * texture_width + texture_x) * cub->img->bpp / 8;
-		// Access the texture data based on the side of the wall
-		if (cub->ray->side == 1) 
-		{ // Horizontal walls (North/South)
-			if (cub->ray->step_y < 0) // Facing North
-				color = *(unsigned int *)(cub->img->north + offset);
-			else // Facing South
-				color = *(unsigned int *)(cub->img->south + offset);
-		}
-		else 
-		{ // Vertical walls (East/West)
-			if (cub->ray->step_x > 0) // Facing East
-				color = *(unsigned int *)(cub->img->east + offset);
-			else // Facing West
-				color = *(unsigned int *)(cub->img->west + offset);
-		}
-		// Draw the pixel on the screen (check bounds)
-		if (y_axis >= 0 && y_axis < HEIGHT && x >= 0 && x < WIDTH)
-			*(unsigned int *)(cub->img->adrr + (y_axis * cub->img->line_length + x * cub->img->bpp / 8)) = color;
-		y_axis++;
-	}
+	select_texture_dimensions(cub, &draw.texture_width, &draw.texture_height, &draw.texture_data);
+	if (cub->ray->side == 0)
+		draw.wall_x = cub->player->pos_y + cub->ray->wall_dist * cub->ray->dir_y;
+	else
+		draw.wall_x = cub->player->pos_x + cub->ray->wall_dist * cub->ray->dir_x;
+	draw.wall_x -= floor(draw.wall_x);
+	draw.texture_x = (int)(draw.wall_x * draw.texture_width);
+	if (draw.texture_x < 0)
+		draw.texture_x = 0;
+	if (draw.texture_x >= draw.texture_width)
+		draw.texture_x = draw.texture_width - 1;
+	draw.step = (double)draw.texture_height / cub->ray->line_height;
+	draw.tex_pos = (cub->ray->draw_start - HEIGHT / 2 + cub->ray->line_height / 2) * draw.step;
+	draw.y_axis = cub->ray->draw_start;
+	draw_loop(cub, draw, x);
 }

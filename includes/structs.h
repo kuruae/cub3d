@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/07 17:58:20 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:03:16 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ typedef struct s_rgb
 	int	g;
 	int	b;
 }		t_rgb;
+
+typedef struct s_draw_wall
+{
+	int y_axis;
+	int texture_x;
+	int texture_y;
+	int color;
+	int texture_width;
+	int texture_height;
+	char *texture_data;
+	double wall_x;
+	double step;
+	double tex_pos;
+	int offset;
+}	t_draw_wall;
 
 
 // Map data

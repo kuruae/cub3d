@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 00:47:53 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/08 22:27:13 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/09 17:11:05 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	write_size_for_current_xpm(t_xpm_size *size, const char *line)
 	while (*line != ' ')
 		line++;
 	size->height = ft_atoi(line);
-	if (size->width < 16 || size->height < 16 || size->width > 256
-		|| size->height > 256 || size->width != size->height)
+	if (size->width < 16 || size->height < 16 || size->width > 800
+		|| size->height > 800 || size->width != size->height)
 		return (1);
 	return (0);
 }
