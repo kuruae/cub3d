@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 00:47:53 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/09 17:11:05 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:24:07 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	write_size_for_current_xpm(t_xpm_size *size, const char *line)
 {
-	printf("line: %s\n", line);
 	size->width = ft_atoi(line);
 	while (ft_isdigit(*line))
 		line++;
@@ -37,7 +36,8 @@ static int	read_texture_size(const char *texture_path, t_xpm_size *size)
 	fd = open(texture_path, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (ft_strncmp(&line[0], "\"", 1) == 0 && ft_isdigit(line[1]))
 		{
@@ -47,9 +47,14 @@ static int	read_texture_size(const char *texture_path, t_xpm_size *size)
 			break ;
 		}
 		free(line);
+		line = get_next_line(fd);
 	}
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
+	{
 		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (err);
 }

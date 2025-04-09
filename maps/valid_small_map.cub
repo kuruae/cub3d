@@ -1,0 +1,11 @@
+NO ./textures/MissingTexture.xpm
+SO ./textures/MissingTexture.xpm
+WE ./textures/sand.xpm
+EA ./textures/sand.xpm
+
+F 153,51,255
+C 204,102,0
+
+111111
+10E001
+111111

@@ -6,49 +6,11 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 17:37:10 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:50:01 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	handle_close(t_cub *cub)
-{
-	free(cub->ray);
-	free(cub->player);
-	free(cub->map->no_texture);
-	free(cub->map->ea_texture);
-	free(cub->map->so_texture);
-	free(cub->map->we_texture);
-	free(cub->no_size);
-	free(cub->we_size);
-	free(cub->so_size);
-	free(cub->ea_size);
-	free(cub->keys);
-	mlx_destroy_image(cub->mlx, cub->no_xpm);
-	mlx_destroy_image(cub->mlx, cub->so_xpm);
-	mlx_destroy_image(cub->mlx, cub->we_xpm);
-	mlx_destroy_image(cub->mlx, cub->ea_xpm);
-	ft_free_str_array(&cub->map->map);
-	if (cub->img->img)
-	{
-		mlx_destroy_image(cub->mlx, cub->img->img);
-		cub->img->img = NULL;
-	}
-	if (cub->mlx_win)
-	{
-		mlx_destroy_window(cub->mlx, cub->mlx_win);
-		cub->mlx_win = NULL;
-	}
-	if (cub->mlx)
-	{
-		mlx_destroy_display(cub->mlx);
-		free(cub->mlx);
-		cub->mlx = NULL;
-	}
-	exit(EXIT_SUCCESS);
-	return (0);
-}
 
 int	start_display(t_cub *cub)
 {
@@ -138,19 +100,22 @@ int	main(int argc, char **argv)
 	cub.mlx_win = mlx_new_window(cub.mlx, 1280, 720, "cub3d");
 	if (cub.mlx_win == NULL)
 	{
-		printf("Error: mlx_new_window failed\n");
+		ft_putstr_fd("Error: mlx_new_window failed\n", 2);
 		return (EXIT_FAILURE);
 	}
 	init_mlx(&map, &cub);
 	cub.img->img = mlx_new_image(cub.mlx, WIDTH, HEIGHT);
 	if (!cub.img->img)
 	{
-		printf("Error: mlx_new_image failed\n");
+		ft_putstr_fd("Error: mlx_new_image failed\n", 2);
 		return (EXIT_FAILURE);
 	}
 	cub.img->adrr = mlx_get_data_addr(cub.img->img, &cub.img->bpp,
 			&cub.img->line_length, &cub.img->endian);
-		/// PAS ENCORE PROTGERER POUR CLARTE ET COMPREHENSION ///
+	if (!cub.img->adrr)
+	{
+		printf("enzo stp faudra free des trucs ici mais jai la flemme la");
+	}
 	start_display(&cub);
 	return (EXIT_SUCCESS);
 }

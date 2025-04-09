@@ -1,10 +1,10 @@
-NO ./textures/goku.xpm
-SO ./textures/obsi.xpm
-WE ./textures/stare.xpm
+NO ./textures/FT_MC.xpm
+SO ./textures/FT_MC.xpm
+WE ./textures/FT_MC.xpm
 EA ./textures/FT_MC.xpm
 
-F 40,8,55 	
-C 40,8,55 
+F 0,153,0 
+C 0,102,204 	
 
 
 111111111

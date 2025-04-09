@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:23:19 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 20:09:25 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:24:25 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_err_status	process_texture(const char *line, char **texture)
 	if (ft_strncmp(line, "./", 2) != 0)
 		return (ERR_TEXTURE_PATH);
 	line += 2;
-	printf("line: %s\n", line);
+	printf("loaded texture: %s\n", line);
 	if (validate_file_path(line, MSG_INVALID_TEXTURE_PATH) != SUCCESS)
 		return (ERR_TEXTURE_PATH);
 	if (*texture)

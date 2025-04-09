@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:26:44 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 19:05:49 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:19:33 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	map_line_length(char *line)
 	}
 	return (len);
 }
+
 
 char	*map_translator(char *line)
 {

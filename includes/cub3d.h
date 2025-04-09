@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 17:52:18 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:46:49 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,12 @@ int				init_struct_cub(t_cub *cub, t_img *img);
 void			init_mlx(t_map *map, t_cub *cub);
 
 //display exec///
-int 			mouvement(t_cub *cub);
+int				mouvement(t_cub *cub);
 void			calculate_ray(t_cub *cub);
-void			find_ray_and_step_direction(t_cub *cub);
 void			apply_dda(t_cub *cub);
-void 			wall(t_cub *cub);
+void			wall(t_cub *cub);
 int				start_render(t_cub *cub);
-int 			start_display(t_cub *cub);
+int				start_display(t_cub *cub);
 
 // Hooks
 void			init_keys(t_cub *cub);
@@ -62,12 +61,13 @@ int				release(int keysym, t_cub *cub);
 int				press(int keysym, t_cub *cub);
 
 ///draw///
+
 void			draw_floor_ceiling(t_cub *cub, int color);
-void 			draw_wall(t_cub *cub, int x);
-void	select_north_south_texture_dimensions(t_cub *cub, int *width, int *height,
-	char **texture_data);
-void	select_east_west_texture_dimensions(t_cub *cub, int *width, int *height,
-		char **texture_data);
+void			draw_wall(t_cub *cub, int x);
+void			select_north_south_texture_dimensions(t_cub *cub, int *width,
+					int *height, char **texture_data);
+void			select_east_west_texture_dimensions(t_cub *cub, int *width,
+					int *height, char **texture_data);
 
 // rotate///
 void			rotate_right(t_cub *cub, double rotation_speed);

@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:57:38 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/08 20:04:14 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:22:30 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,6 @@ int	is_map_closed(t_map *map, int height, int width)
 
 	up = is_map_closed_upper(map->map, width);
 	bottom = is_map_closed_bottom(map->map, height, width);
-	printf("\n");
-	printf("up: %s\n", up);
-	printf("bottom: %s\n", bottom);
-	printf("\n");
 	if (!up || !bottom || check_zero(up) || check_zero(bottom))
 	{
 		if (up)

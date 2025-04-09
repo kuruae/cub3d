@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 15:46:37 by emagnani          #+#    #+#             */
-/*   Updated: 2025/03/28 17:30:443 by emagnani         ###   ########.fr       */
+/*   Created: 2025/04/09 18:21:10 by habouda           #+#    #+#             */
+/*   Updated: 2025/04/09 19:19:41 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,39 +50,21 @@ t_err_status	start_parsing_cub_file(char *file, t_map *map)
 	int	width;
 
 	if (validate_file_path(file, MSG_INVALID_MAP_PATH) != SUCCESS)
-	{
-		printf("validate file path\n");
 		return (ERR_MAP_PATH);
-	}
 	init_map(map);
 	cub_file_readloop(file, map);
 	if (map->map == NULL)
-	{
-		printf("Map is not correct read loop\n");
 		return (ERR_MAP_PATH);
-	}
 	if (verify_values(map) != SUCCESS)
-	{
-		printf("verify values\n");
 		return (ERR_VALUES);
-	}
 	if (verify_data(map) != SUCCESS)
-	{
-		printf("verify data\n");
 		return (ERR_TEXTURE_PATH);
-	}
 	height = get_map_height(map->map);
 	width = get_map_width(map->map, height);
 	if (width < 3 || height < 3)
-	{
-		printf("Map is not correct\n");
 		return (ERR_VALUES);
-	}
 	if (is_map_closed(map, height, width))
-	{
-		printf("is_map_closed\n");
 		return (ERR_INVALID_MAP);
-	}
 	return (SUCCESS);
 }
 
@@ -107,7 +89,7 @@ t_err_status	verify_values(t_map *map)
 	}
 	if (pos != 1)
 	{
-		printf("no player\n");
+		ft_putstr_fd("No player or more than one player in map\n", 2);
 		return (ERR_POSITION);
 	}
 	return (SUCCESS);

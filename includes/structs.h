@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 17:03:16 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:42:42 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,88 +26,86 @@ typedef enum e_err_status
 	ERR_POSITION,
 	ERR_COLOR,
 	ERR_VALUES
-}	t_err_status;
+}				t_err_status;
 
 // RGB color
 typedef struct s_rgb
 {
-	int	r;
-	int	g;
-	int	b;
-}		t_rgb;
+	int			r;
+	int			g;
+	int			b;
+}				t_rgb;
 
 typedef struct s_draw_wall
 {
-	int y_axis;
-	int texture_x;
-	int texture_y;
-	int color;
-	int texture_width;
-	int texture_height;
-	char *texture_data;
-	double wall_x;
-	double step;
-	double tex_pos;
-	int offset;
-}	t_draw_wall;
-
+	int			y_axis;
+	int			texture_x;
+	int			texture_y;
+	int			color;
+	int			texture_width;
+	int			texture_height;
+	char		*texture_data;
+	double		wall_x;
+	double		step;
+	double		tex_pos;
+	int			offset;
+}				t_draw_wall;
 
 // Map data
 typedef struct s_map
 {
-	char	**map;
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
-	t_rgb	floor_color;
-	t_rgb	ceiling_color;
-}	t_map;
+	char		**map;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	t_rgb		floor_color;
+	t_rgb		ceiling_color;
+}				t_map;
 
-
-typedef struct	s_img
+typedef struct s_img
 {
-	void	*img;
-	void	*north;
-	void	*south;
-	void	*east;
-	void	*west;
-	char	*adrr;
-	int		endian;
-	int		bpp;
-	int		line_length;
-}	t_img;
+	void		*img;
+	void		*north;
+	void		*south;
+	void		*east;
+	void		*west;
+	char		*adrr;
+	int			endian;
+	int			bpp;
+	int			line_length;
+}				t_img;
 
 typedef struct s_ray
 {
-    double  camera_x;        // X position of the ray in the camera space
-    double  dir_x;           // Direction of the ray in the X axis
-    double  dir_y;           // Direction of the ray in the Y axis
-    int     map_x;           // X grid coordinate where the ray is
-    int     map_y;           // Y grid coordinate where the ray is
-    int     step_x;          // =1 if we go in positive direction otherwise -1
-    int     step_y;          // same as above
-    double  sidedist_x;      // Distance to the next X grid line the ray will cross
-    double  sidedist_y;      // Distance to the next Y grid line the ray will cross
-    double  deltadist_x;     // How much the ray moves in the X direction per step
-    double  deltadist_y;     // How much the ray moves in the Y direction per step
-    double  wall_dist;       // The distance from the player to the wall the ray hit
-    double  wall_x;          // OU EST CE QUE LE MUR A PRIS UN RAYON A CALCULER APRES AVOIR CHOPPER WALL
-    int     side;            // Which side of the wall the ray hit (0 = horizontal, 1 = vertical)
-    int     line_height;     // Height of the line to be drawn on the screen for this ray
-    int     draw_start;      // Y-coordinate where the line starts being drawn on the screen
-    int     draw_end;        // Y-coordinate where the line ends being drawn on the screen
-}   t_ray;
+	double		camera_x;
+	double		dir_x;
+	double		dir_y;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	double		sidedist_x;
+	double		sidedist_y;
+	double		deltadist_x;
+	double		deltadist_y;
+	double		wall_dist;
+	double		wall_x;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}				t_ray;
 
 typedef struct s_player
 {
-	double pos_x; ///POSITION DU JOUEUR///
-	double pos_y;///POSITION DU JOUEUR///
-	double dir_x; //VECTEUR DIRECTION X (EN GROS LA OU LE JOUEUR REGARDE)///
-	double dir_y; //VECTEUR DIRECTION Y///
-	double plane_x; // CAMERA //
-	double plane_y; // CAMERA //
-} 	t_player;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}				t_player;
 
 /*
 ** les struct pour la taille des textures
@@ -115,19 +113,19 @@ typedef struct s_player
 */
 typedef struct s_xpm_size
 {
-	int		width;
-	int		height;
-}	t_xpm_size;
+	int			width;
+	int			height;
+}				t_xpm_size;
 
-typedef struct	s_keys
+typedef struct s_keys
 {
-	int		w;
-	int		a;
-	int		s;
-	int		d;
-	int		left;
-	int		right;
-}	t_keys;
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			left;
+	int			right;
+}				t_keys;
 
 typedef struct s_cub
 {
@@ -146,7 +144,6 @@ typedef struct s_cub
 	t_xpm_size	*we_size;
 	t_xpm_size	*so_size;
 	t_xpm_size	*ea_size;
-}	t_cub;
-
+}				t_cub;
 
 #endif
