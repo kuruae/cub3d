@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:48:06 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:43:53 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:11:29 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ bool	ft_isdigit_whitespaces(char *str)
 	}
 	return (true);
 }
+
 int	ft_tablen(int *tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i] != -1)

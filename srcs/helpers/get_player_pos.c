@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:22:49 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/09 17:42:38 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:11:49 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	apply_player_pos(t_cub *cub, int i, int j)
 
 void	get_player_pos(t_cub *cub)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	find_player_in_map(cub, &i, &j);
 	cub->player = malloc(sizeof(t_player) * 1);

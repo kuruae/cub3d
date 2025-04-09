@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 10:52:38 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/08 17:44:12 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:11:59 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 int	rgb_to_int(t_rgb color)
 {
-	return (((color.r & 0xFF) << 16) | ((color.g & 0xFF) << 8) | (color.b & 0xFF));
+	return (((color.r & 0xFF) << 16)
+		| ((color.g & 0xFF) << 8) | (color.b & 0xFF));
 }

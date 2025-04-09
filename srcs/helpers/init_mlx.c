@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:41:36 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/08 22:29:25 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/09 18:13:28 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	init_struct_cub(t_cub *cub, t_img *img)
 	return (0);
 }
 
-void	init_mlx(t_map *map, t_cub *cub)
+static int	xpm_file_to_image(t_map *map, t_cub *cub)
 {
 	int	width;
 	int	height;
@@ -47,9 +47,14 @@ void	init_mlx(t_map *map, t_cub *cub)
 			&height);
 	if (!cub->no_xpm || !cub->so_xpm || !cub->we_xpm || !cub->ea_xpm)
 	{
-		ft_putstr_fd("Texture loading failed WHY\n", 2);
-		return ;
+		ft_putstr_fd("Texture loading failed\n", 2);
+		return (1);
 	}
+	return (0);
+}
+
+static void	get_image_addr(t_cub *cub)
+{
 	cub->img->north = mlx_get_data_addr(cub->no_xpm, &cub->img->bpp,
 			&cub->img->line_length, &cub->img->endian);
 	cub->img->south = mlx_get_data_addr(cub->so_xpm, &cub->img->bpp,
@@ -61,7 +66,14 @@ void	init_mlx(t_map *map, t_cub *cub)
 	if (!cub->img->north || !cub->img->west || !cub->img->south
 		|| !cub->img->east)
 	{
-		ft_putstr_fd("Image loading failed WHY\n", 2);
+		ft_putstr_fd("Image loading failed\n", 2);
 		return ;
 	}
+}
+
+void	init_mlx(t_map *map, t_cub *cub)
+{
+	if (xpm_file_to_image(map, cub) == 1)
+		return ;
+	get_image_addr(cub);
 }
