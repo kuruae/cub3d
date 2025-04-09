@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 22:28:11 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/09 17:37:10 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,31 @@ static void	test_free_map(t_map *map)
 		free(map->we_texture);
 	if (map->ea_texture)
 		free(map->ea_texture);
+}
+
+int	start_render(t_cub *cub)
+{
+	int		x;
+	double	cam_x;
+	int		color;
+
+	color = rgb_to_int(cub->map->ceiling_color);
+	mouvement(cub);
+	draw_floor_ceiling(cub, color);
+	cub->player->plane_x = -cub->player->dir_y * 0.66;
+	cub->player->plane_y = cub->player->dir_x * 0.66;
+	x = -1;
+	while (++x < WIDTH)
+	{
+		cam_x = 2 * x / (double)WIDTH - 1;
+		cub->ray->dir_x = cub->player->dir_x + cub->player->plane_x * cam_x;
+		cub->ray->dir_y = cub->player->dir_y + cub->player->plane_y * cam_x;
+		calculate_ray(cub);
+		wall(cub);
+		draw_wall(cub, x);
+	}
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img->img, 0, 0);
+	return (0);
 }
 
 int	main(int argc, char **argv)

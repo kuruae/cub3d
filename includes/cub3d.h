@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 22:27:46 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/09 17:52:18 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,12 @@ int				release(int keysym, t_cub *cub);
 int				press(int keysym, t_cub *cub);
 
 ///draw///
-void			draw_floor_ceiling(t_cub *cub);
+void			draw_floor_ceiling(t_cub *cub, int color);
 void 			draw_wall(t_cub *cub, int x);
+void	select_north_south_texture_dimensions(t_cub *cub, int *width, int *height,
+	char **texture_data);
+void	select_east_west_texture_dimensions(t_cub *cub, int *width, int *height,
+		char **texture_data);
 
 // rotate///
 void			rotate_right(t_cub *cub, double rotation_speed);
