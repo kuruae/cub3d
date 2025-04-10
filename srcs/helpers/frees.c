@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:50:16 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/10 19:41:30 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 20:42:19 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,29 @@ int	handle_close(t_cub *cub)
 	close_mlx(cub);
 	exit(EXIT_SUCCESS);
 	return (0);
+}
+
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (map->map)
+	{
+		printf("Freeing map...\n");
+		while (map->map[i])
+		{
+			free(map->map[i]);
+			i++;
+		}
+		free(map->map);
+	}
+	if (map->no_texture)
+		free(map->no_texture);
+	if (map->so_texture)
+		free(map->so_texture);
+	if (map->we_texture)
+		free(map->we_texture);
+	if (map->ea_texture)
+		free(map->ea_texture);
 }

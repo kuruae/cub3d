@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 20:03:26 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 20:41:15 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,11 @@ int	start_display(t_cub *cub)
 	}
 	mlx_hook(cub->mlx_win, KeyPress, KeyPressMask, &press, cub);
 	mlx_hook(cub->mlx_win, KeyRelease, KeyRelease, &release, cub);
-	mlx_hook(cub->mlx_win, MotionNotify, PointerMotionMask, &mouse_function, cub);
+	mlx_hook(cub->mlx_win, MotionNotify,
+		PointerMotionMask, &mouse_function, cub);
 	mlx_hook(cub->mlx_win, 17, 0, handle_close, cub);
 	mlx_loop(cub->mlx);
 	return (EXIT_SUCCESS);
-}
-
-static void	test_free_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	if (map->map)
-	{
-		printf("Freeing map...\n");
-		while (map->map[i])
-		{
-			free(map->map[i]);
-			i++;
-		}
-		free(map->map);
-	}
-	if (map->no_texture)
-		free(map->no_texture);
-	if (map->so_texture)
-		free(map->so_texture);
-	if (map->we_texture)
-		free(map->we_texture);
-	if (map->ea_texture)
-		free(map->ea_texture);
 }
 
 int	start_render(t_cub *cub)
@@ -82,7 +58,7 @@ int	start_render(t_cub *cub)
 
 void	init_mini_map(t_cub *cub, t_map *map)
 {
-	t_minimap *mini;
+	t_minimap	*mini;
 
 	mini = malloc(sizeof(t_minimap) * 1);
 	mini->map_height = get_map_height(map->map);
@@ -91,9 +67,38 @@ void	init_mini_map(t_cub *cub, t_map *map)
 	mini->width = mini->map_width * 8;
 	mini->img = mlx_new_image(cub->mlx, mini->width, mini->height);
 	if (!mini->img)
-	return;
-	mini->addr = mlx_get_data_addr(mini->img, &mini->bits_per_pixel, &mini->line_length, &mini->endian);
+		return ;
+	mini->addr = mlx_get_data_addr(mini->img, &mini->bits_per_pixel,
+			&mini->line_length, &mini->endian);
 	cub->mini = mini;
+}
+
+static int	main_mlx(t_map *map, t_cub *cub)
+{
+	cub->mlx = mlx_init();
+	cub->mlx_win = mlx_new_window(cub->mlx, 1280, 720, "cub3d");
+	if (cub->mlx_win == NULL)
+	{
+		ft_putstr_fd("Error: mlx_new_window failed\n", 2);
+		return (EXIT_FAILURE);
+	}
+	init_mlx(map, cub);
+	cub->img->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (!cub->img->img)
+	{
+		ft_putstr_fd("Error: mlx_new_image failed\n", 2);
+		return (EXIT_FAILURE);
+	}
+	cub->img->adrr = mlx_get_data_addr(cub->img->img, &cub->img->bpp,
+			&cub->img->line_length, &cub->img->endian);
+	if (!cub->img->adrr)
+	{
+		ft_putstr_fd("Error: mlx_get_data_addr failed\n", 2);
+		return (EXIT_FAILURE);
+	}
+	init_mini_map(cub, map);
+	start_display(cub);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -104,38 +109,16 @@ int	main(int argc, char **argv)
 
 	if (start_parsing(argc, argv, &map) != SUCCESS)
 	{
-		test_free_map(&map);
+		free_map(&map);
 		return (EXIT_FAILURE);
 	}
 	cub.map = &map;
 	get_player_pos(&cub);
 	if (init_struct_cub(&cub, &img) != SUCCESS)
 	{
-		test_free_map(&map);
+		free_map(&map);
 		free(cub.player);
 		return (EXIT_FAILURE);
 	}
-	cub.mlx = mlx_init();
-	cub.mlx_win = mlx_new_window(cub.mlx, 1280, 720, "cub3d");
-	if (cub.mlx_win == NULL)
-	{
-		ft_putstr_fd("Error: mlx_new_window failed\n", 2);
-		return (EXIT_FAILURE);
-	}
-	init_mlx(&map, &cub);
-	cub.img->img = mlx_new_image(cub.mlx, WIDTH, HEIGHT);
-	if (!cub.img->img)
-	{
-		ft_putstr_fd("Error: mlx_new_image failed\n", 2);
-		return (EXIT_FAILURE);
-	}
-	cub.img->adrr = mlx_get_data_addr(cub.img->img, &cub.img->bpp,
-			&cub.img->line_length, &cub.img->endian);
-	if (!cub.img->adrr)
-	{
-		printf("enzo stp faudra free des trucs ici mais jai la flemme la");
-	}
-	init_mini_map(&cub, &map);
-	start_display(&cub);
-	return (EXIT_SUCCESS);
+	return (main_mlx(&map, &cub));
 }

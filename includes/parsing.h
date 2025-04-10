@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 20:07:34 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 20:41:34 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int				is_map_closed(t_map *map, int height, int width);
 int				check_for_x(char **map);
 bool			is_power_of_two(unsigned int n);
 void			empty_gnl_buffer(int fd);
+void			free_map(t_map *map);
 
 // Parsing main
 t_err_status	validate_file_extension(char *file);
