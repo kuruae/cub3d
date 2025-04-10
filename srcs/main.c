@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 18:37:29 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 19:40:15 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,22 @@ int	start_render(t_cub *cub)
 	return (0);
 }
 
+void	init_mini_map(t_cub *cub, t_map *map)
+{
+	t_minimap *mini;
+
+	mini = malloc(sizeof(t_minimap) * 1);
+	mini->map_height = get_map_height(map->map);
+	mini->map_width = get_map_width(map->map, mini->map_height);
+	mini->height = mini->map_height * 8;
+	mini->width = mini->map_width * 8;
+	mini->img = mlx_new_image(cub->mlx, mini->width, mini->height);
+	if (!mini->img)
+	return;
+	mini->addr = mlx_get_data_addr(mini->img, &mini->bits_per_pixel, &mini->line_length, &mini->endian);
+	cub->mini = mini;
+}
+
 int	main(int argc, char **argv)
 {
 	t_map	map;
@@ -118,6 +134,7 @@ int	main(int argc, char **argv)
 	{
 		printf("enzo stp faudra free des trucs ici mais jai la flemme la");
 	}
+	init_mini_map(&cub, &map);
 	start_display(&cub);
 	return (EXIT_SUCCESS);
 }

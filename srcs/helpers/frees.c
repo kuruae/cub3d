@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:50:16 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/09 18:50:56 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 19:41:30 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ int	handle_close(t_cub *cub)
 	free(cub->so_size);
 	free(cub->ea_size);
 	free(cub->keys);
+	mlx_destroy_image(cub->mlx, cub->mini->img);
 	mlx_destroy_image(cub->mlx, cub->no_xpm);
 	mlx_destroy_image(cub->mlx, cub->so_xpm);
 	mlx_destroy_image(cub->mlx, cub->we_xpm);
 	mlx_destroy_image(cub->mlx, cub->ea_xpm);
 	ft_free_str_array(&cub->map->map);
+	free(cub->mini);
 	close_mlx(cub);
 	exit(EXIT_SUCCESS);
 	return (0);

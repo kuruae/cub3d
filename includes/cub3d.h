@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 19:32:39 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 19:51:17 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,9 @@ void			select_east_west_texture_dimensions(t_cub *cub, int *width,
 void			rotate_right(t_cub *cub, double rotation_speed);
 void			rotate_left(t_cub *cub, double rotation_speed);
 int				mouse_function(int x, int y, void *arg);
+
+///minimap de miniville
+void	mini_map_pixel_put(t_minimap *mini, int x, int y, int color);
+void	draw_square(t_minimap *mini);
+void	put_the_walls(t_minimap *mini, int draw_x, int draw_y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 18:57:26 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 19:37:34 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ typedef struct s_cub
 	t_xpm_size	*we_size;
 	t_xpm_size	*so_size;
 	t_xpm_size	*ea_size;
+	t_minimap	*mini;
 }				t_cub;
 
 #endif
