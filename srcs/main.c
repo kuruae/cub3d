@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 19:32:58 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 18:37:29 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	start_render(t_cub *cub)
 		draw_wall(cub, x);
 	}
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img->img, 0, 0);
+	draw_minimap(cub, cub->map);
 	return (0);
 }
 

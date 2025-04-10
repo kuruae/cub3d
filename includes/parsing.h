@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 01:51:49 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 18:35:48 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ char			*is_map_closed_bottom(char **map, int height, size_t width);
 
 // map translator
 char			*map_translator(char *line);
-
+void	draw_minimap(t_cub *cub, t_map *map);
 #endif
