@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 01:56:09 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 19:11:04 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,13 @@ typedef struct s_keys
 	int			right;
 }				t_keys;
 
+typedef struct s_time
+{
+	double	delta_time;
+	double	last_time;
+	double	curr_time;
+}	t_time;
+
 typedef struct s_cub
 {
 	void		*mlx_win;
@@ -141,6 +148,7 @@ typedef struct s_cub
 	void		*we_xpm;
 	void		*so_xpm;
 	void		*ea_xpm;
+	t_time		time;
 	t_map		*map;
 	t_img		*img;
 	t_player	*player;

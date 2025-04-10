@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:26:28 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/10 01:53:30 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 19:28:09 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	mouse_function(int x, int y, void *arg)
 	if (!old_x)
 		old_x = x;
 	if (x < old_x)
-		rotate_left(cub, MOUSE_SPEED);
+		rotate_left(cub, MOUSE_SPEED * cub->time.delta_time);
 	if (x > old_x)
-		rotate_right(cub, MOUSE_SPEED);
+		rotate_right(cub, MOUSE_SPEED * cub->time.delta_time);
 	old_x = x;
 	return (0);
 }
