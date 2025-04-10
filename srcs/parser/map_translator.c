@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:26:44 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 02:04:50 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 16:34:31 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,25 @@ int	map_line_length(char *line)
 {
 	int	i;
 	int	len;
+	int	column;
+	int	spaces_to_add;
 
 	len = 0;
 	i = 0;
-	len = ft_strlen(line);
+	column = 0;
 	while (line[i])
 	{
 		if (line[i] == '\t')
-			len = len + 3;
+		{
+			spaces_to_add = 4 - (column % 4);
+			len += spaces_to_add;
+			column += spaces_to_add;
+		}
+		else
+		{
+			len++;
+			column++;
+		}
 		i++;
 	}
 	return (len);
@@ -31,10 +42,18 @@ int	map_line_length(char *line)
 
 static char	*handle_tab(char *new, t_translator_vars *var)
 {
-	new[var->x++] = '1';
-	new[var->x++] = '1';
-	new[var->x++] = '1';
-	new[var->x] = '1';
+	int	spaces_to_add;
+	int	i;
+
+	i = 0;
+	spaces_to_add = 4 - (var->x % 4);
+	while (i < spaces_to_add)
+	{
+		new[var->x] = '1';
+		var->x++;
+		i++;
+	}
+	var->x--;
 	return (new);
 }
 

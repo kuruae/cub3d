@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 14:46:55 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 20:12:58 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 16:35:18 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	**read_cub(char **full_map, char *line, int fd, int fd2)
 	while (line)
 	{
 		translated_line = map_translator(line);
+		printf("%s\n", translated_line);
 		if (!translated_line)
 		{
 			free(line);
