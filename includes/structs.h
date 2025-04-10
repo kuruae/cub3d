@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 20:06:48 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 21:40:33 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef struct s_translator_vars
 	int			i;
 	int			x;
 }				t_translator_vars;
+
+typedef struct	s_fps
+{
+	int			frame_count;
+	double		elapsed_time;
+	double		fps;
+}	t_fps;
 
 // Map data
 typedef struct s_map

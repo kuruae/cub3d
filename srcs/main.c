@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 20:41:15 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 21:46:52 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	start_render(t_cub *cub)
 	}
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img->img, 0, 0);
 	draw_minimap(cub, cub->map);
+	update_fps_counter(cub);
 	return (0);
 }
 

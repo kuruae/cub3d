@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 20:07:27 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 21:45:41 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void			apply_dda(t_cub *cub);
 void			wall(t_cub *cub);
 int				start_render(t_cub *cub);
 int				start_display(t_cub *cub);
+void			update_fps_counter(t_cub *cub);
 
 // Hooks
 void			init_keys(t_cub *cub);
