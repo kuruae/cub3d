@@ -1,7 +1,7 @@
-NO ./textures/Crate.xpm
-SO ./textures/Crate.xpm
-WE ./textures/Crate.xpm
-EA ./textures/Crate.xpm
+NO ./textures/goku.xpm
+SO ./textures/goku.xpm
+WE ./textures/goku.xpm
+EA ./textures/goku.xpm
 
 
 F 220,100,0
