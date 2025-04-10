@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 19:40:15 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 20:03:26 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	start_render(t_cub *cub)
 	double	cam_x;
 	int		color;
 
+	compute_t_time_values(cub);
 	color = rgb_to_int(cub->map->ceiling_color);
 	mouvement(cub);
 	draw_floor_ceiling(cub, color);

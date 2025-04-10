@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:41:36 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/09 18:13:28 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 19:10:36 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	init_struct_cub(t_cub *cub, t_img *img)
 	cub->we_xpm = NULL;
 	cub->so_xpm = NULL;
 	cub->ea_xpm = NULL;
+	cub->time = (t_time){0.0, 0.0, 0.0};
 	return (0);
 }
 

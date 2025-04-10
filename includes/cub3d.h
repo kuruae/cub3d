@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 19:51:17 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 20:02:50 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <math.h>
+# include <sys/time.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -27,9 +28,9 @@
 # define HEIGHT 720
 
 // Game speeds
-# define MOVE_SPEED 0.05
-# define ROTATE_SPEED 0.025
-# define MOUSE_SPEED 0.05
+# define MOVE_SPEED 5
+# define ROTATE_SPEED 5
+# define MOUSE_SPEED 3.5
 // PI
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -41,12 +42,14 @@ bool			ft_isdigit_whitespaces(char *str);
 void			get_player_pos(t_cub *cub);
 int				rgb_to_int(t_rgb color);
 int				is_close_to_wall(t_cub *cub, double x, double y);
+void			compute_t_time_values(t_cub *cub);
 
 // Init MLX
 int				init_struct_cub(t_cub *cub, t_img *img);
 void			init_mlx(t_map *map, t_cub *cub);
 
 //display exec///
+double			calculate_move_speed(t_cub *cub);
 int				mouvement(t_cub *cub);
 void			calculate_ray(t_cub *cub);
 void			apply_dda(t_cub *cub);
