@@ -1,7 +1,7 @@
-NO ./textures/wall_classic.xpm
-SO ./textures/wall_classic.xpm
-WE ./textures/wall_classic.xpm
-EA ./textures/wall_classic.xpm
+NO ./textures/Crate.xpm
+SO ./textures/Crate.xpm
+WE ./textures/Crate.xpm
+EA ./textures/Crate.xpm
 
 
 F 220,100,0

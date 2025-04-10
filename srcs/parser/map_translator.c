@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_translator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:26:44 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 18:19:33 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 02:04:50 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,49 +29,64 @@ int	map_line_length(char *line)
 	return (len);
 }
 
+static char	*handle_tab(char *new, t_translator_vars *var)
+{
+	new[var->x++] = '1';
+	new[var->x++] = '1';
+	new[var->x++] = '1';
+	new[var->x] = '1';
+	return (new);
+}
+
+static char	*handle_direction(char *new, t_translator_vars *var, char c)
+{
+	if (c == 'N')
+		new[var->x] = NORTH;
+	else if (c == 'W')
+		new[var->x] = WEST;
+	else if (c == 'E')
+		new[var->x] = EAST;
+	else if (c == 'S')
+		new[var->x] = SOUTH;
+	return (new);
+}
+
+static char	*handle_map_char(char *new, t_translator_vars *var, char c)
+{
+	if (c == '\t')
+		new = handle_tab(new, var);
+	else if (c == '0')
+		new[var->x] = '0';
+	else if (c == ' ' || c == '1')
+		new[var->x] = '1';
+	else if (c == 'N' || c == 'W' || c == 'E' || c == 'S')
+		new = handle_direction(new, var, c);
+	else if (c == '\n')
+		return (new);
+	else
+	{
+		free(new);
+		return (NULL);
+	}
+	var->i++;
+	var->x++;
+	return (new);
+}
 
 char	*map_translator(char *line)
 {
-	char	*new;
-	int		i;
-	int		x;
+	char				*new;
+	t_translator_vars	var;
 
-	i = 0;
-	x = 0;
+	var = (t_translator_vars){0, 0};
 	new = malloc(sizeof(char) * (map_line_length(line) + 1));
-	while (line[i])
+	while (line[var.i])
 	{
-		if (line[i] == '\t')
-		{
-			new[x++] = '1';
-			new[x++] = '1';
-			new[x++] = '1';
-			new[x] = '1';
-		}
-		else if (line[i] == '0')
-			new[x] = '0';
-		else if (line[i] == ' ')
-			new[x] = '1';
-		else if (line[i] == '1')
-			new[x] = '1';
-		else if (line[i] == 'N')
-			new[x] = NORTH;
-		else if (line[i] == 'W')
-			new[x] = WEST;
-		else if (line[i] == 'E')
-			new[x] = EAST;
-		else if (line[i] == 'S')
-			new[x] = SOUTH;
-		else if (line[i] == '\n')
+		new = handle_map_char(new, &var, line[var.i]);
+		if (!new || line[var.i] == '\n')
 			break ;
-		else
-		{
-			free(new);
-			return (NULL);
-		}
-		i++;
-		x++;
 	}
-	new[x] = '\0';
+	if (new)
+		new[var.x] = '\0';
 	return (new);
 }

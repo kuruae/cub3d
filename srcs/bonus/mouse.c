@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:26:28 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/09 19:51:53 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 01:53:30 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
-//x= position horizontale de la souris//
 
 int	mouse_function(int x, int y, void *arg)
 {

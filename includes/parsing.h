@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:02 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 18:42:45 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 01:51:49 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ int				read_all_texture_sizes(t_cub *cub);
 int				get_map_height(char **map);
 int				get_map_width(char **map, int height);
 int				is_map_closed(t_map *map, int height, int width);
-void			get_dimensions(char **arr, int *rows, int *max_cols);
 int				check_for_x(char **map);
+bool			is_power_of_two(unsigned int n);
+void			empty_gnl_buffer(int fd);
 
 // Parsing main
 t_err_status	validate_file_extension(char *file);

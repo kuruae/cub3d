@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 00:47:53 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/09 18:24:07 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 01:53:11 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	write_size_for_current_xpm(t_xpm_size *size, const char *line)
 	while (*line != ' ')
 		line++;
 	size->height = ft_atoi(line);
-	if (size->width < 16 || size->height < 16 || size->width > 800
-		|| size->height > 800 || size->width != size->height)
+	if (size->width <= 0 || size->width != size->height
+		|| size->width > 5000 || !is_power_of_two(size->width))
 		return (1);
 	return (0);
 }
@@ -49,12 +49,7 @@ static int	read_texture_size(const char *texture_path, t_xpm_size *size)
 		free(line);
 		line = get_next_line(fd);
 	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
+	empty_gnl_buffer(fd);
 	close(fd);
 	return (err);
 }

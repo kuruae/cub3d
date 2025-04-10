@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:53:27 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:44:57 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 01:47:17 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	debug_print_file(char *file)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		printf("%s\n", line);
 		free(line);
+		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);

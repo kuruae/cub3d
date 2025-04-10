@@ -1,5 +1,5 @@
-NO ./textures/MissingTexture.xpm
-SO ./textures/MissingTexture.xpm
+NO ./textures/tile11.xpm
+SO ./textures/tile11.xpm
 WE ./textures/sand.xpm
 EA ./textures/sand.xpm
 
