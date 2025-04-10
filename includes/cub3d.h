@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 20:02:50 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 20:07:27 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void			rotate_left(t_cub *cub, double rotation_speed);
 int				mouse_function(int x, int y, void *arg);
 
 ///minimap de miniville
-void	mini_map_pixel_put(t_minimap *mini, int x, int y, int color);
-void	draw_square(t_minimap *mini);
-void	put_the_walls(t_minimap *mini, int draw_x, int draw_y);
+void			mini_map_pixel_put(t_minimap *mini, int x, int y, int color);
+void			draw_square(t_minimap *mini);
+void			put_the_walls(t_minimap *mini, int draw_x, int draw_y);
 #endif

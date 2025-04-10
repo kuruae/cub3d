@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:28:50 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/10 19:49:26 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 20:06:22 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	draw_mini_walls(t_map *map, t_minimap *mini)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	y = 0;
-	while(map->map[y] && y < mini->map_height)
+	while (map->map[y] && y < mini->map_height)
 	{
-		x = 0;	
+		x = 0;
 		while (x < mini->map_width)
 		{
 			if (x <= (int)ft_strlen(map->map[y]) && map->map[y][x] == '1')
@@ -35,8 +35,8 @@ void	draw_mini_walls(t_map *map, t_minimap *mini)
 
 void	put_the_player(t_minimap *mini, int draw_x, int draw_y)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 8)
@@ -53,12 +53,12 @@ void	put_the_player(t_minimap *mini, int draw_x, int draw_y)
 
 void	draw_mini_player(t_cub *cub, t_map *map, t_minimap *mini)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	(void)map;
-	while(y < mini->map_height)
+	while (y < mini->map_height)
 	{
 		x = 0;
 		while (x < mini->map_width)
@@ -75,7 +75,7 @@ void	draw_mini_player(t_cub *cub, t_map *map, t_minimap *mini)
 
 void	draw_minimap(t_cub *cub, t_map *map)
 {
-	t_minimap *mini;
+	t_minimap	*mini;
 
 	mini = cub->mini;
 	draw_square(mini);

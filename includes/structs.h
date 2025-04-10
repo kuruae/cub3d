@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 20:02:39 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/10 20:06:48 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ typedef struct s_draw_wall
 
 typedef struct s_translator_vars
 {
-	int	i;
-	int	x;
-}	t_translator_vars;
+	int			i;
+	int			x;
+}				t_translator_vars;
 
 // Map data
 typedef struct s_map
@@ -69,18 +69,18 @@ typedef struct s_map
 	t_rgb		ceiling_color;
 }				t_map;
 
-
-typedef struct s_minimap {
-    void    *img;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-    int     width;
-    int     height;
-	int		map_height;
-	int		map_width;
-} t_minimap;
+typedef struct s_minimap
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+	int			map_height;
+	int			map_width;
+}				t_minimap;
 typedef struct s_img
 {
 	void		*img;
@@ -147,10 +147,10 @@ typedef struct s_keys
 
 typedef struct s_time
 {
-	double	delta_time;
-	double	last_time;
-	double	curr_time;
-}	t_time;
+	double		delta_time;
+	double		last_time;
+	double		curr_time;
+}				t_time;
 
 typedef struct s_cub
 {

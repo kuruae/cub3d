@@ -6,7 +6,7 @@
 /*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:48:58 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/10 19:49:28 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/10 20:08:09 by habouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 void	mini_map_pixel_put(t_minimap *mini, int x, int y, int color)
 {
-	char *dst;
-    
-    if (x < 0 || x >= mini->width || y < 0 || y >= mini->height)
-        return;
-        
-    dst = mini->addr + (y * mini->line_length + x * (mini->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
+	char	*dst;
+
+	if (x < 0 || x >= mini->width || y < 0 || y >= mini->height)
+		return ;
+	dst = mini->addr + (y * mini->line_length + x * (mini->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	draw_square(t_minimap *mini)
 {
-	int y;
-	int x;
-	
+	int	y;
+	int	x;
+
 	y = 0;
-	while(y < mini->height)
+	while (y < mini->height)
 	{
 		x = 0;
 		while (x < mini->width)
@@ -43,8 +42,8 @@ void	draw_square(t_minimap *mini)
 
 void	put_the_walls(t_minimap *mini, int draw_x, int draw_y)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 8)
