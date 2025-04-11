@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:50:01 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/10 23:29:19 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/11 18:11:43 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void static	draw_loop(t_cub *cub, t_draw_wall draw, int x)
 	double			depht_factor;
 	unsigned int	depth_y;
 
-	depht_factor = 1.0 - fmin(0.8, cub->ray->wall_dist / 12.0);
+	depht_factor = 1.0 - fmin(0.8, cub->ray->wall_dist / 18.0);
 	while (draw.y_axis < cub->ray->draw_end)
 	{
 		draw.texture_y = (int)draw.tex_pos & (draw.texture_height - 1);

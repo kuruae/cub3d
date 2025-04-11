@@ -3,8 +3,8 @@ SO ./textures/Crate.xpm
 WE ./textures/Crate.xpm
 EA ./textures/Crate.xpm
 
-F 255,0,0
-C 0,255,0
+F 58,38,22  
+C 75,70,65
 
 111111111111111111111111111111111111111111111111111	
    0  00          00         000         001111111			

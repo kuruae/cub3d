@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/11 17:55:25 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/11 18:14:06 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	start_render(t_cub *cub)
 	color = rgb_to_int(cub->map->ceiling_color);
 	mouvement(cub);
 	draw_floor_ceiling(cub, color);
-	cub->player->plane_x = -cub->player->dir_y * 0.66;
-	cub->player->plane_y = cub->player->dir_x * 0.66;
+	cub->player->plane_x = -cub->player->dir_y * 0.6;
+	cub->player->plane_y = cub->player->dir_x * 0.6;
 	x = -1;
 	while (++x < WIDTH)
 	{
