@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:35:33 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/10 22:33:46 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/11 23:08:53 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 double	calculate_move_speed(t_cub *cub)
 {
 	double	final_speed;
+	double	diagonal_factor;
 
-	final_speed = MOVE_SPEED * cub->time.delta_time;
-	if (cub->keys->w && cub->keys->a)
-		final_speed *= sqrt(2) / 2;
-	else if (cub->keys->w && cub->keys->d)
-		final_speed *= sqrt(2) / 2;
-	else if (cub->keys->s && cub->keys->a)
-		final_speed *= sqrt(2) / 2;
-	else if (cub->keys->s && cub->keys->d)
-		final_speed *= sqrt(2) / 2;
+	if ((cub->keys->w || cub->keys->s)
+		&& (cub->keys->a || cub->keys->d))
+		diagonal_factor = sqrt(2) / 2;
+	else
+		diagonal_factor = 1.0;
+	final_speed = MOVE_SPEED * cub->time.delta_time * diagonal_factor;
 	return (final_speed);
 }
 
@@ -38,11 +36,16 @@ static double	get_time_in_seconds(void)
 
 void	compute_t_time_values(t_cub *cub)
 {
-	cub->time.curr_time = get_time_in_seconds();
-	cub->time.delta_time = cub->time.curr_time - cub->time.last_time;
-	cub->time.last_time = cub->time.curr_time;
-	if (cub->time.delta_time > 0.1)
-		cub->time.delta_time = 0.1;
+	double	new_time;
+
+	new_time = get_time_in_seconds();
+	cub->time.delta_time = new_time - cub->time.last_time;
+	if (cub->time.delta_time < MIN_DELTA_TIME)
+		cub->time.delta_time = MIN_DELTA_TIME;
+	if (cub->time.delta_time > MAX_DELTA_TIME)
+		cub->time.delta_time = MAX_DELTA_TIME;		
+	cub->time.last_time = new_time;
+	cub->time.curr_time = new_time;
 }
 
 void	update_fps_counter(t_cub *cub)

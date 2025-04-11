@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:14:10 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/11 02:12:52 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/11 22:52:36 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define MOVE_SPEED 5
 # define ROTATE_SPEED 5
 # define MOUSE_SPEED 3.5
+
+# define MIN_DELTA_TIME 0.001
+# define MAX_DELTA_TIME 0.016
+
 // PI
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
