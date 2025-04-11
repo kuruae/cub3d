@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:44:05 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/09 17:23:37 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/11 17:58:36 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_err_status	validate_file_extension(char *file)
 
 t_err_status	start_parsing(int argc, char **argv, t_map *map)
 {
+	map->map = NULL;
 	if (argc != 2)
 		return (err_handler(MSG_INVALID_ARGS, ERR_MAP_PATH));
 	if (validate_file_extension(argv[1]) != SUCCESS)

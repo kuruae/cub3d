@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:33 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 21:46:52 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/11 17:55:25 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	init_mini_map(t_cub *cub, t_map *map)
 static int	main_mlx(t_map *map, t_cub *cub)
 {
 	cub->mlx = mlx_init();
-	cub->mlx_win = mlx_new_window(cub->mlx, 1280, 720, "cub3d");
+	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
 	if (cub->mlx_win == NULL)
 	{
 		ft_putstr_fd("Error: mlx_new_window failed\n", 2);

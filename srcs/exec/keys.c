@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 19:11:39 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/08 17:42:41 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/11 18:05:10 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_keys(t_cub *cub)
 	cub->keys->a = 0;
 	cub->keys->s = 0;
 	cub->keys->d = 0;
+	cub->keys->m = 0;
 	cub->keys->left = 0;
 	cub->keys->right = 0;
 }
@@ -40,6 +41,8 @@ int	press(int keysym, t_cub *cub)
 		cub->keys->a = 1;
 	if (keysym == XK_d)
 		cub->keys->d = 1;
+	if (keysym == XK_m)
+		cub->keys->m = !cub->keys->m;
 	if (keysym == XK_Left)
 		cub->keys->left = 1;
 	if (keysym == XK_Right)

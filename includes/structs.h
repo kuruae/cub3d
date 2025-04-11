@@ -6,7 +6,7 @@
 /*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:15:09 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/10 21:40:33 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/11 17:49:03 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ typedef struct s_keys
 	int			a;
 	int			s;
 	int			d;
+	int			m;
 	int			left;
 	int			right;
 }				t_keys;

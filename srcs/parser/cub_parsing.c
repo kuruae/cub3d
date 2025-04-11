@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:21:10 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/09 19:19:41 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/11 18:01:18 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ t_err_status	validate_file_path(const char *file, char *msg)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		close(fd);
 		return (err_handler(msg, ERR_MAP_PATH));
-	}
 	close(fd);
 	return (SUCCESS);
 }

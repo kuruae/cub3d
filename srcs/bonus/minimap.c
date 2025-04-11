@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:28:50 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/10 20:06:22 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/11 18:04:57 by kuru             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	draw_minimap(t_cub *cub, t_map *map)
 {
 	t_minimap	*mini;
 
+	if (cub->keys->m == 1)
+		return ;
 	mini = cub->mini;
 	draw_square(mini);
 	draw_mini_walls(map, mini);
