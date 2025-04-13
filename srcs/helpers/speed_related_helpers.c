@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   speed_related_helpers.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:35:33 by kuru              #+#    #+#             */
-/*   Updated: 2025/04/11 23:08:53 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/13 17:18:43 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	compute_t_time_values(t_cub *cub)
 	if (cub->time.delta_time < MIN_DELTA_TIME)
 		cub->time.delta_time = MIN_DELTA_TIME;
 	if (cub->time.delta_time > MAX_DELTA_TIME)
-		cub->time.delta_time = MAX_DELTA_TIME;		
+		cub->time.delta_time = MAX_DELTA_TIME;
 	cub->time.last_time = new_time;
 	cub->time.curr_time = new_time;
 }

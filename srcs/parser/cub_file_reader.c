@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:52:41 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/13 16:56:08 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:07:50 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,11 @@ t_err_status	cub_file_readloop(char *file, t_map *map)
 		status = process_line(line, map, fd);
 		free(line);
 		if (status != SUCCESS)
+		{
+			if (status == ERR_COLOR)
+				empty_gnl_buffer(fd);
 			break ;
+		}
 		line = get_next_line(fd);
 	}
 	close(fd);

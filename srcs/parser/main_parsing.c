@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:44:05 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/11 17:58:36 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/13 17:13:10 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static t_err_status	init_map(t_map *map)
+{
+	map->map = NULL;
+	map->no_texture = NULL;
+	map->so_texture = NULL;
+	map->we_texture = NULL;
+	map->ea_texture = NULL;
+	map->floor_color.r = -1;
+	map->floor_color.g = -1;
+	map->floor_color.b = -1;
+	map->ceiling_color.r = -1;
+	map->ceiling_color.g = -1;
+	map->ceiling_color.b = -1;
+	return (SUCCESS);
+}
 
 t_err_status	validate_file_extension(char *file)
 {
@@ -24,7 +40,7 @@ t_err_status	validate_file_extension(char *file)
 
 t_err_status	start_parsing(int argc, char **argv, t_map *map)
 {
-	map->map = NULL;
+	init_map(map);
 	if (argc != 2)
 		return (err_handler(MSG_INVALID_ARGS, ERR_MAP_PATH));
 	if (validate_file_extension(argv[1]) != SUCCESS)
