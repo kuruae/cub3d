@@ -6,7 +6,7 @@
 /*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:28:50 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/13 16:53:12 by emagnani         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:28:21 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	draw_mini_player(t_cub *cub, t_map *map, t_minimap *mini)
 		x = 0;
 		while (x < mini->map_width)
 		{
-			if (x == (int)cub->player->pos_x && y == (int)cub->player->pos_y)
+			if (x <= (int)ft_strlen(map->map[y])
+				&& x == (int)cub->player->pos_x && y == (int)cub->player->pos_y)
 			{
 				put_the_player(mini, x * 8, y * 8);
 			}
