@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:28:50 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/11 18:04:57 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/13 16:53:12 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	draw_mini_walls(t_map *map, t_minimap *mini)
 		x = 0;
 		while (x < mini->map_width)
 		{
-			if (x <= (int)ft_strlen(map->map[y]) && map->map[y][x] == '1')
+			if (x <= (int)ft_strlen(map->map[y]) && map->map[y][x] != '1'
+				&& map->map[y][x] != '\0')
 			{
 				put_the_walls(mini, x * 8, y * 8);
 			}

@@ -3,7 +3,7 @@ SO ./textures/obsi.xpm
 WE ./textures/stare.xpm
 EA ./textures/FT_MC.xpm
 
-F 40,8,55 	
+F 40,11,8,55 	
 C 40,8,55 
 
 

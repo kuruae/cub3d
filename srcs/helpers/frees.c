@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kuru <kuru@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:50:16 by habouda           #+#    #+#             */
-/*   Updated: 2025/04/11 17:57:57 by kuru             ###   ########.fr       */
+/*   Updated: 2025/04/13 16:56:24 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	free_map(t_map *map)
 	int	i;
 
 	i = 0;
-	if (!map || !map->map)
+	if (!map)
 		return ;
 	if (map->map)
 	{

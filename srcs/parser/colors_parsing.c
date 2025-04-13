@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habouda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: emagnani <emagnani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:21:28 by emagnani          #+#    #+#             */
-/*   Updated: 2025/04/08 17:44:38 by habouda          ###   ########.fr       */
+/*   Updated: 2025/04/13 16:54:38 by emagnani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_err_status	process_colors(const char *line, t_rgb *colors)
 	if (!splitted_rgb)
 		return (MALLOC_FAILURE);
 	if (check_rgb_values(splitted_rgb) == EXIT_FAILURE
-		|| count_arrays(splitted_rgb) == EXIT_FAILURE)
+		|| count_arrays(splitted_rgb) != 3)
 	{
 		ft_free_str_array(&splitted_rgb);
 		return (ERR_COLOR);
